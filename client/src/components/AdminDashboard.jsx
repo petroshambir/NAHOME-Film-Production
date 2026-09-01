@@ -66,7 +66,7 @@ function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('manager');
 
   useEffect(() => {
-    fetch('https://habesha-film-production-server.onrender.com/api/projects')
+    fetch('https://nahome-film-production.onrender.com/api/projects')
       .then(res => res.json())
       .then(data => {
         const dataMap = {};
@@ -101,7 +101,7 @@ function AdminDashboard() {
 
   const fetchPortals = async () => {
     try {
-      const res = await fetch('https://habesha-film-production-server.onrender.com/api/client/portals');
+      const res = await fetch('https://nahome-film-production.onrender.com/api/client/portals');
       if (res.ok) {
         const data = await res.json();
         setPortalsList(data);
@@ -145,7 +145,7 @@ function AdminDashboard() {
 
     setCreatingPortal(true);
     try {
-      const res = await fetch('https://habesha-film-production-server.onrender.com/api/client/create-portal', {
+      const res = await fetch('https://nahome-film-production.onrender.com/api/client/create-portal', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -201,7 +201,7 @@ function AdminDashboard() {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 300000); 
 
-        const res = await fetch('https://habesha-film-production-server.onrender.com/api/client/upload-image', {
+        const res = await fetch('https://nahome-film-production.onrender.com/api/client/upload-image', {
           method: 'POST',
           body: formData,
           signal: controller.signal
@@ -244,7 +244,7 @@ function AdminDashboard() {
   const handleDeletePortal = async (id) => {
     if (!window.confirm('ነዚ ፖርታል ከተጥፍኦ ትደል ኢኻ?')) return;
     try {
-      const res = await fetch(`https://habesha-film-production-server.onrender.com/api/client/delete-portal/${id}`, {
+      const res = await fetch(`https://nahome-film-production.onrender.com/api/client/delete-portal/${id}`, {
         method: 'DELETE'
       });
       if (res.ok) {
@@ -268,7 +268,7 @@ function AdminDashboard() {
         headings: data.headings
       };
 
-      const res = await fetch(`https://habesha-film-production-server.onrender.com/api/projects/${title}`, {
+      const res = await fetch(`https://nahome-film-production.onrender.com/api/projects/${title}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -656,7 +656,7 @@ function SectionRenderer({ title, data, setData, onSave }) {
           formData.append('images', file);
         }
 
-        const res = await fetch(`https://habesha-film-production-server.onrender.com/api/projects/${title}/upload`, {
+        const res = await fetch(`https://nahome-film-production.onrender.com/api/projects/${title}/upload`, {
           method: 'POST',
           body: formData
         });
