@@ -1,4 +1,270 @@
 
+// import 'dotenv/config';
+
+// import express from 'express';
+// import cors from 'cors';
+
+// import connectDB from './Database Connection/DB.js';
+
+// import projectRoutes from './Route/projectRoutes.js';
+// import authRoutes from './Route/authRoutes.js';
+// import clientRoutes from './Route/clientRoutes.js';
+// import packageRoutes from './Route/packageRoutes.js';
+// import notebookRoutes from './Route/notebookRputes.js';
+
+// // =========================================================
+// // 1. CREATE EXPRESS APP
+// // =========================================================
+
+// const app = express();
+
+// // =========================================================
+// // 2. BODY PARSING
+// // =========================================================
+
+// app.use(
+//   express.json({
+//     limit: '50mb',
+//   })
+// );
+
+// app.use(
+//   express.urlencoded({
+//     limit: '50mb',
+//     extended: true,
+//   })
+// );
+
+// // =========================================================
+// // 3. CORS
+// // =========================================================
+
+// const allowedOrigins = [
+//   'https://habesha-film-production.onrender.com',
+// ];
+
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       // Allow requests without an Origin header
+//       // (Postman, server-to-server, etc.)
+//       if (!origin) {
+//         return callback(null, true);
+//       }
+
+//       if (allowedOrigins.includes(origin)) {
+//         return callback(null, true);
+//       }
+
+//       console.log(
+//         `❌ CORS blocked origin: ${origin}`
+//       );
+
+//       return callback(
+//         new Error('Not allowed by CORS')
+//       );
+//     },
+
+//     methods: [
+//       'GET',
+//       'POST',
+//       'PUT',
+//       'DELETE',
+//       'PATCH',
+//       'OPTIONS',
+//     ],
+
+//     allowedHeaders: [
+//       'Content-Type',
+//       'Authorization',
+//       'Accept',
+//       'Cache-Control',
+//       'Pragma',
+//     ],
+
+//     credentials: false,
+
+//     optionsSuccessStatus: 204,
+//   })
+// );
+
+// // =========================================================
+// // 4. HANDLE PREFLIGHT REQUESTS
+// // =========================================================
+
+// app.options(
+  
+//   cors({
+//     origin: (origin, callback) => {
+//       if (!origin) {
+//         return callback(null, true);
+//       }
+
+//       if (allowedOrigins.includes(origin)) {
+//         return callback(null, true);
+//       }
+
+//       return callback(
+//         new Error('Not allowed by CORS')
+//       );
+//     },
+
+//     methods: [
+//       'GET',
+//       'POST',
+//       'PUT',
+//       'DELETE',
+//       'PATCH',
+//       'OPTIONS',
+//     ],
+
+//     allowedHeaders: [
+//       'Content-Type',
+//       'Authorization',
+//       'Accept',
+//       'Cache-Control',
+//       'Pragma',
+//     ],
+
+//     credentials: false,
+
+//     optionsSuccessStatus: 204,
+//   })
+// );
+
+// // =========================================================
+// // 5. DATABASE
+// // =========================================================
+
+// connectDB();
+
+// // =========================================================
+// // 6. REQUEST LOGGER
+// // =========================================================
+
+// app.use((req, res, next) => {
+//   console.log(
+//     `🔥 [${req.method}] Request made to: ${req.url}`
+//   );
+
+//   next();
+// });
+
+// // =========================================================
+// // 7. ROUTES
+// // =========================================================
+
+// app.use(
+//   '/api/projects',
+//   projectRoutes
+// );
+
+// app.use(
+//   '/api/auth',
+//   authRoutes
+// );
+
+// app.use(
+//   '/api/client',
+//   clientRoutes
+// );
+
+// app.use(
+//   '/api/packages',
+//   packageRoutes
+// );
+
+// app.use(
+//   '/api/notebook',
+//   notebookRoutes
+// );
+
+// // =========================================================
+// // 8. HEALTH CHECK
+// // =========================================================
+
+// app.get(
+//   '/',
+//   (req, res) => {
+//     res.status(200).json({
+//       success: true,
+//       message:
+//         'Habesha Film Production Server is running.',
+//     });
+//   }
+// );
+
+// // =========================================================
+// // 9. 404 HANDLER
+// // =========================================================
+
+// app.use(
+//   (req, res) => {
+//     res.status(404).json({
+//       success: false,
+//       message: 'Route not found',
+//       path: req.originalUrl,
+//     });
+//   }
+// );
+
+// // =========================================================
+// // 10. GLOBAL ERROR HANDLER
+// // =========================================================
+
+// app.use(
+//   (err, req, res, next) => {
+//     console.error(
+//       '🔥 Server Error:',
+//       err
+//     );
+
+//     if (
+//       err.message ===
+//       'Not allowed by CORS'
+//     ) {
+//       return res.status(403).json({
+//         success: false,
+//         message:
+//           'CORS policy blocked this origin.',
+//         origin: req.headers.origin || null,
+//       });
+//     }
+
+//     res.status(
+//       err.status || 500
+//     ).json({
+//       success: false,
+//       message:
+//         err.message ||
+//         'Internal server error',
+//     });
+//   }
+// );
+
+// // =========================================================
+// // 11. START SERVER
+// // =========================================================
+
+// const PORT =
+//   process.env.PORT || 5000;
+
+// const server = app.listen(
+//   PORT,
+//   () => {
+//     console.log(
+//       `🚀 Server running on port ${PORT}`
+//     );
+//   }
+// );
+
+// // =========================================================
+// // 12. SERVER TIMEOUT
+// // =========================================================
+
+// server.timeout = 300000;
+// server.keepAliveTimeout = 300000;
+
 import 'dotenv/config';
 
 import express from 'express';
@@ -43,103 +309,60 @@ const allowedOrigins = [
   'https://habesha-film-production.onrender.com',
 ];
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      // Allow requests without an Origin header
-      // (Postman, server-to-server, etc.)
-      if (!origin) {
-        return callback(null, true);
-      }
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests without an Origin header
+    // (Postman, server-to-server, etc.)
+    if (!origin) {
+      return callback(null, true);
+    }
 
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
 
-      console.log(
-        `❌ CORS blocked origin: ${origin}`
-      );
+    console.log(
+      `❌ CORS blocked origin: ${origin}`
+    );
 
-      return callback(
-        new Error('Not allowed by CORS')
-      );
-    },
+    return callback(
+      new Error('Not allowed by CORS')
+    );
+  },
 
-    methods: [
-      'GET',
-      'POST',
-      'PUT',
-      'DELETE',
-      'PATCH',
-      'OPTIONS',
-    ],
+  methods: [
+    'GET',
+    'POST',
+    'PUT',
+    'DELETE',
+    'PATCH',
+    'OPTIONS',
+  ],
 
-    allowedHeaders: [
-      'Content-Type',
-      'Authorization',
-      'Accept',
-      'Cache-Control',
-      'Pragma',
-    ],
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'Accept',
+    'Cache-Control',
+    'Pragma',
+  ],
 
-    credentials: false,
+  credentials: false,
 
-    optionsSuccessStatus: 204,
-  })
-);
+  optionsSuccessStatus: 204,
+};
 
-// =========================================================
-// 4. HANDLE PREFLIGHT REQUESTS
-// =========================================================
-
-app.options(
-  
-  cors({
-    origin: (origin, callback) => {
-      if (!origin) {
-        return callback(null, true);
-      }
-
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-
-      return callback(
-        new Error('Not allowed by CORS')
-      );
-    },
-
-    methods: [
-      'GET',
-      'POST',
-      'PUT',
-      'DELETE',
-      'PATCH',
-      'OPTIONS',
-    ],
-
-    allowedHeaders: [
-      'Content-Type',
-      'Authorization',
-      'Accept',
-      'Cache-Control',
-      'Pragma',
-    ],
-
-    credentials: false,
-
-    optionsSuccessStatus: 204,
-  })
-);
+// Apply CORS middleware
+app.use(cors(corsOptions));
 
 // =========================================================
-// 5. DATABASE
+// 4. DATABASE
 // =========================================================
 
 connectDB();
 
 // =========================================================
-// 6. REQUEST LOGGER
+// 5. REQUEST LOGGER
 // =========================================================
 
 app.use((req, res, next) => {
@@ -151,7 +374,7 @@ app.use((req, res, next) => {
 });
 
 // =========================================================
-// 7. ROUTES
+// 6. ROUTES
 // =========================================================
 
 app.use(
@@ -180,7 +403,7 @@ app.use(
 );
 
 // =========================================================
-// 8. HEALTH CHECK
+// 7. HEALTH CHECK
 // =========================================================
 
 app.get(
@@ -195,7 +418,7 @@ app.get(
 );
 
 // =========================================================
-// 9. 404 HANDLER
+// 8. 404 HANDLER
 // =========================================================
 
 app.use(
@@ -209,7 +432,7 @@ app.use(
 );
 
 // =========================================================
-// 10. GLOBAL ERROR HANDLER
+// 9. GLOBAL ERROR HANDLER
 // =========================================================
 
 app.use(
@@ -227,7 +450,8 @@ app.use(
         success: false,
         message:
           'CORS policy blocked this origin.',
-        origin: req.headers.origin || null,
+        origin:
+          req.headers.origin || null,
       });
     }
 
@@ -243,7 +467,7 @@ app.use(
 );
 
 // =========================================================
-// 11. START SERVER
+// 10. START SERVER
 // =========================================================
 
 const PORT =
@@ -259,7 +483,7 @@ const server = app.listen(
 );
 
 // =========================================================
-// 12. SERVER TIMEOUT
+// 11. SERVER TIMEOUT
 // =========================================================
 
 server.timeout = 300000;
