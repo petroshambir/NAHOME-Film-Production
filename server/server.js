@@ -10,7 +10,7 @@ import projectRoutes from './Route/projectRoutes.js';
 import authRoutes from './Route/authRoutes.js';
 import clientRoutes from './Route/clientRoutes.js';
 import packageRoutes from './Route/packageRoutes.js';
-import notebookRoutes from './Route/notebookRoutes.js';
+import notebookRoutes from './Route/notebookRputes.js';
 
 // =========================================================
 // 1. CREATE EXPRESS APP
@@ -93,7 +93,7 @@ app.use(
 // =========================================================
 
 app.options(
-  '*',
+  
   cors({
     origin: (origin, callback) => {
       if (!origin) {
