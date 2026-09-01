@@ -412,7 +412,7 @@ app.get(
     res.status(200).json({
       success: true,
       message:
-        'Habesha Film Production Server is running.',
+        'Nahome Film Production Server is running.',
     });
   }
 );
