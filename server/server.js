@@ -306,7 +306,7 @@ app.use(
 // =========================================================
 
 const allowedOrigins = [
-  'https://habesha-film-production.onrender.com',
+  'https://nahome-film-production-dmf0.onrender.com',
 ];
 
 const corsOptions = {
