@@ -1,8 +1,9 @@
 
+
 // import React, { useEffect, useState } from "react";
 // import { Link, useLocation } from "react-router-dom";
 
-// import logo from "../assets/images/nahom-logo.jpeg";
+// import logo from "../assets/images/";
 
 // function Navbar() {
 //   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +18,7 @@
 //   ========================================================= */
 
 //   useEffect(() => {
-//     fetch("https://habesha-film-production-server.onrender.com/api/projects")
+//     fetch("https://nahome-film-production.onrender.com/api/projects")
 //       .then((res) => res.json())
 //       .then((data) => {
 //         setGalleryLinks(data);
@@ -94,7 +95,7 @@
 
 //         {/* =================================================
 //             TOP GOLD LINE
-//         ================================================= */}
+//         ================================================_ */}
 
 //         <div
 //           className={`
@@ -106,7 +107,7 @@
 
 //         {/* =================================================
 //             MAIN NAV
-//         ================================================= */}
+//         ================================================_ */}
 
 //         <div
 //           className="
@@ -118,7 +119,7 @@
 
 //           {/* =================================================
 //               LOGO
-//           ================================================= */}
+//           ================================================_ */}
 
 //           <Link
 //             to="/home"
@@ -168,7 +169,7 @@
 
 //           {/* =================================================
 //               DESKTOP NAVIGATION
-//           ================================================= */}
+//           ================================================_ */}
 
 //           <div
 //             className="
@@ -252,8 +253,8 @@
 
 
 //             {/* =================================================
-//                 GALLERY
-//             ================================================= */}
+//                 GALLERY (Fixed absolute/relative positioning)
+//             ================================================_ */}
 
 //             <div
 //               className="relative"
@@ -297,14 +298,15 @@
 
 //               <div
 //                 className={`
-//                   absolute right-0 top-[calc(100%+14px)]
+//                   absolute right-0 top-full pt-3
 //                   w-[270px]
 //                   origin-top
 //                   transition-all duration-300
+//                   pointer-events-auto
 //                   ${
 //                     workOpen
 //                       ? "visible translate-y-0 opacity-100"
-//                       : "invisible -translate-y-2 opacity-0"
+//                       : "invisible -translate-y-2 opacity-0 pointer-events-none"
 //                   }
 //                 `}
 //               >
@@ -495,7 +497,7 @@
 
 //           {/* =================================================
 //               RIGHT CTA
-//           ================================================= */}
+//           ================================================_ */}
 
 //           <div className="hidden lg:flex items-center gap-5">
 
@@ -569,7 +571,7 @@
 
 //           {/* =================================================
 //               MOBILE MENU BUTTON
-//           ================================================= */}
+//           ================================================_ */}
 
 //           <button
 //             type="button"
@@ -680,6 +682,8 @@
 //               justify-center
 //               px-8
 //               sm:px-14
+//               overflow-y-auto
+//               py-20
 //             "
 //           >
 
@@ -799,6 +803,10 @@
 //                       <Link
 //                         key={item._id || index}
 //                         to={`/gallery/${slug}`}
+//                         onClick={() => {
+//                           setWorkOpen(false);
+//                           setIsOpen(false);
+//                         }}
 //                         className="
 //                           block
 //                           py-3
@@ -948,7 +956,7 @@ function Navbar() {
   ========================================================= */
 
   useEffect(() => {
-    fetch("https://habesha-film-production-server.onrender.com/api/projects")
+    fetch("https://nahome-film-production.onrender.com/api/projects")
       .then((res) => res.json())
       .then((data) => {
         setGalleryLinks(data);
@@ -1009,7 +1017,7 @@ function Navbar() {
     <>
       {/* =====================================================
           CINEMATIC NAVBAR
-      ==================================================== */}
+      ===================================================== */}
 
       <nav
         className={`
@@ -1017,7 +1025,7 @@ function Navbar() {
           transition-all duration-700
           ${
             scrolled
-              ? "border-b border-black/10 bg-[#fcfcfc]/90 backdrop-blur-2xl"
+              ? "border-b border-white/10 bg-[#050505]/90 backdrop-blur-2xl"
               : "bg-transparent"
           }
         `}
@@ -1025,13 +1033,17 @@ function Navbar() {
 
         {/* =================================================
             TOP GOLD LINE
-        ================================================_ */}
+        ================================================= */}
 
         <div
           className={`
-            absolute top-0 left-0 h-[1px] bg-[#997a33]
+            absolute top-0 left-0 h-[1px] bg-[#cda653]
             transition-all duration-1000
-            ${scrolled ? "w-full opacity-70" : "w-0 opacity-0"}
+            ${
+              scrolled
+                ? "w-full opacity-70"
+                : "w-0 opacity-0"
+            }
           `}
         />
 
@@ -1041,9 +1053,9 @@ function Navbar() {
 
         <div
           className="
-            mx-auto flex h-[88px] max-w-[1800px]
+            mx-auto flex h-[82px] sm:h-[88px] max-w-[1800px]
             items-center justify-between
-            px-5 sm:px-8 lg:px-12 xl:px-20
+            px-4 sm:px-8 lg:px-12 xl:px-20
           "
         >
 
@@ -1056,9 +1068,9 @@ function Navbar() {
             className="
               group relative z-[110]
               flex items-center
+              shrink-0
             "
           >
-
             <div
               className="
                 relative overflow-hidden
@@ -1066,12 +1078,11 @@ function Navbar() {
                 group-hover:scale-[1.03]
               "
             >
-
               <img
                 src={logo}
                 alt="Nahom Film Production"
                 className="
-                  h-[58px] w-[76px]
+                  h-[52px] w-[70px]
                   object-contain
                   sm:h-[66px] sm:w-[88px]
                   md:h-[72px] md:w-[96px]
@@ -1084,16 +1095,14 @@ function Navbar() {
                 className="
                   pointer-events-none
                   absolute inset-0
-                  bg-[#997a33]/10
+                  bg-[#cda653]/10
                   blur-xl
                   opacity-0
                   transition-opacity duration-500
                   group-hover:opacity-100
                 "
               />
-
             </div>
-
           </Link>
 
 
@@ -1107,8 +1116,8 @@ function Navbar() {
               items-center
               gap-1
               rounded-full
-              border border-black/10
-              bg-white/60
+              border border-white/10
+              bg-black/20
               px-2 py-2
               backdrop-blur-md
             "
@@ -1127,8 +1136,8 @@ function Navbar() {
                 transition-all duration-300
                 ${
                   isActive("/home")
-                    ? "text-[#FF4900]"
-                    : "text-[#2563eb] hover:text-[#FF4900]"
+                    ? "text-[#d8b76a]"
+                    : "text-white/65 hover:text-white"
                 }
               `}
             >
@@ -1141,7 +1150,7 @@ function Navbar() {
                     left-1/2
                     h-px w-5
                     -translate-x-1/2
-                    bg-[#FF4900]
+                    bg-[#cda653]
                   "
                 />
               )}
@@ -1161,8 +1170,8 @@ function Navbar() {
                 transition-all duration-300
                 ${
                   isActive("/about")
-                    ? "text-[#FF4900]"
-                    : "text-[#2563eb] hover:text-[#FF4900]"
+                    ? "text-[#d8b76a]"
+                    : "text-white/65 hover:text-white"
                 }
               `}
             >
@@ -1175,7 +1184,7 @@ function Navbar() {
                     left-1/2
                     h-px w-5
                     -translate-x-1/2
-                    bg-[#FF4900]
+                    bg-[#cda653]
                   "
                 />
               )}
@@ -1183,7 +1192,7 @@ function Navbar() {
 
 
             {/* =================================================
-                GALLERY
+                GALLERY DESKTOP
             ================================================= */}
 
             <div
@@ -1202,24 +1211,23 @@ function Navbar() {
                   font-medium
                   uppercase
                   tracking-[0.28em]
-                  text-[#2563eb]
+                  text-white/65
                   transition-all duration-300
-                  hover:text-[#FF4900]
+                  hover:text-white
                 "
               >
-
                 Gallery
 
                 <span
                   className={`
                     text-[8px]
+                    text-[#cda653]
                     transition-transform duration-300
-                    ${workOpen ? "rotate-180 text-[#FF4900]" : "text-[#2563eb] group-hover:text-[#FF4900]"}
+                    ${workOpen ? "rotate-180" : ""}
                   `}
                 >
                   ↓
                 </span>
-
               </button>
 
 
@@ -1227,14 +1235,14 @@ function Navbar() {
 
               <div
                 className={`
-                  absolute right-0 top-[calc(100%+14px)]
+                  absolute right-0 top-full pt-3
                   w-[270px]
                   origin-top
                   transition-all duration-300
                   ${
                     workOpen
-                      ? "visible translate-y-0 opacity-100"
-                      : "invisible -translate-y-2 opacity-0"
+                      ? "visible translate-y-0 opacity-100 pointer-events-auto"
+                      : "invisible -translate-y-2 opacity-0 pointer-events-none"
                   }
                 `}
               >
@@ -1243,15 +1251,15 @@ function Navbar() {
                   className="
                     relative
                     overflow-hidden
-                    border border-black/10
-                    bg-[#f8f8f8]/95
+                    border border-white/10
+                    bg-[#080808]/95
                     p-3
-                    shadow-[0_25px_80px_rgba(0,0,0,.15)]
+                    shadow-[0_25px_80px_rgba(0,0,0,.7)]
                     backdrop-blur-2xl
                   "
                 >
 
-                  {/* gold top line */}
+                  {/* Gold top line */}
 
                   <div
                     className="
@@ -1259,7 +1267,7 @@ function Navbar() {
                       h-px
                       bg-gradient-to-r
                       from-transparent
-                      via-[#FF4900]
+                      via-[#cda653]
                       to-transparent
                     "
                   />
@@ -1271,7 +1279,7 @@ function Navbar() {
                         text-[7px]
                         uppercase
                         tracking-[0.4em]
-                        text-[#2563eb]
+                        text-[#cda653]
                       "
                     >
                       Our Work
@@ -1283,7 +1291,7 @@ function Navbar() {
                         font-serif
                         text-lg
                         font-light
-                        text-black/90
+                        text-white/90
                       "
                     >
                       Selected Stories
@@ -1292,7 +1300,7 @@ function Navbar() {
                   </div>
 
 
-                  <div className="border-t border-black/10 pt-2">
+                  <div className="border-t border-white/10 pt-2">
 
                     {galleryLinks.length > 0 ? (
 
@@ -1315,11 +1323,11 @@ function Navbar() {
                             className="
                               group flex items-center
                               justify-between
-                              border-b border-black/5
+                              border-b border-white/5
                               px-3 py-3
                               transition-all duration-300
                               last:border-none
-                              hover:bg-black/[0.04]
+                              hover:bg-white/[0.04]
                             "
                           >
 
@@ -1328,9 +1336,9 @@ function Navbar() {
                                 text-[9px]
                                 uppercase
                                 tracking-[0.18em]
-                                text-[#2563eb]
+                                text-white/55
                                 transition-colors
-                                group-hover:text-[#FF4900]
+                                group-hover:text-[#d8b76a]
                               "
                             >
                               {rawTitle}
@@ -1338,7 +1346,7 @@ function Navbar() {
 
                             <span
                               className="
-                                text-[#FF4900]
+                                text-[#cda653]
                                 opacity-0
                                 transition-all duration-300
                                 group-hover:translate-x-1
@@ -1360,7 +1368,7 @@ function Navbar() {
                           text-[8px]
                           uppercase
                           tracking-[0.2em]
-                          text-[#2563eb]/70
+                          text-white/25
                         "
                       >
                         Loading...
@@ -1390,8 +1398,8 @@ function Navbar() {
                 transition-all duration-300
                 ${
                   isActive("/price")
-                    ? "text-[#FF4900]"
-                    : "text-[#2563eb] hover:text-[#FF4900]"
+                    ? "text-[#d8b76a]"
+                    : "text-white/65 hover:text-white"
                 }
               `}
             >
@@ -1412,8 +1420,8 @@ function Navbar() {
                 transition-all duration-300
                 ${
                   isActive("/contact")
-                    ? "text-[#FF4900]"
-                    : "text-[#2563eb] hover:text-[#FF4900]"
+                    ? "text-[#d8b76a]"
+                    : "text-white/65 hover:text-white"
                 }
               `}
             >
@@ -1429,7 +1437,7 @@ function Navbar() {
 
           <div className="hidden lg:flex items-center gap-5">
 
-            {/* small status */}
+            {/* Small status */}
 
             <div className="flex items-center gap-2">
 
@@ -1437,8 +1445,8 @@ function Navbar() {
                 className="
                   h-1.5 w-1.5
                   rounded-full
-                  bg-[#997a33]
-                  shadow-[0_0_12px_#997a33]
+                  bg-[#cda653]
+                  shadow-[0_0_12px_#cda653]
                 "
               />
 
@@ -1447,7 +1455,7 @@ function Navbar() {
                   text-[7px]
                   uppercase
                   tracking-[0.3em]
-                  text-black/55
+                  text-white/35
                 "
               >
                 Available
@@ -1463,18 +1471,17 @@ function Navbar() {
               className="
                 group relative
                 overflow-hidden
-                border border-[#2563eb]/70
-                bg-[#2563eb]
+                border border-[#cda653]/70
+                bg-[#cda653]
                 px-6 py-3.5
                 text-[8px]
                 font-semibold
                 uppercase
                 tracking-[0.28em]
-                text-white
+                text-black
                 transition-all duration-500
-                hover:border-[#FF4900]
-                hover:bg-[#FF4900]
-                hover:text-white
+                hover:border-white
+                hover:bg-white
               "
             >
 
@@ -1507,10 +1514,12 @@ function Navbar() {
             onClick={() => setIsOpen(!isOpen)}
             className="
               relative z-[110]
-              flex h-11 w-11
+              flex h-10 w-10
+              sm:h-11 sm:w-11
+              shrink-0
               items-center justify-center
-              border border-black/15
-              bg-white/60
+              border border-white/15
+              bg-black/20
               backdrop-blur-md
               lg:hidden
             "
@@ -1522,9 +1531,13 @@ function Navbar() {
               <span
                 className={`
                   h-px w-full
-                  bg-black
+                  bg-white
                   transition-all duration-300
-                  ${isOpen ? "translate-y-[4px] rotate-45" : ""}
+                  ${
+                    isOpen
+                      ? "translate-y-[4px] rotate-45"
+                      : ""
+                  }
                 `}
               />
 
@@ -1532,18 +1545,26 @@ function Navbar() {
                 className={`
                   h-px w-3/4
                   self-end
-                  bg-[#2563eb]
+                  bg-[#cda653]
                   transition-all duration-300
-                  ${isOpen ? "opacity-0" : ""}
+                  ${
+                    isOpen
+                      ? "opacity-0"
+                      : ""
+                  }
                 `}
               />
 
               <span
                 className={`
                   h-px w-full
-                  bg-black
+                  bg-white
                   transition-all duration-300
-                  ${isOpen ? "-translate-y-[4px] -rotate-45" : ""}
+                  ${
+                    isOpen
+                      ? "-translate-y-[4px] -rotate-45"
+                      : ""
+                  }
                 `}
               />
 
@@ -1561,7 +1582,7 @@ function Navbar() {
         <div
           className={`
             fixed inset-0 z-[105]
-            bg-[#fcfcfc]
+            bg-[#050505]
             transition-all duration-500
             lg:hidden
             ${
@@ -1572,60 +1593,67 @@ function Navbar() {
           `}
         >
 
-          {/* background glow */}
+          {/* Background glow */}
 
           <div
             className="
+              pointer-events-none
               absolute
               -right-32
               top-20
               h-[400px]
               w-[400px]
               rounded-full
-              bg-[#2563eb]/10
+              bg-[#cda653]/10
               blur-[130px]
             "
           />
 
           <div
             className="
+              pointer-events-none
               absolute
               -left-32
               bottom-20
               h-[350px]
               w-[350px]
               rounded-full
-              bg-[#FF4900]/10
+              bg-[#cda653]/5
               blur-[120px]
             "
           />
 
 
-          {/* mobile content */}
+          {/* =================================================
+              MOBILE CONTENT
+          ================================================= */}
 
           <div
             className="
               relative
               flex h-full
               flex-col
-              justify-center
-              px-8
-              sm:px-14
+              px-6
+              sm:px-10
+              overflow-y-auto
+              py-24
             "
           >
 
-            {/* small label */}
+            {/* Small label */}
 
-            <div className="mb-10 flex items-center gap-4">
+            <div className="mb-7 flex items-center gap-3 sm:mb-10">
 
-              <span className="h-px w-10 bg-[#2563eb]" />
+              <span className="h-px w-8 sm:w-10 bg-[#cda653]" />
 
               <span
                 className="
-                  text-[8px]
+                  text-[7px]
+                  sm:text-[8px]
                   uppercase
-                  tracking-[0.4em]
-                  text-black/55
+                  tracking-[0.3em]
+                  sm:tracking-[0.4em]
+                  text-white/35
                 "
               >
                 Nahom Film Production
@@ -1634,45 +1662,57 @@ function Navbar() {
             </div>
 
 
-            {/* mobile links */}
+            {/* =================================================
+                MOBILE LINKS
+            ================================================= */}
 
             <div className="flex flex-col">
+
+              {/* HOME */}
 
               <Link
                 to="/home"
                 className="
-                  border-b border-black/10
-                  py-5
+                  border-b border-white/10
+                  py-4
+                  sm:py-5
                   font-serif
-                  text-4xl
+                  text-3xl
+                  sm:text-4xl
                   font-light
-                  text-[#2563eb]
+                  text-white/85
                   transition-colors
-                  hover:text-[#FF4900]
+                  hover:text-[#cda653]
                 "
               >
                 Home
               </Link>
 
 
+              {/* ABOUT */}
+
               <Link
                 to="/about"
                 className="
-                  border-b border-black/10
-                  py-5
+                  border-b border-white/10
+                  py-4
+                  sm:py-5
                   font-serif
-                  text-4xl
+                  text-3xl
+                  sm:text-4xl
                   font-light
-                  text-[#2563eb]
+                  text-white/85
                   transition-colors
-                  hover:text-[#FF4900]
+                  hover:text-[#cda653]
                 "
               >
                 About
               </Link>
 
 
-              {/* Mobile Gallery */}
+              {/* =================================================
+                  MOBILE GALLERY
+              ================================================= */}
 
               <button
                 type="button"
@@ -1680,26 +1720,34 @@ function Navbar() {
                 className="
                   flex items-center
                   justify-between
-                  border-b border-black/10
-                  py-5
+                  border-b border-white/10
+                  py-4
+                  sm:py-5
                   text-left
                   font-serif
-                  text-4xl
+                  text-3xl
+                  sm:text-4xl
                   font-light
-                  text-[#2563eb]
+                  text-white/85
                   transition-colors
-                  hover:text-[#FF4900]
+                  hover:text-[#cda653]
                 "
               >
 
-                Gallery
+                <span>Gallery</span>
 
                 <span
                   className={`
                     font-sans
-                    text-lg
-                    transition-transform
-                    ${workOpen ? "rotate-180 text-[#FF4900]" : "text-[#2563eb]"}
+                    text-base
+                    sm:text-lg
+                    text-[#cda653]
+                    transition-transform duration-300
+                    ${
+                      workOpen
+                        ? "rotate-180"
+                        : ""
+                    }
                   `}
                 >
                   ↓
@@ -1708,79 +1756,196 @@ function Navbar() {
               </button>
 
 
+              {/* =================================================
+                  MOBILE GALLERY SUBMENU
+                  COMPACT VERSION
+              ================================================= */}
+
               {workOpen && (
 
                 <div
                   className="
-                    max-h-[220px]
-                    overflow-y-auto
-                    border-b border-black/10
-                    py-3
+                    mx-1
+                    border-b border-white/10
+                    bg-white/[0.025]
+                    py-2
                   "
                 >
 
-                  {galleryLinks.map((item, index) => {
+                  {/* Small gallery label */}
 
-                    const rawTitle = item.title
-                      ? item.title.replace(/"/g, "")
-                      : "";
+                  <div
+                    className="
+                      flex items-center gap-2
+                      px-3
+                      pb-2
+                      pt-1
+                    "
+                  >
 
-                    const slug = generateSlug(item.title);
+                    <span
+                      className="
+                        h-px w-5
+                        bg-[#cda653]/60
+                      "
+                    />
 
-                    return (
-                      <Link
-                        key={item._id || index}
-                        to={`/gallery/${slug}`}
+                    <span
+                      className="
+                        text-[6px]
+                        uppercase
+                        tracking-[0.35em]
+                        text-[#cda653]/70
+                      "
+                    >
+                      Selected Stories
+                    </span>
+
+                  </div>
+
+
+                  {/* Gallery items */}
+
+                  <div
+                    className="
+                      max-h-[170px]
+                      overflow-y-auto
+                      overscroll-contain
+                      pr-1
+                    "
+                  >
+
+                    {galleryLinks.length > 0 ? (
+
+                      galleryLinks.map((item, index) => {
+
+                        const rawTitle = item.title
+                          ? item.title.replace(/"/g, "")
+                          : "";
+
+                        const slug = generateSlug(item.title);
+
+                        return (
+                          <Link
+                            key={item._id || index}
+                            to={`/gallery/${slug}`}
+                            onClick={() => {
+                              setWorkOpen(false);
+                              setIsOpen(false);
+                            }}
+                            className="
+                              group
+                              flex
+                              min-h-[38px]
+                              items-center
+                              justify-between
+                              border-b border-white/[0.06]
+                              px-3
+                              py-2
+                              last:border-none
+                              transition-all duration-300
+                              hover:bg-white/[0.04]
+                            "
+                          >
+
+                            <span
+                              className="
+                                max-w-[85%]
+                                truncate
+                                text-[8px]
+                                sm:text-[9px]
+                                uppercase
+                                tracking-[0.12em]
+                                sm:tracking-[0.18em]
+                                text-white/45
+                                transition-colors
+                                group-hover:text-[#d8b76a]
+                              "
+                            >
+                              {rawTitle}
+                            </span>
+
+                            <span
+                              className="
+                                ml-2
+                                shrink-0
+                                text-[10px]
+                                text-[#cda653]/70
+                                opacity-0
+                                transition-all duration-300
+                                group-hover:translate-x-1
+                                group-hover:opacity-100
+                              "
+                            >
+                              →
+                            </span>
+
+                          </Link>
+                        );
+
+                      })
+
+                    ) : (
+
+                      <span
                         className="
                           block
+                          px-3
                           py-3
-                          pl-4
-                          text-[9px]
+                          text-[7px]
                           uppercase
-                          tracking-[0.25em]
-                          text-[#2563eb]
-                          transition-colors
-                          hover:text-[#FF4900]
+                          tracking-[0.2em]
+                          text-white/25
                         "
                       >
-                        {rawTitle}
-                      </Link>
-                    );
-                  })}
+                        Loading...
+                      </span>
+
+                    )}
+
+                  </div>
 
                 </div>
 
               )}
 
 
+              {/* PRICE */}
+
               <Link
                 to="/price"
                 className="
-                  border-b border-black/10
-                  py-5
+                  border-b border-white/10
+                  py-4
+                  sm:py-5
                   font-serif
-                  text-4xl
+                  text-3xl
+                  sm:text-4xl
                   font-light
-                  text-[#2563eb]
+                  text-white/85
                   transition-colors
-                  hover:text-[#FF4900]
+                  hover:text-[#cda653]
                 "
               >
                 Price
               </Link>
 
 
+              {/* CONTACT */}
+
               <Link
                 to="/contact"
                 className="
-                  border-b border-black/10
-                  py-5
+                  border-b border-white/10
+                  py-4
+                  sm:py-5
                   font-serif
-                  text-4xl
+                  text-3xl
+                  sm:text-4xl
                   font-light
-                  text-[#2563eb]
+                  text-white/85
                   transition-colors
-                  hover:text-[#FF4900]
+                  hover:text-[#cda653]
                 "
               >
                 Contact
@@ -1789,9 +1954,11 @@ function Navbar() {
             </div>
 
 
-            {/* mobile bottom */}
+            {/* =================================================
+                MOBILE BOTTOM CTA
+            ================================================= */}
 
-            <div className="mt-10">
+            <div className="mt-8 sm:mt-10">
 
               <Link
                 to="/client-selection"
@@ -1800,15 +1967,17 @@ function Navbar() {
                   w-full
                   items-center
                   justify-between
-                  bg-[#2563eb]
-                  px-6 py-4
-                  text-[9px]
+                  bg-[#cda653]
+                  px-5
+                  py-3.5
+                  sm:px-6 sm:py-4
+                  text-[8px]
+                  sm:text-[9px]
                   font-semibold
                   uppercase
-                  tracking-[0.3em]
-                  text-white
-                  hover:bg-[#FF4900]
-                  transition-colors
+                  tracking-[0.25em]
+                  sm:tracking-[0.3em]
+                  text-black
                 "
               >
 
@@ -1816,7 +1985,14 @@ function Navbar() {
                   Client Selection
                 </span>
 
-                <span className="text-lg transition-transform group-hover:translate-x-1">
+                <span
+                  className="
+                    text-base
+                    sm:text-lg
+                    transition-transform
+                    group-hover:translate-x-1
+                  "
+                >
                   →
                 </span>
 
@@ -1825,16 +2001,32 @@ function Navbar() {
             </div>
 
 
-            {/* mobile footer */}
+            {/* =================================================
+                MOBILE FOOTER
+            ================================================= */}
 
-            <div className="mt-auto flex items-center justify-between pb-8 pt-10">
+            <div
+              className="
+                mt-auto
+                flex
+                items-center
+                justify-between
+                gap-4
+                pb-5
+                pt-8
+                sm:pb-8
+                sm:pt-10
+              "
+            >
 
               <span
                 className="
-                  text-[7px]
+                  text-[6px]
+                  sm:text-[7px]
                   uppercase
-                  tracking-[0.35em]
-                  text-[#2563eb]/70
+                  tracking-[0.25em]
+                  sm:tracking-[0.35em]
+                  text-white/25
                 "
               >
                 NFP / ORIGINAL PICTURES
@@ -1842,10 +2034,12 @@ function Navbar() {
 
               <span
                 className="
-                  text-[7px]
+                  text-[6px]
+                  sm:text-[7px]
                   uppercase
-                  tracking-[0.35em]
-                  text-[#FF4900]
+                  tracking-[0.25em]
+                  sm:tracking-[0.35em]
+                  text-[#cda653]/60
                 "
               >
                 EST. 2014
