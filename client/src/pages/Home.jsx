@@ -13432,7 +13432,7 @@ import Hero from '../components/Hero';
 
 const HABESHA_BACKEND_URL =
   import.meta.env.VITE_HABESHA_BACKEND_URL ||
-  'https://habesha-film-production-server.onrender.com';
+  'https://nahome-film-production.onrender.com';
 
 
 // ======================================================
