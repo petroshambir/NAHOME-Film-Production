@@ -348,7 +348,7 @@ function WeddingSection({
             </span>
 
 
-            <h2 className="mt-4 text-4xl sm:text-5xl md:text-7xl font-serif italic font-light text-[#FF4900]">
+            <h2 className="mt-4 text-4xl sm:text-5xl md:text-7xl font-serif italic font-light text-white">
 
               {title}
 
