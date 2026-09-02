@@ -303,21 +303,21 @@ function Footer() {
                 href="mailto:Adalhambir946@gmail.com"
                 className="block text-xs text-white/45 transition hover:text-[#FF4900]"
               >
-                Adalhambir946@gmail.com
+               petroshambirr@gmail.com
               </a>
 
               <a
-                href="tel:+251976130175"
+                href="tel:+251954911681"
                 className="block text-xs text-white/45 transition hover:text-[#FF4900]"
               >
-                +251 976 130 175
+                +251 954911681
               </a>
 
               <a
-                href="tel:+251942746150"
+                href="tel:+251969393232"
                 className="block text-xs text-white/45 transition hover:text-[#FF4900]"
               >
-                +251 942 746 150
+                +251 969393232
               </a>
 
               <a
