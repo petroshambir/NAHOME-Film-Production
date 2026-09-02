@@ -492,6 +492,249 @@
 
 // export default WeddingSection;
 
+// import React from 'react';
+// import { Link } from 'react-router-dom';
+
+// const generateSlug = (title = '') =>
+//   title
+//     .toLowerCase()
+//     .replace(/["']/g, '')
+//     .replace(/&/g, 'and')
+//     .trim()
+//     .replace(/[^\w\s-]/g, '')
+//     .replace(/\s+/g, '-');
+
+// function WeddingSection({
+//   section = {},
+//   customHeadings = [],
+//   customDescriptions = [],
+//   preview = false
+// }) {
+
+//   /*
+//    * IMPORTANT:
+//    * Images come ONLY from the server/database.
+//    * No local images.
+//    * No fallback images.
+//    * No Unsplash images.
+//    */
+//   const databaseImages = Array.isArray(section.images)
+//     ? section.images.filter(Boolean)
+//     : [];
+
+//   const images = databaseImages;
+
+//   const title = section.title || 'Wedding Stories';
+
+
+//   const descriptions =
+//     customDescriptions.length > 0
+//       ? customDescriptions
+//       : [
+//           'The beginning of a beautiful forever.',
+//           'Tender moments captured naturally.',
+//           'Two hearts walking toward tomorrow.',
+//           'Joy shared with family and friends.',
+//           'A celebration filled with emotion.',
+//           'Beautiful memories made forever.'
+//         ];
+
+
+//   const headings =
+//     customHeadings.length > 0
+//       ? customHeadings
+//       : [
+//           'The Story Begins',
+//           'Tender Moments',
+//           'Walking Together',
+//           'Shared Happiness',
+//           'The Celebration',
+//           'Pure Emotion'
+//         ];
+
+
+//   const visibleImages = preview
+//     ? images.slice(0, 6)
+//     : images;
+
+
+//   const isBridal =
+//     title.toLowerCase().includes('bridal');
+
+
+//   const isBaby =
+//     title.toLowerCase().includes('baby') ||
+//     title.toLowerCase().includes('baptism');
+
+
+//   return (
+//     <section className="relative w-full overflow-hidden bg-[#050505] text-white/90">
+
+
+//       {/* INTRO */}
+
+//       <div className="max-w-6xl mx-auto px-4 md:px-8 mb-12 md:mb-20">
+
+//         <div className="relative overflow-hidden rounded-[2rem] border border-[#FF4900]/30 bg-gradient-to-br from-[#151515] via-[#0b0b0b] to-black px-6 py-12 md:px-16 md:py-16 text-center">
+
+//           <div className="absolute -top-32 -left-32 w-72 h-72 rounded-full bg-[#FF4900]/5 blur-3xl" />
+
+//           <div className="absolute -bottom-32 -right-32 w-72 h-72 rounded-full bg-[#FF4900]/5 blur-3xl" />
+
+//           <div className="relative">
+
+//             <span className="text-[9px] md:text-[10px] uppercase tracking-[0.55em] text-[#FF4900] font-semibold">
+
+//               {isBridal
+//                 ? 'Bridal Shower Films'
+//                 : isBaby
+//                 ? 'Baby Shower & Baptism'
+//                 : 'Wedding Cinematography'}
+
+//             </span>
+
+
+//             <h2 className="mt-4 text-4xl sm:text-5xl md:text-7xl font-serif italic font-light text-[#FF4900]">
+
+//               {title}
+
+//             </h2>
+
+
+//             <div className="flex items-center justify-center gap-3 my-6">
+
+//               <span className="w-14 md:w-20 h-px bg-[#FF4900]/40" />
+
+//               <span className="w-1.5 h-1.5 rounded-full bg-[#FF4900]" />
+
+//               <span className="w-14 md:w-20 h-px bg-[#FF4900]/40" />
+
+//             </div>
+
+
+//             <p className="max-w-2xl mx-auto text-sm md:text-base text-zinc-400 leading-relaxed">
+
+//               {section.desc ||
+//                 'Every celebration deserves to be remembered as beautifully as it was lived.'}
+
+//             </p>
+
+//           </div>
+
+//         </div>
+
+//       </div>
+
+
+//       {/* GALLERY */}
+
+//       <div className="max-w-7xl mx-auto px-4 md:px-8">
+
+//         <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+
+//           {visibleImages.map((img, index) => {
+
+//             const large =
+//               index === 0 ||
+//               (!preview && index === 5);
+
+
+//             return (
+
+//               <div
+//                 key={index}
+//                 className={
+//                   large
+//                     ? 'md:col-span-7'
+//                     : 'md:col-span-5'
+//                 }
+//               >
+
+//                 <div className="group relative overflow-hidden rounded-2xl border border-[#FF4900]/30 bg-zinc-900">
+
+//                   <img
+//                     src={img}
+//                     alt={`${title} ${index + 1}`}
+//                     className={`w-full object-cover transition-transform duration-1000 group-hover:scale-105 ${
+//                       large
+//                         ? 'aspect-[16/10]'
+//                         : 'aspect-[4/3]'
+//                     }`}
+//                   />
+
+
+//                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+
+
+//                   <div className="absolute left-5 right-5 bottom-5">
+
+//                     <span className="text-[8px] uppercase tracking-[0.35em] text-white">
+
+//                       {String(index + 1).padStart(2, '0')}
+
+//                     </span>
+
+
+//                     <h3 className="mt-2 text-xl md:text-2xl font-serif italic text-white">
+
+//                       {headings[index] || 'Wedding Moment'}
+
+//                     </h3>
+
+
+//                     {!preview && (
+
+//                       <p className="mt-2 text-xs md:text-sm text-zinc-400 max-w-md">
+
+//                         {descriptions[index] ||
+//                           'A beautiful moment captured forever.'}
+
+//                       </p>
+
+//                     )}
+
+//                   </div>
+
+//                 </div>
+
+//               </div>
+
+//             );
+
+//           })}
+
+//         </div>
+
+//       </div>
+
+
+//       {/* VIEW MORE */}
+
+//       <div className="flex justify-center py-12 md:py-16">
+
+//         <Link
+//           to={`/gallery/${generateSlug(title)}`}
+//           className="group inline-flex items-center gap-5 rounded-full border border-[#FF4900]/60 px-8 md:px-12 py-4 text-[9px] md:text-[10px] uppercase tracking-[0.35em] font-bold text-[#FF4900] transition-all duration-500 hover:bg-[#FF4900] hover:text-black"
+//         >
+
+//           View More Wedding Stories
+
+//           <span className="text-lg transition-transform group-hover:translate-x-2">
+
+//             →
+
+//           </span>
+
+//         </Link>
+
+//       </div>
+
+//     </section>
+//   );
+// }
+
+// export default WeddingSection;
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -511,67 +754,88 @@ function WeddingSection({
   preview = false
 }) {
 
-  /*
-   * IMPORTANT:
-   * Images come ONLY from the server/database.
-   * No local images.
-   * No fallback images.
-   * No Unsplash images.
-   */
+  // ==========================================================
+  // IMAGES
+  // SERVER / DATABASE ONLY
+  // ==========================================================
+
   const databaseImages = Array.isArray(section.images)
     ? section.images.filter(Boolean)
     : [];
 
   const images = databaseImages;
 
-  const title = section.title || 'Wedding Stories';
+
+  // ==========================================================
+  // PROJECT INFORMATION
+  // ==========================================================
+
+  const title =
+    section.title ||
+    section.name ||
+    'Wedding Stories';
 
 
   const descriptions =
-    customDescriptions.length > 0
+    Array.isArray(customDescriptions)
       ? customDescriptions
-      : [
-          'The beginning of a beautiful forever.',
-          'Tender moments captured naturally.',
-          'Two hearts walking toward tomorrow.',
-          'Joy shared with family and friends.',
-          'A celebration filled with emotion.',
-          'Beautiful memories made forever.'
-        ];
+      : [];
 
 
   const headings =
-    customHeadings.length > 0
+    Array.isArray(customHeadings)
       ? customHeadings
-      : [
-          'The Story Begins',
-          'Tender Moments',
-          'Walking Together',
-          'Shared Happiness',
-          'The Celebration',
-          'Pure Emotion'
-        ];
+      : [];
 
+
+  // ==========================================================
+  // PREVIEW
+  // ==========================================================
 
   const visibleImages = preview
     ? images.slice(0, 6)
     : images;
 
 
-  const isBridal =
-    title.toLowerCase().includes('bridal');
+  // ==========================================================
+  // CONTENT TYPE
+  // ==========================================================
 
+  const lowerTitle = String(title).toLowerCase();
+
+  const isBridal =
+    lowerTitle.includes('bridal');
 
   const isBaby =
-    title.toLowerCase().includes('baby') ||
-    title.toLowerCase().includes('baptism');
+    lowerTitle.includes('baby') ||
+    lowerTitle.includes('baptism');
+
+
+  // ==========================================================
+  // EXACT PROJECT ID
+  //
+  // This is very important.
+  // View More must open THIS exact database project.
+  // ==========================================================
+
+  const projectId =
+    section._id ||
+    section.id ||
+    '';
+
+
+  const gallerySlug =
+    projectId
+      ? `${generateSlug(title)}-${projectId}`
+      : generateSlug(title);
 
 
   return (
     <section className="relative w-full overflow-hidden bg-[#050505] text-white/90">
 
-
-      {/* INTRO */}
+      {/* ======================================================
+          INTRO
+      ====================================================== */}
 
       <div className="max-w-6xl mx-auto px-4 md:px-8 mb-12 md:mb-20">
 
@@ -614,8 +878,7 @@ function WeddingSection({
 
             <p className="max-w-2xl mx-auto text-sm md:text-base text-zinc-400 leading-relaxed">
 
-              {section.desc ||
-                'Every celebration deserves to be remembered as beautifully as it was lived.'}
+              {section.desc || ''}
 
             </p>
 
@@ -626,106 +889,128 @@ function WeddingSection({
       </div>
 
 
-      {/* GALLERY */}
+      {/* ======================================================
+          GALLERY
+      ====================================================== */}
 
       <div className="max-w-7xl mx-auto px-4 md:px-8">
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+        {images.length > 0 ? (
 
-          {visibleImages.map((img, index) => {
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
 
-            const large =
-              index === 0 ||
-              (!preview && index === 5);
+            {visibleImages.map((img, index) => {
 
-
-            return (
-
-              <div
-                key={index}
-                className={
-                  large
-                    ? 'md:col-span-7'
-                    : 'md:col-span-5'
-                }
-              >
-
-                <div className="group relative overflow-hidden rounded-2xl border border-[#FF4900]/30 bg-zinc-900">
-
-                  <img
-                    src={img}
-                    alt={`${title} ${index + 1}`}
-                    className={`w-full object-cover transition-transform duration-1000 group-hover:scale-105 ${
-                      large
-                        ? 'aspect-[16/10]'
-                        : 'aspect-[4/3]'
-                    }`}
-                  />
+              const large =
+                index === 0 ||
+                (!preview && index === 5);
 
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+              return (
+
+                <div
+                  key={`${img}-${index}`}
+                  className={
+                    large
+                      ? 'md:col-span-7'
+                      : 'md:col-span-5'
+                  }
+                >
+
+                  <div className="group relative overflow-hidden rounded-2xl border border-[#FF4900]/30 bg-zinc-900">
+
+                    <img
+                      src={img}
+                      alt={`${title} ${index + 1}`}
+                      className={`w-full object-cover transition-transform duration-1000 group-hover:scale-105 ${
+                        large
+                          ? 'aspect-[16/10]'
+                          : 'aspect-[4/3]'
+                      }`}
+                    />
 
 
-                  <div className="absolute left-5 right-5 bottom-5">
-
-                    <span className="text-[8px] uppercase tracking-[0.35em] text-white">
-
-                      {String(index + 1).padStart(2, '0')}
-
-                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
 
 
-                    <h3 className="mt-2 text-xl md:text-2xl font-serif italic text-white">
+                    <div className="absolute left-5 right-5 bottom-5">
 
-                      {headings[index] || 'Wedding Moment'}
+                      <span className="text-[8px] uppercase tracking-[0.35em] text-white">
 
-                    </h3>
+                        {String(index + 1).padStart(2, '0')}
+
+                      </span>
 
 
-                    {!preview && (
+                      <h3 className="mt-2 text-xl md:text-2xl font-serif italic text-white">
 
-                      <p className="mt-2 text-xs md:text-sm text-zinc-400 max-w-md">
+                        {headings[index] || ''}
 
-                        {descriptions[index] ||
-                          'A beautiful moment captured forever.'}
+                      </h3>
 
-                      </p>
 
-                    )}
+                      {!preview && (
+
+                        <p className="mt-2 text-xs md:text-sm text-zinc-400 max-w-md">
+
+                          {descriptions[index] || ''}
+
+                        </p>
+
+                      )}
+
+                    </div>
 
                   </div>
 
                 </div>
 
-              </div>
+              );
 
-            );
+            })}
 
-          })}
+          </div>
 
-        </div>
+        ) : (
+
+          <div className="py-20 text-center text-zinc-600 text-sm">
+            No images available for this project.
+          </div>
+
+        )}
 
       </div>
 
 
-      {/* VIEW MORE */}
+      {/* ======================================================
+          VIEW MORE
+          EXACT DATABASE PROJECT
+      ====================================================== */}
 
       <div className="flex justify-center py-12 md:py-16">
 
-        <Link
-          to={`/gallery/${generateSlug(title)}`}
-          className="group inline-flex items-center gap-5 rounded-full border border-[#FF4900]/60 px-8 md:px-12 py-4 text-[9px] md:text-[10px] uppercase tracking-[0.35em] font-bold text-[#FF4900] transition-all duration-500 hover:bg-[#FF4900] hover:text-black"
-        >
+        {projectId ? (
 
-          View More Wedding Stories
+          <Link
+            to={`/gallery/${gallerySlug}`}
+            className="group inline-flex items-center gap-5 rounded-full border border-[#FF4900]/60 px-8 md:px-12 py-4 text-[9px] md:text-[10px] uppercase tracking-[0.35em] font-bold text-[#FF4900] transition-all duration-500 hover:bg-[#FF4900] hover:text-black"
+          >
 
-          <span className="text-lg transition-transform group-hover:translate-x-2">
+            View More Wedding Stories
 
-            →
+            <span className="text-lg transition-transform group-hover:translate-x-2">
+              →
+            </span>
 
+          </Link>
+
+        ) : (
+
+          <span className="text-[9px] uppercase tracking-[0.3em] text-zinc-700">
+            Gallery unavailable
           </span>
 
-        </Link>
+        )}
 
       </div>
 
