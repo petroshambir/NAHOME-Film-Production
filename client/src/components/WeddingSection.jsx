@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import ProtectedImage from './ProrectedImage';
+import ProtectedImage from './ProrectedImage';
 
 const FALLBACK_WEDDING_IMAGES = [
   'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=85',
@@ -166,7 +166,7 @@ function WeddingSection({
 
                 <div className="group relative overflow-hidden rounded-2xl border border-[#FF4900]/30 bg-zinc-900">
 
-                  {/* <ProtectedImage
+                  <ProtectedImage
                     src={img}
                     alt={`${title} ${index + 1}`}
                     className={`w-full object-cover transition-transform duration-1000 group-hover:scale-105 ${
@@ -175,7 +175,7 @@ function WeddingSection({
                         : 'aspect-[4/3]'
                     }`}
                     showLogoOnly={true}
-                  /> */}
+                  />
 
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
