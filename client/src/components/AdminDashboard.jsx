@@ -287,10 +287,10 @@ function AdminDashboard() {
       <aside className="w-full md:w-72 bg-zinc-900 border-b md:border-r border-zinc-800 p-4 md:p-6 flex flex-col justify-between shrink-0 md:sticky md:top-0 md:h-screen z-20">
         <div>
           <div className="flex items-center gap-3 mb-6 md:mb-8">
-            <div className="bg-amber-500 text-black p-2 rounded-xl font-black text-xl">HF</div>
+            <div className="bg-[#FF4900] text-black p-2 rounded-xl font-black text-xl">N</div>
             <div>
-              <h1 className="text-lg font-bold text-amber-500 leading-tight">Admin Portal</h1>
-              <p className="text-xs text-zinc-400">Habesha Film Production</p>
+              <h1 className="text-lg font-bold text-[#001595] leading-tight">Admin Portal</h1>
+              <p className="text-xs text-zinc-400">NAHOM Film Production</p>
             </div>
           </div>
 
@@ -299,7 +299,7 @@ function AdminDashboard() {
               onClick={() => setActiveTab('manager')}
               className={`whitespace-nowrap px-4 py-3 rounded-xl font-medium text-sm transition-all flex items-center justify-between ${
                 activeTab === 'manager' 
-                  ? 'bg-amber-500 text-black font-bold shadow-lg shadow-amber-500/20' 
+                  ? 'bg-[#FF4900] text-black font-bold shadow-lg shadow-amber-500/20' 
                   : 'text-zinc-300 hover:bg-zinc-800 hover:text-white'
               }`}
             >
@@ -310,12 +310,12 @@ function AdminDashboard() {
               onClick={() => setActiveTab('portal')}
               className={`whitespace-nowrap px-4 py-3 rounded-xl font-medium text-sm transition-all flex items-center justify-between ${
                 activeTab === 'portal' 
-                  ? 'bg-amber-500 text-black font-bold shadow-lg shadow-amber-500/20' 
+                  ? 'bg-[#FF4900] text-black font-bold shadow-lg shadow-amber-500/20' 
                   : 'text-zinc-300 hover:bg-zinc-800 hover:text-white'
               }`}
             >
               <span>👥 Client Portals</span>
-              <span className={`text-xs px-2 py-0.5 rounded-full ml-2 ${activeTab === 'portal' ? 'bg-black text-amber-400' : 'bg-zinc-800 text-zinc-400'}`}>
+              <span className={`text-xs px-2 py-0.5 rounded-full ml-2 ${activeTab === 'portal' ? 'bg-black text-[#001595]' : 'bg-zinc-800 text-zinc-400'}`}>
                 {portalsList.length}
               </span>
             </button>
@@ -330,7 +330,7 @@ function AdminDashboard() {
                 onClick={() => setActiveTab(sec.title)}
                 className={`whitespace-nowrap px-4 py-3 rounded-xl font-medium text-sm transition-all flex items-center justify-between ${
                   activeTab === sec.title 
-                    ? 'bg-amber-500 text-black font-bold shadow-lg shadow-amber-500/20' 
+                    ? 'bg-[#FF4900] text-black font-bold shadow-lg shadow-amber-500/20' 
                     : 'text-zinc-300 hover:bg-zinc-800 hover:text-white'
                 }`}
               >
@@ -349,7 +349,7 @@ function AdminDashboard() {
         {activeTab === 'manager' && (
           <div className="space-y-6">
             <div className="bg-zinc-900 border border-zinc-800 p-6 md:p-8 rounded-2xl">
-              <h2 className="text-2xl md:text-3xl font-bold text-amber-400 mb-2">Welcome to Admin Control Panel</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#001595] mb-2">Welcome to Admin Control Panel</h2>
               <p className="text-zinc-400 text-sm">
                 መረብካ (Website) ንምምሕዳር ካብዚ ሳድባር ዝደለኻዮ ክፍሊ ብምጥዋቕ ብቐሊሉ ክትእርምን ስእሊታት ክተሰቅልን ትኽእል።
               </p>
@@ -357,14 +357,14 @@ function AdminDashboard() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               <div onClick={() => setActiveTab('portal')} className="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl cursor-pointer hover:border-amber-500/50 transition-all group">
-                <h3 className="text-lg font-bold text-amber-300 group-hover:text-amber-400 mb-1">Active Client Portals</h3>
+                <h3 className="text-lg font-bold text-[#001595] group-hover:text-amber-400 mb-1">Active Client Portals</h3>
                 <p className="text-2xl font-black text-white mt-2">{portalsList.length}</p>
                 <p className="text-xs text-zinc-500 mt-2">ካስተመራት ዝመረጽዎ ስእሊታትን ፓስኮድን መርመሮ</p>
               </div>
 
               {sectionsConfig.map(sec => (
                 <div key={sec.title} onClick={() => setActiveTab(sec.title)} className="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl cursor-pointer hover:border-amber-500/50 transition-all group">
-                  <h3 className="text-lg font-bold text-amber-300 group-hover:text-amber-400 mb-1">{sec.title}</h3>
+                  <h3 className="text-lg font-bold text-[#001595] group-hover:text-amber-400 mb-1">{sec.title}</h3>
                   <p className="text-2xl font-black text-white mt-2">
                     {sectionsData[sec.title]?.images?.length || 0} Photos
                   </p>
@@ -377,8 +377,8 @@ function AdminDashboard() {
 
         {activeTab === 'portal' && (
           <div className="space-y-8">
-            <div className="p-4 md:p-6 border border-amber-500/50 rounded-2xl bg-zinc-900 shadow-2xl">
-              <h2 className="text-xl md:text-2xl font-bold text-amber-400 mb-6">Create Client Selection Portal (Max 500 Photos)</h2>
+            <div className="p-4 md:p-6 border bg-[#FF4900] rounded-2xl bg-zinc-900 shadow-2xl">
+              <h2 className="text-xl md:text-2xl font-bold text-[#001595] mb-6">Create Client Selection Portal (Max 500 Photos)</h2>
               <form onSubmit={handleCreatePortal} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
@@ -433,7 +433,7 @@ function AdminDashboard() {
                 <button 
                   type="submit" 
                   disabled={creatingPortal}
-                  className="bg-amber-500 hover:bg-amber-600 text-black font-bold px-6 py-3 rounded-lg w-full transition-colors text-sm"
+                  className="bg-[#FF4900] hover:bg-amber-600 text-black font-bold px-6 py-3 rounded-lg w-full transition-colors text-sm"
                 >
                   {creatingPortal ? 'Generating Portal & Passcode...' : 'Create Portal & Generate Passcode'}
                 </button>
@@ -448,7 +448,7 @@ function AdminDashboard() {
                       <div key={portal._id} className="bg-zinc-800 p-4 rounded-xl border border-zinc-700 flex flex-col justify-between gap-3">
                         <div>
                           <div className="flex justify-between items-start gap-2">
-                            <h4 className="font-bold text-amber-300 truncate">{portal.clientName}</h4>
+                            <h4 className="font-bold text-[#001595] truncate">{portal.clientName}</h4>
                             {hasSubmitted && (
                               <span className="bg-green-500/20 text-green-400 text-[10px] uppercase font-bold px-2 py-0.5 rounded border border-green-500/30 shrink-0">
                                 Submitted ({portal.selectedImages.length})
@@ -456,14 +456,14 @@ function AdminDashboard() {
                             )}
                           </div>
                           <p className="text-xs text-zinc-400">Portal #{portal.portalNumber}</p>
-                          <p className="text-xs text-amber-400/80 font-mono mt-1">Passcode: {portal.passcode}</p>
+                          <p className="text-xs text-[#001595] font-mono mt-1">Passcode: {portal.passcode}</p>
                         </div>
 
                         <div className="flex items-center gap-2 pt-2 border-t border-zinc-700/50">
                           {hasSubmitted ? (
                             <button 
                               onClick={() => setViewingPortalSelections(portal)}
-                              className="bg-amber-600 hover:bg-amber-700 text-white px-3 py-1.5 rounded text-xs font-bold flex-1 transition-colors truncate"
+                              className="bg-[#FF4900] hover:bg-amber-700 text-white px-3 py-1.5 rounded text-xs font-bold flex-1 transition-colors truncate"
                             >
                               View Selections ({portal.selectedImages.length})
                             </button>
@@ -507,7 +507,7 @@ function AdminDashboard() {
           <div className="bg-zinc-900 border border-zinc-700 rounded-2xl max-w-4xl w-full p-4 md:p-6 max-h-[95vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-4 border-b border-zinc-800 pb-3 gap-2">
               <div className="overflow-hidden">
-                <h3 className="text-lg md:text-xl font-bold text-amber-400 truncate">{viewingPortalSelections.clientName} - Selected Photos</h3>
+                <h3 className="text-lg md:text-xl font-bold text-[#001595] truncate">{viewingPortalSelections.clientName} - Selected Photos</h3>
                 <p className="text-xs text-zinc-400">Portal #{viewingPortalSelections.portalNumber} (Total: {viewingPortalSelections.selectedImages.length})</p>
               </div>
               <button 
@@ -520,7 +520,7 @@ function AdminDashboard() {
 
             <div className="flex flex-col sm:flex-row gap-3 mb-6 p-3 md:p-4 bg-zinc-800/60 rounded-xl border border-zinc-700 items-stretch sm:items-center justify-between">
               <div className="text-xs text-zinc-300">
-                ማዕቀብ: <span className="text-amber-400 font-bold">{viewingPortalSelections.selectedImages.length} ስእሊታት</span> ተመርጺዮም ኣለዉ።
+                ማዕቀብ: <span className="text-[#001595] font-bold">{viewingPortalSelections.selectedImages.length} ስእሊታት</span> ተመርጺዮም ኣለዉ።
               </div>
               <div className="flex flex-col sm:flex-row gap-2">
                 <button 
@@ -590,7 +590,7 @@ function AdminDashboard() {
 
                     alert(`ስእሊታት ብሰላም ናብቲ የዕሩኽ ፖርትፎሊዮ [ ${targetSection} ] ተሰጊሮም ኣለዉ! ሕጂ 'Save' ግበሮ።`);
                   }}
-                  className="bg-amber-500 hover:bg-amber-600 text-black px-3 py-2 rounded-lg text-xs font-bold transition-colors flex items-center justify-center gap-1.5"
+                  className="bg-[#FF4900] hover:bg-amber-600 text-black px-3 py-2 rounded-lg text-xs font-bold transition-colors flex items-center justify-center gap-1.5"
                 >
                   🚀 Send to Portfolio
                 </button>
@@ -721,7 +721,7 @@ function SectionRenderer({ title, data, setData, onSave }) {
   return (
     <div className="p-4 md:p-8 border border-zinc-700 rounded-2xl bg-zinc-900 shadow-2xl overflow-hidden">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 border-b border-zinc-700 pb-4 gap-4">
-        <h2 className="text-xl md:text-3xl font-bold text-amber-300">{title} Control Panel</h2>
+        <h2 className="text-xl md:text-3xl font-bold text-[#001595]">{title} Control Panel</h2>
         <button onClick={onSave} className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-bold w-full sm:w-auto text-sm">
           Save {title}
         </button>
@@ -760,7 +760,7 @@ function SectionRenderer({ title, data, setData, onSave }) {
       </div>
 
       <div className="mt-8 space-y-4">
-        <h3 className="text-lg md:text-xl font-semibold text-amber-400 border-b border-zinc-800 pb-2">Manage Image Headings & Descriptions</h3>
+        <h3 className="text-lg md:text-xl font-semibold text-[#001595] border-b border-zinc-800 pb-2">Manage Image Headings & Descriptions</h3>
         {data.images && data.images.map((img, index) => {
           const defaultHeading = `Featured Moment ${index + 1}`;
           const defaultDesc = `0${index + 1}. A wonderful captured memory of the special day.`;
