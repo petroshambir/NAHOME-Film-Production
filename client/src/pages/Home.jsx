@@ -767,7 +767,7 @@ import Hero from '../components/Hero';
 // back to the old Habesha Pictures backend.
 //
 
-const HABESHA_BACKEND_URL =
+const NAHOM_BACKEND_URL =
   'https://nahome-film-production.onrender.com';
 
 
@@ -843,16 +843,18 @@ const fixImageUrl = (url) => {
     // Old localhost backend URL
     if (cleanUrl.includes('localhost:5000')) {
       return cleanUrl.replace(
+        NAHOM_BACKEND_URL ,
         'http://localhost:5000',
-        HABESHA_BACKEND_URL
+        
       );
     }
 
     // Old localhost backend URL
     if (cleanUrl.includes('localhost:4000')) {
       return cleanUrl.replace(
+        NAHOM_BACKEND_URL,
         'http://localhost:4000',
-        HABESHA_BACKEND_URL
+     
       );
     }
 
@@ -861,11 +863,11 @@ const fixImageUrl = (url) => {
 
   // Relative URL
   if (cleanUrl.startsWith('/')) {
-    return `${HABESHA_BACKEND_URL}${cleanUrl}`;
+    return `${NAHOM_BACKEND_URL }${cleanUrl}`;
   }
 
   // File path without /
-  return `${HABESHA_BACKEND_URL}/${cleanUrl}`;
+  return `${NAHOM_BACKEND_URL}/${cleanUrl}`;
 };
 
 
@@ -1078,7 +1080,7 @@ function Home() {
         setWeddingError(false);
 
         const response = await fetch(
-          `${HABESHA_BACKEND_URL}/api/projects`
+          `${NAHOM_BACKEND_URL }/api/projects`
         );
 
         if (!response.ok) {
