@@ -1946,12 +1946,12 @@ function Price() {
 
         {!isAuthenticated ? (
           /* =================================================
-             LOGIN
+             LOGIN text-[#FF4900] 
           ================================================= */
 
-          <div className="bg-zinc-950 p-8 md:p-12 shadow-2xl border-2 border-[#dfb557]/40 rounded-2xl max-w-md w-full text-center">
+          <div className="bg-zinc-950 p-8 md:p-12 shadow-2xl border-2 border-[#FF4900] rounded-2xl max-w-md w-full text-center">
 
-            <span className="text-[10px] tracking-[0.4em] uppercase text-[#dfb557] font-semibold block mb-2">
+            <span className="text-[10px] tracking-[0.4em] uppercase text-[#001595] font-semibold block mb-2">
               Secure Access
             </span>
 
@@ -1959,7 +1959,7 @@ function Price() {
               Protected Price Page
             </h2>
 
-            <div className="w-12 h-[1px] bg-[#dfb557]/40 mx-auto mb-4" />
+            <div className="w-12 h-[1px] border-[#FF4900] mx-auto mb-4" />
 
             <p className="text-xs md:text-sm text-zinc-400 mb-6">
               እዚ ገጽ ብሚጢራዊ ፓስኮድ ዝተዓጸወ እዩ።
@@ -1981,13 +1981,13 @@ function Price() {
                     e.target.value
                   )
                 }
-                className="w-full px-4 py-3 bg-zinc-900 border border-[#dfb557]/50 rounded-xl focus:outline-none focus:border-[#dfb557] text-center tracking-widest text-lg"
+                className="w-full px-4 py-3 bg-zinc-900 border border-[#FF4900] rounded-xl focus:outline-none focus:border-[#dfb557] text-center tracking-widest text-lg"
               />
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#dfb557] text-black py-3 uppercase text-xs font-bold tracking-[0.3em] rounded-xl disabled:opacity-50"
+                className="w-full bg-[#FF4900] text-black py-3 uppercase text-xs font-bold tracking-[0.3em] rounded-xl disabled:opacity-50"
               >
                 {loading
                   ? 'Checking...'
@@ -2013,7 +2013,7 @@ function Price() {
 
             <div className="text-center mb-8">
 
-              <span className="text-[10px] tracking-[0.5em] uppercase text-[#dfb557]">
+              <span className="text-[10px] tracking-[0.5em] uppercase text-[#001595]">
                 Administration Mode
               </span>
 
@@ -2023,13 +2023,13 @@ function Price() {
 
             </div>
 
-            <div className="bg-zinc-950 border border-[#dfb557]/40 p-3 sm:p-6 md:p-8 rounded-2xl space-y-8 shadow-2xl">
+            <div className="bg-zinc-950 border border-[#FF4900] p-3 sm:p-6 md:p-8 rounded-2xl space-y-8 shadow-2xl">
 
               {/* =================================================
                   NOTEBOOK
               ================================================= */}
 
-              <div className="bg-zinc-900 rounded-xl border border-[#dfb557]/30 overflow-hidden">
+              <div className="bg-zinc-900 rounded-xl border border-[#FF4900] overflow-hidden">
 
                 <button
                   type="button"
@@ -2044,7 +2044,7 @@ function Price() {
 
                   <div>
 
-                    <span className="text-xs font-bold uppercase text-[#dfb557]">
+                    <span className="text-xs font-bold uppercase text-[#001595]">
                       📝 Admin Notebook & Customer Bookings
                     </span>
 
@@ -2055,7 +2055,7 @@ function Price() {
                   </div>
 
                   <span
-                    className={`text-[#dfb557] transition-transform ${
+                    className={`text-[#001595] transition-transform ${
                       isNotebookOpen
                         ? 'rotate-180'
                         : ''
@@ -2092,7 +2092,7 @@ function Price() {
 
                                 <div className="flex items-center gap-3 flex-wrap">
 
-                                  <span className="text-base font-serif font-bold text-[#dfb557]">
+                                  <span className="text-base font-serif font-bold text-[#001595]]">
                                     {note.customerName}
                                   </span>
 
@@ -2108,15 +2108,15 @@ function Price() {
 
                               </div>
 
-                              <div className="bg-zinc-900/80 border border-[#dfb557]/30 p-3 sm:p-4 rounded-xl space-y-4">
+                              <div className="bg-zinc-900/80 border border-[#FF4900] p-3 sm:p-4 rounded-xl space-y-4">
 
                                 <div className="flex justify-between items-start gap-3">
 
-                                  <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-[#dfb557]">
+                                  <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-[#001595]">
                                     {note.tier}
                                   </span>
 
-                                  <span className="text-lg font-serif font-bold text-[#dfb557]">
+                                  <span className="text-lg font-serif font-bold text-[#001595]">
                                     {note.packagePrice}
                                   </span>
 
@@ -2130,7 +2130,7 @@ function Price() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-3 border-t border-zinc-800">
 
                                   <div>
-                                    <span className="text-[10px] text-[#dfb557] font-semibold uppercase block mb-2">
+                                    <span className="text-[10px] text-[#001595] font-semibold uppercase block mb-2">
                                       SERVICES
                                     </span>
 
@@ -2164,7 +2164,7 @@ function Price() {
                                   </div>
 
                                   <div>
-                                    <span className="text-[10px] text-[#dfb557] font-semibold uppercase block mb-2">
+                                    <span className="text-[10px] text-[#001595] font-semibold uppercase block mb-2">
                                       FEATURES
                                     </span>
 
@@ -2222,7 +2222,7 @@ function Price() {
                                       note
                                     )
                                   }
-                                  className="px-3 py-2.5 bg-[#dfb557]/20 hover:bg-[#dfb557]/40 text-[#dfb557] rounded-lg text-[10px] uppercase font-semibold"
+                                  className="px-3 py-2.5 bg-[#FF4900] hover:bg-[#dfb557]/40 text-[#001595] rounded-lg text-[10px] uppercase font-semibold"
                                 >
                                   Edit
                                 </button>
@@ -2263,7 +2263,7 @@ function Price() {
 
                 <div className="flex justify-between items-center mb-4">
 
-                  <h3 className="text-sm font-bold uppercase text-[#dfb557] tracking-wider">
+                  <h3 className="text-sm font-bold uppercase text-[#001595] tracking-wider">
                     ⚙️ Edit Website Packages
                   </h3>
 
@@ -2286,7 +2286,7 @@ function Price() {
                     return (
                       <div
                         key={key}
-                        className="flex-none w-[86vw] sm:w-[68vw] md:w-[48vw] lg:w-auto bg-zinc-900 border-2 border-[#dfb557]/40 p-4 sm:p-6 rounded-2xl shadow-xl space-y-4"
+                        className="flex-none w-[86vw] sm:w-[68vw] md:w-[48vw] lg:w-auto bg-zinc-900 border-2 border-[#FF4900] p-4 sm:p-6 rounded-2xl shadow-xl space-y-4"
                       >
 
                         <div className="space-y-3">
@@ -2356,7 +2356,7 @@ function Price() {
                                   e.target.value
                                 )
                               }
-                              className="w-full bg-zinc-950 border border-zinc-700 p-2 rounded-lg text-xs text-[#dfb557] font-bold"
+                              className="w-full bg-zinc-950 border border-zinc-700 p-2 rounded-lg text-xs text-[#001595] font-bold"
                             />
                           </div>
 
@@ -2417,7 +2417,7 @@ function Price() {
                               key
                             )
                           }
-                          className="w-full bg-[#dfb557] text-black py-2.5 rounded-xl text-[10px] uppercase font-bold"
+                          className="w-full bg-[#FF4900] text-black py-2.5 rounded-xl text-[10px] uppercase font-bold"
                         >
                           Select{' '}
                           {pkg.name}{' '}
@@ -2464,7 +2464,7 @@ function Price() {
                   disabled={
                     isSavingPackages
                   }
-                  className="w-full sm:w-auto px-6 py-3 bg-[#dfb557] text-black rounded-xl text-xs uppercase font-bold disabled:opacity-50"
+                  className="w-full sm:w-auto px-6 py-3 bg-[#FF4900] text-black rounded-xl text-xs uppercase font-bold disabled:opacity-50"
                 >
                   {isSavingPackages
                     ? 'Saving...'
@@ -2513,7 +2513,7 @@ function Price() {
                       onClick={
                         handleEditGateSubmit
                       }
-                      className="px-3 py-1.5 bg-[#dfb557] text-black rounded-lg text-[10px] font-bold uppercase"
+                      className="px-3 py-1.5 bg-[#FF4900] text-black rounded-lg text-[10px] font-bold uppercase"
                     >
                       Unlock
                     </button>
@@ -2537,7 +2537,7 @@ function Price() {
                       true
                     )
                   }
-                  className="px-4 py-2 bg-[#dfb557] text-black rounded-xl text-xs uppercase font-semibold"
+                  className="px-4 py-2 bg-[#FF4900] text-black rounded-xl text-xs uppercase font-semibold"
                 >
                   Enter Edit Mode ⚙️
                 </button>
@@ -2546,7 +2546,7 @@ function Price() {
 
             </div>
 
-            <span className="text-[10px] md:text-[11px] tracking-[0.5em] uppercase text-[#dfb557] block mb-2">
+            <span className="text-[10px] md:text-[11px] tracking-[0.5em] uppercase text-[#001595] block mb-2">
               Investment & Tiers
             </span>
 
@@ -2554,7 +2554,7 @@ function Price() {
               Our Professional Packages
             </h1>
 
-            <div className="w-12 h-[1px] bg-[#dfb557]/40 mx-auto mb-4" />
+            <div className="w-12 h-[1px] bg-[#FF4900]/40 mx-auto mb-4" />
 
             <p className="text-zinc-400 text-sm md:text-base mb-16 max-w-2xl mx-auto">
               ንመጻኢ ፕሮጀክትታትኩም ዝኸውን ዝተፈላለየ ሞያዊ ኣገልግሎታት።
@@ -2573,18 +2573,18 @@ function Price() {
                     key={key}
                     className={`flex-none w-[82vw] sm:w-[65vw] md:w-[45vw] lg:w-auto bg-zinc-950/90 border-2 ${
                       key === 'gold'
-                        ? 'border-[#dfb557]'
+                        ? 'border-[#FF4900]'
                         : 'border-[#dfb557]/50'
                     } p-6 sm:p-8 rounded-2xl shadow-2xl relative`}
                   >
 
                     {key === 'gold' && (
-                      <span className="absolute -top-3 right-6 bg-[#dfb557] text-black text-[9px] uppercase font-bold px-3 py-1 rounded-full">
+                      <span className="absolute -top-3 right-6 bg-[#FF4900] text-black text-[9px] uppercase font-bold px-3 py-1 rounded-full">
                         {pkg.tier}
                       </span>
                     )}
 
-                    <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-[#dfb557]">
+                    <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-[#001595]">
                       {key === 'gold'
                         ? 'Exclusive'
                         : pkg.tier}
@@ -2594,7 +2594,7 @@ function Price() {
                       {pkg.name}
                     </h3>
 
-                    <p className="text-2xl sm:text-3xl font-serif font-bold text-[#dfb557] mb-6 break-words">
+                    <p className="text-2xl sm:text-3xl font-serif font-bold text-[#001595] mb-6 break-words">
                       {pkg.price}
                     </p>
 
@@ -2662,13 +2662,13 @@ function Price() {
         selectedPackage && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-start sm:items-center justify-center p-2 sm:p-4 overflow-y-auto">
 
-            <div className="bg-zinc-950 border border-[#dfb557]/40 p-4 sm:p-6 md:p-8 rounded-2xl max-w-5xl w-full max-h-[calc(100dvh-1rem)] sm:max-h-[calc(100dvh-2rem)] overflow-y-auto shadow-2xl">
+            <div className="bg-zinc-950 border border-[#FF4900] p-4 sm:p-6 md:p-8 rounded-2xl max-w-5xl w-full max-h-[calc(100dvh-1rem)] sm:max-h-[calc(100dvh-2rem)] overflow-y-auto shadow-2xl">
 
               <div className="flex justify-between items-start gap-3 border-b border-zinc-900 pb-3 mb-5">
 
                 <div>
 
-                  <h3 className="text-base sm:text-lg font-serif text-[#dfb557]">
+                  <h3 className="text-base sm:text-lg font-serif text-[#001595]">
 
                     {editingNoteId !==
                     null
@@ -2837,16 +2837,16 @@ function Price() {
                         e.target.value
                       );
                     }}
-                    className="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-xs text-[#dfb557] font-bold"
+                    className="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-xs text-[#001595] font-bold"
                   />
 
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                  <div className="bg-zinc-900 border border-[#dfb557]/30 rounded-xl p-4">
+                  <div className="bg-zinc-900 border border-[#FF4900] rounded-xl p-4">
 
-                    <h4 className="text-[10px] uppercase font-bold text-[#dfb557] mb-3">
+                    <h4 className="text-[10px] uppercase font-bold text-[#001595] mb-3">
                       SERVICES
                     </h4>
 
@@ -2869,9 +2869,9 @@ function Price() {
 
                   </div>
 
-                  <div className="bg-zinc-900 border border-[#dfb557]/30 rounded-xl p-4">
+                  <div className="bg-zinc-900 border border-[#FF4900] rounded-xl p-4">
 
-                    <h4 className="text-[10px] uppercase font-bold text-[#dfb557] mb-3">
+                    <h4 className="text-[10px] uppercase font-bold text-[#001595] mb-3">
                       FEATURES
                     </h4>
 
@@ -2898,7 +2898,7 @@ function Price() {
 
                 <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4">
 
-                  <h4 className="text-[10px] uppercase font-bold text-[#dfb557] mb-4">
+                  <h4 className="text-[10px] uppercase font-bold text-[#001595] mb-4">
                     Notebook Preview
                   </h4>
 
@@ -2949,7 +2949,7 @@ function Price() {
                         Price
                       </span>
 
-                      <p className="text-sm text-[#dfb557] font-bold">
+                      <p className="text-sm text-[#001595] font-bold">
                         {customizedPrice ||
                           '—'}
                       </p>
@@ -2974,7 +2974,7 @@ function Price() {
 
                   <button
                     type="submit"
-                    className="w-full sm:w-1/2 bg-[#dfb557] text-black py-3 rounded-xl text-xs uppercase font-bold"
+                    className="w-full sm:w-1/2 bg-[#FF4900] text-black py-3 rounded-xl text-xs uppercase font-bold"
                   >
                     {editingNoteId !==
                     null
