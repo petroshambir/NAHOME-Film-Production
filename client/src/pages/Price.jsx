@@ -1757,7 +1757,7 @@ function Price() {
                 font-weight:700;
               "
             >
-              HABESHA FILM PRODUCTION STUDIO
+              NAHOM FILM PRODUCTION STUDIO
             </div>
 
             <div>
