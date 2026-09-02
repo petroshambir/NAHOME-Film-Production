@@ -2017,6 +2017,1244 @@
 // export default Navbar;
 
 
+// import React, { useEffect, useState } from "react";
+// import { Link, useLocation } from "react-router-dom";
+// import logo from "../assets/images/nahom-logo.jpeg";
+
+// function Navbar() {
+//   const [isOpen, setIsOpen] = useState(false);
+//   const [workOpen, setWorkOpen] = useState(false);
+//   const [galleryLinks, setGalleryLinks] = useState([]);
+//   const [scrolled, setScrolled] = useState(false);
+
+//   const location = useLocation();
+
+//   /* =========================================================
+//      FETCH GALLERY
+//   ========================================================= */
+
+//   useEffect(() => {
+//     fetch("https://nahome-film-production.onrender.com/api/projects")
+//       .then((res) => res.json())
+//       .then((data) => {
+//         setGalleryLinks(data);
+//       })
+//       .catch((err) =>
+//         console.log("Error fetching gallery categories:", err)
+//       );
+//   }, []);
+
+//   /* =========================================================
+//      SCROLL EFFECT
+//   ========================================================= */
+
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       setScrolled(window.scrollY > 40);
+//     };
+
+//     window.addEventListener("scroll", handleScroll);
+
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
+
+//   /* =========================================================
+//      CLOSE MOBILE MENU ON ROUTE CHANGE
+//   ========================================================= */
+
+//   useEffect(() => {
+//     setIsOpen(false);
+//     setWorkOpen(false);
+//   }, [location.pathname]);
+
+//   /* =========================================================
+//      SLUG GENERATOR
+//   ========================================================= */
+
+//   const generateSlug = (titleText) => {
+//     if (!titleText) return "";
+
+//     return titleText
+//       .toLowerCase()
+//       .replace(/["']/g, "")
+//       .replace(/&/g, "and")
+//       .trim()
+//       .replace(/[^\w\s-]/g, "")
+//       .replace(/\s+/g, "-");
+//   };
+
+//   /* =========================================================
+//      ACTIVE LINK
+//   ========================================================= */
+
+//   const isActive = (path) => {
+//     return location.pathname === path;
+//   };
+
+//   return (
+//     <>
+//       {/* =====================================================
+//           CINEMATIC NAVBAR
+//       ===================================================== */}
+
+//       <nav
+//         className={`
+//           fixed top-0 left-0 z-[100] w-full
+//           transition-all duration-700
+//           ${
+//             scrolled
+//               ? "border-b border-[#cda653]/20 bg-[#050505]/95 backdrop-blur-2xl shadow-[0_8px_40px_rgba(0,0,0,0.45)]"
+//               : "bg-transparent"
+//           }
+//         `}
+//       >
+
+//         {/* =================================================
+//             CINEMATIC TOP GOLD LINE
+//         ================================================= */}
+
+//         <div
+//           className={`
+//             absolute top-0 left-0 h-[1px]
+//             bg-gradient-to-r
+//             from-transparent
+//             via-[#cda653]
+//             to-transparent
+//             transition-all duration-1000
+//             ${
+//               scrolled
+//                 ? "w-full opacity-80"
+//                 : "w-0 opacity-0"
+//             }
+//           `}
+//         />
+
+//         {/* =================================================
+//             MAIN NAV
+//         ================================================= */}
+
+//         <div
+//           className="
+//             mx-auto flex h-[82px] sm:h-[88px]
+//             max-w-[1800px]
+//             items-center justify-between
+//             px-4 sm:px-8 lg:px-12 xl:px-20
+//           "
+//         >
+
+//           {/* =================================================
+//               LOGO
+//           ================================================= */}
+
+//           <Link
+//             to="/home"
+//             className="
+//               group relative z-[110]
+//               flex items-center
+//             "
+//           >
+//             <div
+//               className="
+//                 relative overflow-hidden
+//                 transition-all duration-500
+//                 group-hover:scale-[1.03]
+//               "
+//             >
+//               <img
+//                 src={logo}
+//                 alt="Nahom Film Production"
+//                 className="
+//                   h-[54px] w-[72px]
+//                   object-contain
+//                   sm:h-[66px] sm:w-[88px]
+//                   md:h-[72px] md:w-[96px]
+//                 "
+//               />
+
+//               {/* Logo glow */}
+
+//               <div
+//                 className="
+//                   pointer-events-none
+//                   absolute inset-0
+//                   bg-[#cda653]/10
+//                   blur-xl
+//                   opacity-0
+//                   transition-opacity duration-500
+//                   group-hover:opacity-100
+//                 "
+//               />
+//             </div>
+//           </Link>
+
+
+//           {/* =================================================
+//               DESKTOP NAVIGATION
+//           ================================================= */}
+
+//           <div
+//             className="
+//               hidden lg:flex
+//               items-center gap-1
+//               rounded-full
+//               border border-white/10
+//               bg-black/25
+//               px-2 py-2
+//               shadow-[0_8px_35px_rgba(0,0,0,0.25)]
+//               backdrop-blur-xl
+//             "
+//           >
+
+//             {/* HOME */}
+
+//             <Link
+//               to="/home"
+//               className={`
+//                 relative px-5 py-3
+//                 text-[9px]
+//                 font-medium
+//                 uppercase
+//                 tracking-[0.28em]
+//                 transition-all duration-300
+//                 ${
+//                   isActive("/home")
+//                     ? "text-[#d8b76a]"
+//                     : "text-white/65 hover:text-white"
+//                 }
+//               `}
+//             >
+//               Home
+
+//               {isActive("/home") && (
+//                 <span
+//                   className="
+//                     absolute bottom-1
+//                     left-1/2
+//                     h-px w-5
+//                     -translate-x-1/2
+//                     bg-[#cda653]
+//                     shadow-[0_0_8px_#cda653]
+//                   "
+//                 />
+//               )}
+//             </Link>
+
+
+//             {/* ABOUT */}
+
+//             <Link
+//               to="/about"
+//               className={`
+//                 relative px-5 py-3
+//                 text-[9px]
+//                 font-medium
+//                 uppercase
+//                 tracking-[0.28em]
+//                 transition-all duration-300
+//                 ${
+//                   isActive("/about")
+//                     ? "text-[#d8b76a]"
+//                     : "text-white/65 hover:text-white"
+//                 }
+//               `}
+//             >
+//               About
+
+//               {isActive("/about") && (
+//                 <span
+//                   className="
+//                     absolute bottom-1
+//                     left-1/2
+//                     h-px w-5
+//                     -translate-x-1/2
+//                     bg-[#cda653]
+//                     shadow-[0_0_8px_#cda653]
+//                   "
+//                 />
+//               )}
+//             </Link>
+
+
+//             {/* =================================================
+//                 GALLERY DESKTOP
+//             ================================================= */}
+
+//             <div
+//               className="relative"
+//               onMouseEnter={() => setWorkOpen(true)}
+//               onMouseLeave={() => setWorkOpen(false)}
+//             >
+
+//               <button
+//                 type="button"
+//                 onClick={() => setWorkOpen(!workOpen)}
+//                 className="
+//                   group flex items-center gap-2
+//                   px-5 py-3
+//                   text-[9px]
+//                   font-medium
+//                   uppercase
+//                   tracking-[0.28em]
+//                   text-white/65
+//                   transition-all duration-300
+//                   hover:text-white
+//                 "
+//               >
+//                 Gallery
+
+//                 <span
+//                   className={`
+//                     text-[8px]
+//                     text-[#cda653]
+//                     transition-transform duration-300
+//                     ${workOpen ? "rotate-180" : ""}
+//                   `}
+//                 >
+//                   ↓
+//                 </span>
+//               </button>
+
+
+//               {/* GALLERY DROPDOWN */}
+
+//               <div
+//                 className={`
+//                   absolute right-0 top-full pt-3
+//                   w-[270px]
+//                   origin-top
+//                   transition-all duration-300
+//                   pointer-events-auto
+//                   ${
+//                     workOpen
+//                       ? "visible translate-y-0 opacity-100"
+//                       : "invisible -translate-y-2 opacity-0 pointer-events-none"
+//                   }
+//                 `}
+//               >
+
+//                 <div
+//                   className="
+//                     relative
+//                     overflow-hidden
+//                     border border-white/10
+//                     bg-[#080808]/95
+//                     p-3
+//                     shadow-[0_25px_80px_rgba(0,0,0,.7)]
+//                     backdrop-blur-2xl
+//                   "
+//                 >
+
+//                   {/* Gold top line */}
+
+//                   <div
+//                     className="
+//                       absolute left-0 right-0 top-0
+//                       h-px
+//                       bg-gradient-to-r
+//                       from-transparent
+//                       via-[#cda653]
+//                       to-transparent
+//                     "
+//                   />
+
+
+//                   <div className="px-3 pb-3 pt-2">
+
+//                     <span
+//                       className="
+//                         text-[7px]
+//                         uppercase
+//                         tracking-[0.4em]
+//                         text-[#cda653]
+//                       "
+//                     >
+//                       Our Work
+//                     </span>
+
+//                     <p
+//                       className="
+//                         mt-1
+//                         font-serif
+//                         text-lg
+//                         font-light
+//                         text-white/90
+//                       "
+//                     >
+//                       Selected Stories
+//                     </p>
+
+//                   </div>
+
+
+//                   <div className="border-t border-white/10 pt-2">
+
+//                     {galleryLinks.length > 0 ? (
+
+//                       galleryLinks.map((item, index) => {
+
+//                         const rawTitle = item.title
+//                           ? item.title.replace(/"/g, "")
+//                           : "";
+
+//                         const slug = generateSlug(item.title);
+
+//                         return (
+//                           <Link
+//                             key={item._id || index}
+//                             to={`/gallery/${slug}`}
+//                             onClick={() => {
+//                               setWorkOpen(false);
+//                               setIsOpen(false);
+//                             }}
+//                             className="
+//                               group flex items-center
+//                               justify-between
+//                               border-b border-white/5
+//                               px-3 py-3
+//                               transition-all duration-300
+//                               last:border-none
+//                               hover:bg-white/[0.04]
+//                             "
+//                           >
+
+//                             <span
+//                               className="
+//                                 text-[9px]
+//                                 uppercase
+//                                 tracking-[0.18em]
+//                                 text-white/55
+//                                 transition-colors
+//                                 group-hover:text-[#d8b76a]
+//                               "
+//                             >
+//                               {rawTitle}
+//                             </span>
+
+//                             <span
+//                               className="
+//                                 text-[#cda653]
+//                                 opacity-0
+//                                 transition-all duration-300
+//                                 group-hover:translate-x-1
+//                                 group-hover:opacity-100
+//                               "
+//                             >
+//                               →
+//                             </span>
+
+//                           </Link>
+//                         );
+
+//                       })
+
+//                     ) : (
+
+//                       <span
+//                         className="
+//                           block px-3 py-3
+//                           text-[8px]
+//                           uppercase
+//                           tracking-[0.2em]
+//                           text-white/25
+//                         "
+//                       >
+//                         Loading...
+//                       </span>
+
+//                     )}
+
+//                   </div>
+
+//                 </div>
+
+//               </div>
+
+//             </div>
+
+
+//             {/* PRICE */}
+
+//             <Link
+//               to="/price"
+//               className={`
+//                 relative px-5 py-3
+//                 text-[9px]
+//                 font-medium
+//                 uppercase
+//                 tracking-[0.28em]
+//                 transition-all duration-300
+//                 ${
+//                   isActive("/price")
+//                     ? "text-[#d8b76a]"
+//                     : "text-white/65 hover:text-white"
+//                 }
+//               `}
+//             >
+//               Price
+
+//               {isActive("/price") && (
+//                 <span
+//                   className="
+//                     absolute bottom-1
+//                     left-1/2
+//                     h-px w-5
+//                     -translate-x-1/2
+//                     bg-[#cda653]
+//                     shadow-[0_0_8px_#cda653]
+//                   "
+//                 />
+//               )}
+//             </Link>
+
+
+//             {/* CONTACT */}
+
+//             <Link
+//               to="/contact"
+//               className={`
+//                 relative px-5 py-3
+//                 text-[9px]
+//                 font-medium
+//                 uppercase
+//                 tracking-[0.28em]
+//                 transition-all duration-300
+//                 ${
+//                   isActive("/contact")
+//                     ? "text-[#d8b76a]"
+//                     : "text-white/65 hover:text-white"
+//                 }
+//               `}
+//             >
+//               Contact
+
+//               {isActive("/contact") && (
+//                 <span
+//                   className="
+//                     absolute bottom-1
+//                     left-1/2
+//                     h-px w-5
+//                     -translate-x-1/2
+//                     bg-[#cda653]
+//                     shadow-[0_0_8px_#cda653]
+//                   "
+//                 />
+//               )}
+//             </Link>
+
+//           </div>
+
+
+//           {/* =================================================
+//               RIGHT CTA
+//           ================================================= */}
+
+//           <div className="hidden lg:flex items-center gap-5">
+
+//             <div className="flex items-center gap-2">
+
+//               <span
+//                 className="
+//                   h-1.5 w-1.5
+//                   rounded-full
+//                   bg-[#cda653]
+//                   shadow-[0_0_12px_#cda653]
+//                 "
+//               />
+
+//               <span
+//                 className="
+//                   text-[7px]
+//                   uppercase
+//                   tracking-[0.3em]
+//                   text-white/35
+//                 "
+//               >
+//                 Available
+//               </span>
+
+//             </div>
+
+
+//             <Link
+//               to="/client-selection"
+//               className="
+//                 group relative
+//                 overflow-hidden
+//                 border border-[#cda653]/70
+//                 bg-[#cda653]
+//                 px-6 py-3.5
+//                 text-[8px]
+//                 font-semibold
+//                 uppercase
+//                 tracking-[0.28em]
+//                 text-black
+//                 transition-all duration-500
+//                 hover:border-white
+//                 hover:bg-white
+//               "
+//             >
+
+//               <span className="relative z-10">
+//                 Client Selection
+//               </span>
+
+//               <span
+//                 className="
+//                   ml-3
+//                   inline-block
+//                   transition-transform duration-500
+//                   group-hover:translate-x-1
+//                 "
+//               >
+//                 →
+//               </span>
+
+//             </Link>
+
+//           </div>
+
+
+//           {/* =================================================
+//               MOBILE MENU BUTTON
+//           ================================================= */}
+
+//           <button
+//             type="button"
+//             onClick={() => setIsOpen(!isOpen)}
+//             className="
+//               relative z-[110]
+//               flex h-11 w-11
+//               items-center justify-center
+//               border border-white/15
+//               bg-black/30
+//               shadow-[0_8px_30px_rgba(0,0,0,0.35)]
+//               backdrop-blur-xl
+//               transition-all duration-300
+//               hover:border-[#cda653]/50
+//               lg:hidden
+//             "
+//             aria-label="Toggle navigation"
+//           >
+
+//             <div className="flex w-5 flex-col gap-1.5">
+
+//               <span
+//                 className={`
+//                   h-px w-full
+//                   bg-white
+//                   transition-all duration-300
+//                   ${
+//                     isOpen
+//                       ? "translate-y-[4px] rotate-45"
+//                       : ""
+//                   }
+//                 `}
+//               />
+
+//               <span
+//                 className={`
+//                   h-px w-3/4
+//                   self-end
+//                   bg-[#cda653]
+//                   transition-all duration-300
+//                   ${
+//                     isOpen
+//                       ? "opacity-0"
+//                       : ""
+//                   }
+//                 `}
+//               />
+
+//               <span
+//                 className={`
+//                   h-px w-full
+//                   bg-white
+//                   transition-all duration-300
+//                   ${
+//                     isOpen
+//                       ? "-translate-y-[4px] -rotate-45"
+//                       : ""
+//                   }
+//                 `}
+//               />
+
+//             </div>
+
+//           </button>
+
+//         </div>
+
+
+//         {/* =====================================================
+//             MOBILE MENU
+//         ===================================================== */}
+
+//         <div
+//           className={`
+//             fixed inset-0 z-[105]
+//             bg-[#040404]
+//             transition-all duration-500
+//             lg:hidden
+//             ${
+//               isOpen
+//                 ? "visible opacity-100"
+//                 : "invisible opacity-0 pointer-events-none"
+//             }
+//           `}
+//         >
+
+//           {/* =================================================
+//               CINEMATIC BACKGROUND
+//           ================================================= */}
+
+//           <div
+//             className="
+//               pointer-events-none
+//               absolute inset-0
+//               bg-[radial-gradient(circle_at_80%_15%,rgba(205,166,83,0.13),transparent_30%),radial-gradient(circle_at_10%_85%,rgba(205,166,83,0.07),transparent_28%)]
+//             "
+//           />
+
+//           <div
+//             className="
+//               pointer-events-none
+//               absolute
+//               -right-32
+//               top-10
+//               h-[420px]
+//               w-[420px]
+//               rounded-full
+//               bg-[#cda653]/10
+//               blur-[130px]
+//             "
+//           />
+
+//           <div
+//             className="
+//               pointer-events-none
+//               absolute
+//               -left-40
+//               bottom-10
+//               h-[380px]
+//               w-[380px]
+//               rounded-full
+//               bg-[#cda653]/5
+//               blur-[120px]
+//             "
+//           />
+
+
+//           {/* =================================================
+//               MOBILE TOP BAR
+//           ================================================= */}
+
+//           <div
+//             className="
+//               absolute
+//               left-0
+//               right-0
+//               top-0
+//               flex
+//               h-[82px]
+//               items-center
+//               justify-between
+//               border-b
+//               border-white/10
+//               px-4
+//             "
+//           >
+
+//             <Link
+//               to="/home"
+//               onClick={() => setIsOpen(false)}
+//               className="flex items-center"
+//             >
+//               <img
+//                 src={logo}
+//                 alt="Nahom Film Production"
+//                 className="h-[50px] w-[66px] object-contain"
+//               />
+//             </Link>
+
+//             <div className="flex items-center gap-2">
+
+//               <span
+//                 className="
+//                   h-1.5 w-1.5
+//                   rounded-full
+//                   bg-[#cda653]
+//                   shadow-[0_0_10px_#cda653]
+//                 "
+//               />
+
+//               <span
+//                 className="
+//                   text-[6px]
+//                   uppercase
+//                   tracking-[0.28em]
+//                   text-white/35
+//                 "
+//               >
+//                 Film Production
+//               </span>
+
+//             </div>
+
+//           </div>
+
+
+//           {/* =================================================
+//               MOBILE CONTENT
+//           ================================================= */}
+
+//           <div
+//             className="
+//               relative
+//               flex h-full
+//               flex-col
+//               overflow-y-auto
+//               px-6
+//               pb-10
+//               pt-[110px]
+//               sm:px-12
+//             "
+//           >
+
+//             {/* Small label */}
+
+//             <div className="mb-7 flex items-center gap-3">
+
+//               <span className="h-px w-8 bg-[#cda653]" />
+
+//               <span
+//                 className="
+//                   text-[7px]
+//                   uppercase
+//                   tracking-[0.3em]
+//                   text-white/35
+//                 "
+//               >
+//                 Nahom Film Production
+//               </span>
+
+//             </div>
+
+
+//             {/* =================================================
+//                 MOBILE LINKS
+//             ================================================= */}
+
+//             <div className="flex flex-col">
+
+//               {/* HOME */}
+
+//               <Link
+//                 to="/home"
+//                 className="
+//                   group flex items-center justify-between
+//                   border-b border-white/10
+//                   py-3.5
+//                   font-serif
+//                   text-[21px]
+//                   sm:text-2xl
+//                   font-light
+//                   tracking-wide
+//                   text-white/85
+//                   transition-all duration-300
+//                   hover:pl-2
+//                   hover:text-[#cda653]
+//                 "
+//               >
+//                 <span>Home</span>
+
+//                 <span
+//                   className="
+//                     text-[12px]
+//                     text-[#cda653]/50
+//                     opacity-0
+//                     transition-all duration-300
+//                     group-hover:translate-x-1
+//                     group-hover:opacity-100
+//                   "
+//                 >
+//                   →
+//                 </span>
+//               </Link>
+
+
+//               {/* ABOUT */}
+
+//               <Link
+//                 to="/about"
+//                 className="
+//                   group flex items-center justify-between
+//                   border-b border-white/10
+//                   py-3.5
+//                   font-serif
+//                   text-[21px]
+//                   sm:text-2xl
+//                   font-light
+//                   tracking-wide
+//                   text-white/85
+//                   transition-all duration-300
+//                   hover:pl-2
+//                   hover:text-[#cda653]
+//                 "
+//               >
+//                 <span>About</span>
+
+//                 <span
+//                   className="
+//                     text-[12px]
+//                     text-[#cda653]/50
+//                     opacity-0
+//                     transition-all duration-300
+//                     group-hover:translate-x-1
+//                     group-hover:opacity-100
+//                   "
+//                 >
+//                   →
+//                 </span>
+//               </Link>
+
+
+//               {/* =================================================
+//                   MOBILE GALLERY
+//               ================================================= */}
+
+//               <button
+//                 type="button"
+//                 onClick={() => setWorkOpen(!workOpen)}
+//                 className="
+//                   group flex items-center
+//                   justify-between
+//                   border-b border-white/10
+//                   py-3.5
+//                   text-left
+//                   font-serif
+//                   text-[21px]
+//                   sm:text-2xl
+//                   font-light
+//                   tracking-wide
+//                   text-white/85
+//                   transition-all duration-300
+//                   hover:text-[#cda653]
+//                 "
+//               >
+
+//                 <span>Gallery</span>
+
+//                 <span
+//                   className={`
+//                     font-sans
+//                     text-xs
+//                     text-[#cda653]
+//                     transition-transform duration-300
+//                     ${workOpen ? "rotate-180" : ""}
+//                   `}
+//                 >
+//                   ↓
+//                 </span>
+
+//               </button>
+
+
+//               {/* =================================================
+//                   MOBILE GALLERY SUBMENU
+//               ================================================= */}
+
+//               {workOpen && (
+
+//                 <div
+//                   className="
+//                     mx-1
+//                     overflow-hidden
+//                     border-b border-white/10
+//                     bg-white/[0.025]
+//                   "
+//                 >
+
+//                   <div
+//                     className="
+//                       flex items-center gap-2
+//                       px-3
+//                       py-2.5
+//                     "
+//                   >
+
+//                     <span
+//                       className="
+//                         h-px w-4
+//                         bg-[#cda653]/60
+//                       "
+//                     />
+
+//                     <span
+//                       className="
+//                         text-[6px]
+//                         uppercase
+//                         tracking-[0.3em]
+//                         text-[#cda653]/70
+//                       "
+//                     >
+//                       Selected Stories
+//                     </span>
+
+//                   </div>
+
+
+//                   <div
+//                     className="
+//                       max-h-[150px]
+//                       overflow-y-auto
+//                     "
+//                   >
+
+//                     {galleryLinks.map((item, index) => {
+
+//                       const rawTitle = item.title
+//                         ? item.title.replace(/"/g, "")
+//                         : "";
+
+//                       const slug = generateSlug(item.title);
+
+//                       return (
+//                         <Link
+//                           key={item._id || index}
+//                           to={`/gallery/${slug}`}
+//                           onClick={() => {
+//                             setWorkOpen(false);
+//                             setIsOpen(false);
+//                           }}
+//                           className="
+//                             flex
+//                             min-h-[34px]
+//                             items-center
+//                             justify-between
+//                             border-b border-white/[0.05]
+//                             px-3
+//                             py-1.5
+//                             last:border-none
+//                             transition-colors
+//                             hover:bg-white/[0.04]
+//                           "
+//                         >
+
+//                           <span
+//                             className="
+//                               max-w-[90%]
+//                               truncate
+//                               text-[7px]
+//                               sm:text-[8px]
+//                               uppercase
+//                               tracking-[0.1em]
+//                               text-white/45
+//                               transition-colors
+//                               hover:text-[#d8b76a]
+//                             "
+//                           >
+//                             {rawTitle}
+//                           </span>
+
+//                           <span
+//                             className="
+//                               ml-2
+//                               shrink-0
+//                               text-[9px]
+//                               text-[#cda653]/60
+//                             "
+//                           >
+//                             →
+//                           </span>
+
+//                         </Link>
+//                       );
+
+//                     })}
+
+//                   </div>
+
+//                 </div>
+
+//               )}
+
+
+//               {/* PRICE */}
+
+//               <Link
+//                 to="/price"
+//                 className="
+//                   group flex items-center justify-between
+//                   border-b border-white/10
+//                   py-3.5
+//                   font-serif
+//                   text-[21px]
+//                   sm:text-2xl
+//                   font-light
+//                   tracking-wide
+//                   text-white/85
+//                   transition-all duration-300
+//                   hover:pl-2
+//                   hover:text-[#cda653]
+//                 "
+//               >
+//                 <span>Price</span>
+
+//                 <span
+//                   className="
+//                     text-[12px]
+//                     text-[#cda653]/50
+//                     opacity-0
+//                     transition-all duration-300
+//                     group-hover:translate-x-1
+//                     group-hover:opacity-100
+//                   "
+//                 >
+//                   →
+//                 </span>
+//               </Link>
+
+
+//               {/* CONTACT */}
+
+//               <Link
+//                 to="/contact"
+//                 className="
+//                   group flex items-center justify-between
+//                   border-b border-white/10
+//                   py-3.5
+//                   font-serif
+//                   text-[21px]
+//                   sm:text-2xl
+//                   font-light
+//                   tracking-wide
+//                   text-white/85
+//                   transition-all duration-300
+//                   hover:pl-2
+//                   hover:text-[#cda653]
+//                 "
+//               >
+//                 <span>Contact</span>
+
+//                 <span
+//                   className="
+//                     text-[12px]
+//                     text-[#cda653]/50
+//                     opacity-0
+//                     transition-all duration-300
+//                     group-hover:translate-x-1
+//                     group-hover:opacity-100
+//                   "
+//                 >
+//                   →
+//                 </span>
+//               </Link>
+
+//             </div>
+
+
+//             {/* =================================================
+//                 MOBILE CLIENT SELECTION
+//             ================================================= */}
+
+//             <div className="mt-7">
+
+//               <Link
+//                 to="/client-selection"
+//                 className="
+//                   group relative
+//                   flex w-full
+//                   items-center
+//                   justify-between
+//                   overflow-hidden
+//                   border
+//                   border-[#cda653]/60
+//                   bg-[#cda653]
+//                   px-5
+//                   py-3.5
+//                   text-[8px]
+//                   sm:text-[9px]
+//                   font-semibold
+//                   uppercase
+//                   tracking-[0.22em]
+//                   text-black
+//                   shadow-[0_10px_35px_rgba(205,166,83,0.12)]
+//                   transition-all duration-500
+//                   hover:bg-white
+//                   hover:border-white
+//                 "
+//               >
+
+//                 <span className="relative z-10">
+//                   Client Selection
+//                 </span>
+
+//                 <span
+//                   className="
+//                     text-sm
+//                     transition-transform duration-500
+//                     group-hover:translate-x-1
+//                   "
+//                 >
+//                   →
+//                 </span>
+
+//               </Link>
+
+//             </div>
+
+
+//             {/* =================================================
+//                 MOBILE FOOTER
+//             ================================================= */}
+
+//             <div
+//               className="
+//                 mt-auto
+//                 flex
+//                 items-center
+//                 justify-between
+//                 border-t border-white/5
+//                 pb-2
+//                 pt-7
+//               "
+//             >
+
+//               <span
+//                 className="
+//                   text-[6px]
+//                   uppercase
+//                   tracking-[0.25em]
+//                   text-white/25
+//                 "
+//               >
+//                 NFP / ORIGINAL PICTURES
+//               </span>
+
+//               <span
+//                 className="
+//                   text-[6px]
+//                   uppercase
+//                   tracking-[0.25em]
+//                   text-[#cda653]/60
+//                 "
+//               >
+//                 EST. 2014
+//               </span>
+
+//             </div>
+
+//           </div>
+
+//         </div>
+
+//       </nav>
+//     </>
+//   );
+// }
+
+// export default Navbar;
+
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/images/nahom-logo.jpeg";
@@ -2066,6 +3304,22 @@ function Navbar() {
     setIsOpen(false);
     setWorkOpen(false);
   }, [location.pathname]);
+
+  /* =========================================================
+     LOCK PAGE SCROLL WHEN MOBILE MENU IS OPEN
+  ========================================================= */
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
   /* =========================================================
      SLUG GENERATOR
@@ -2170,8 +3424,6 @@ function Navbar() {
                   md:h-[72px] md:w-[96px]
                 "
               />
-
-              {/* Logo glow */}
 
               <div
                 className="
@@ -2344,8 +3596,6 @@ function Navbar() {
                   "
                 >
 
-                  {/* Gold top line */}
-
                   <div
                     className="
                       absolute left-0 right-0 top-0
@@ -2356,7 +3606,6 @@ function Navbar() {
                       to-transparent
                     "
                   />
-
 
                   <div className="px-3 pb-3 pt-2">
 
@@ -2593,7 +3842,6 @@ function Navbar() {
                 hover:bg-white
               "
             >
-
               <span className="relative z-10">
                 Client Selection
               </span>
@@ -2608,7 +3856,6 @@ function Navbar() {
               >
                 →
               </span>
-
             </Link>
 
           </div>
@@ -2622,8 +3869,9 @@ function Navbar() {
             type="button"
             onClick={() => setIsOpen(!isOpen)}
             className="
-              relative z-[110]
+              relative z-[120]
               flex h-11 w-11
+              shrink-0
               items-center justify-center
               border border-white/15
               bg-black/30
@@ -2687,11 +3935,21 @@ function Navbar() {
 
         {/* =====================================================
             MOBILE MENU
+            IMPORTANT:
+            fixed directly to viewport
+            independent from page scroll position
         ===================================================== */}
 
         <div
           className={`
-            fixed inset-0 z-[105]
+            fixed
+            left-0
+            right-0
+            top-0
+            bottom-0
+            z-[105]
+            h-[100dvh]
+            overflow-hidden
             bg-[#040404]
             transition-all duration-500
             lg:hidden
@@ -2754,13 +4012,17 @@ function Navbar() {
               left-0
               right-0
               top-0
+              z-[115]
               flex
-              h-[82px]
+              h-[78px]
+              shrink-0
               items-center
               justify-between
               border-b
               border-white/10
+              bg-[#040404]/90
               px-4
+              backdrop-blur-xl
             "
           >
 
@@ -2772,7 +4034,11 @@ function Navbar() {
               <img
                 src={logo}
                 alt="Nahom Film Production"
-                className="h-[50px] w-[66px] object-contain"
+                className="
+                  h-[46px]
+                  w-[62px]
+                  object-contain
+                "
               />
             </Link>
 
@@ -2805,32 +4071,42 @@ function Navbar() {
 
           {/* =================================================
               MOBILE CONTENT
+
+              This is deliberately NOT vertically centered.
+              It starts below the fixed top bar so it cannot
+              disappear above the viewport when the page was
+              previously scrolled down.
           ================================================= */}
 
           <div
             className="
               relative
-              flex h-full
+              z-[110]
+              flex
+              h-full
+              w-full
               flex-col
               overflow-y-auto
+              overscroll-contain
               px-6
-              pb-10
-              pt-[110px]
+              pb-8
+              pt-[98px]
               sm:px-12
+              sm:pt-[105px]
             "
           >
 
             {/* Small label */}
 
-            <div className="mb-7 flex items-center gap-3">
+            <div className="mb-5 flex shrink-0 items-center gap-3">
 
-              <span className="h-px w-8 bg-[#cda653]" />
+              <span className="h-px w-7 bg-[#cda653]" />
 
               <span
                 className="
-                  text-[7px]
+                  text-[6px]
                   uppercase
-                  tracking-[0.3em]
+                  tracking-[0.28em]
                   text-white/35
                 "
               >
@@ -2844,24 +4120,25 @@ function Navbar() {
                 MOBILE LINKS
             ================================================= */}
 
-            <div className="flex flex-col">
+            <div className="flex shrink-0 flex-col">
 
               {/* HOME */}
 
               <Link
                 to="/home"
                 className="
-                  group flex items-center justify-between
+                  group flex min-h-[49px]
+                  items-center justify-between
                   border-b border-white/10
-                  py-3.5
+                  py-2.5
                   font-serif
-                  text-[21px]
-                  sm:text-2xl
+                  text-[18px]
+                  sm:text-[20px]
                   font-light
                   tracking-wide
                   text-white/85
                   transition-all duration-300
-                  hover:pl-2
+                  hover:pl-1.5
                   hover:text-[#cda653]
                 "
               >
@@ -2869,7 +4146,7 @@ function Navbar() {
 
                 <span
                   className="
-                    text-[12px]
+                    text-[10px]
                     text-[#cda653]/50
                     opacity-0
                     transition-all duration-300
@@ -2887,17 +4164,18 @@ function Navbar() {
               <Link
                 to="/about"
                 className="
-                  group flex items-center justify-between
+                  group flex min-h-[49px]
+                  items-center justify-between
                   border-b border-white/10
-                  py-3.5
+                  py-2.5
                   font-serif
-                  text-[21px]
-                  sm:text-2xl
+                  text-[18px]
+                  sm:text-[20px]
                   font-light
                   tracking-wide
                   text-white/85
                   transition-all duration-300
-                  hover:pl-2
+                  hover:pl-1.5
                   hover:text-[#cda653]
                 "
               >
@@ -2905,7 +4183,7 @@ function Navbar() {
 
                 <span
                   className="
-                    text-[12px]
+                    text-[10px]
                     text-[#cda653]/50
                     opacity-0
                     transition-all duration-300
@@ -2926,14 +4204,15 @@ function Navbar() {
                 type="button"
                 onClick={() => setWorkOpen(!workOpen)}
                 className="
-                  group flex items-center
+                  group flex min-h-[49px]
+                  items-center
                   justify-between
                   border-b border-white/10
-                  py-3.5
+                  py-2.5
                   text-left
                   font-serif
-                  text-[21px]
-                  sm:text-2xl
+                  text-[18px]
+                  sm:text-[20px]
                   font-light
                   tracking-wide
                   text-white/85
@@ -2947,7 +4226,7 @@ function Navbar() {
                 <span
                   className={`
                     font-sans
-                    text-xs
+                    text-[11px]
                     text-[#cda653]
                     transition-transform duration-300
                     ${workOpen ? "rotate-180" : ""}
@@ -2968,6 +4247,7 @@ function Navbar() {
                 <div
                   className="
                     mx-1
+                    shrink-0
                     overflow-hidden
                     border-b border-white/10
                     bg-white/[0.025]
@@ -2978,7 +4258,7 @@ function Navbar() {
                     className="
                       flex items-center gap-2
                       px-3
-                      py-2.5
+                      py-2
                     "
                   >
 
@@ -3005,7 +4285,7 @@ function Navbar() {
 
                   <div
                     className="
-                      max-h-[150px]
+                      max-h-[140px]
                       overflow-y-auto
                     "
                   >
@@ -3028,12 +4308,12 @@ function Navbar() {
                           }}
                           className="
                             flex
-                            min-h-[34px]
+                            min-h-[32px]
                             items-center
                             justify-between
                             border-b border-white/[0.05]
                             px-3
-                            py-1.5
+                            py-1
                             last:border-none
                             transition-colors
                             hover:bg-white/[0.04]
@@ -3060,7 +4340,7 @@ function Navbar() {
                             className="
                               ml-2
                               shrink-0
-                              text-[9px]
+                              text-[8px]
                               text-[#cda653]/60
                             "
                           >
@@ -3084,17 +4364,18 @@ function Navbar() {
               <Link
                 to="/price"
                 className="
-                  group flex items-center justify-between
+                  group flex min-h-[49px]
+                  items-center justify-between
                   border-b border-white/10
-                  py-3.5
+                  py-2.5
                   font-serif
-                  text-[21px]
-                  sm:text-2xl
+                  text-[18px]
+                  sm:text-[20px]
                   font-light
                   tracking-wide
                   text-white/85
                   transition-all duration-300
-                  hover:pl-2
+                  hover:pl-1.5
                   hover:text-[#cda653]
                 "
               >
@@ -3102,7 +4383,7 @@ function Navbar() {
 
                 <span
                   className="
-                    text-[12px]
+                    text-[10px]
                     text-[#cda653]/50
                     opacity-0
                     transition-all duration-300
@@ -3120,17 +4401,18 @@ function Navbar() {
               <Link
                 to="/contact"
                 className="
-                  group flex items-center justify-between
+                  group flex min-h-[49px]
+                  items-center justify-between
                   border-b border-white/10
-                  py-3.5
+                  py-2.5
                   font-serif
-                  text-[21px]
-                  sm:text-2xl
+                  text-[18px]
+                  sm:text-[20px]
                   font-light
                   tracking-wide
                   text-white/85
                   transition-all duration-300
-                  hover:pl-2
+                  hover:pl-1.5
                   hover:text-[#cda653]
                 "
               >
@@ -3138,7 +4420,7 @@ function Navbar() {
 
                 <span
                   className="
-                    text-[12px]
+                    text-[10px]
                     text-[#cda653]/50
                     opacity-0
                     transition-all duration-300
@@ -3157,7 +4439,7 @@ function Navbar() {
                 MOBILE CLIENT SELECTION
             ================================================= */}
 
-            <div className="mt-7">
+            <div className="mt-6 shrink-0">
 
               <Link
                 to="/client-selection"
@@ -3170,10 +4452,10 @@ function Navbar() {
                   border
                   border-[#cda653]/60
                   bg-[#cda653]
-                  px-5
-                  py-3.5
-                  text-[8px]
-                  sm:text-[9px]
+                  px-4
+                  py-3
+                  text-[7px]
+                  sm:text-[8px]
                   font-semibold
                   uppercase
                   tracking-[0.22em]
@@ -3191,7 +4473,7 @@ function Navbar() {
 
                 <span
                   className="
-                    text-sm
+                    text-xs
                     transition-transform duration-500
                     group-hover:translate-x-1
                   "
@@ -3212,19 +4494,20 @@ function Navbar() {
               className="
                 mt-auto
                 flex
+                shrink-0
                 items-center
                 justify-between
                 border-t border-white/5
-                pb-2
-                pt-7
+                pb-1
+                pt-6
               "
             >
 
               <span
                 className="
-                  text-[6px]
+                  text-[5px]
                   uppercase
-                  tracking-[0.25em]
+                  tracking-[0.22em]
                   text-white/25
                 "
               >
@@ -3233,9 +4516,9 @@ function Navbar() {
 
               <span
                 className="
-                  text-[6px]
+                  text-[5px]
                   uppercase
-                  tracking-[0.25em]
+                  tracking-[0.22em]
                   text-[#cda653]/60
                 "
               >
