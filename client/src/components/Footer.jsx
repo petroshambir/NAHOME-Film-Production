@@ -12,12 +12,12 @@ function Footer() {
     {
       name: "TikTok",
       image: tiktokImg,
-      href: "https://www.tiktok.com/@habshapicture?_r=1&_t=ZS-98RLvYscrdH",
+      href: "https://www.tiktok.com/@nahomwelderufael?_r=1&_d=f3g9idjab165i7&sec_uid=MS4wLjABAAAAgNGlGxKsTmOvyTlBKVHcd_WnbK9zu3xLXGMRuzHkOQTi5Bqe4xN0H3g4rRHSJKSG&share_author_id=6874152878391772161&sharer_language=en&source=h5_m&u_code=defe1j7516l2fm&timestamp=1785602621&user_id=6874152878391772161&sec_user_id=MS4wLjABAAAAgNGlGxKsTmOvyTlBKVHcd_WnbK9zu3xLXGMRuzHkOQTi5Bqe4xN0H3g4rRHSJKSG&item_author_type=1&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_iid=7667439647320409863&share_link_id=93f02907-5432-49bb-8275-f3af65a087c7&share_app_id=1233&ugbiz_name=ACCOUNT&ug_btm=b8727%2Cb7360&social_share_type=5&enable_checksum=1",
     },
     {
       name: "Instagram",
       image: instagramImg,
-      href: "https://www.instagram.com/habesha_pictuer?igsh=anF1OXc4dnB4bGs1",
+      href: "https://www.instagram.com/nahomwelderufae?igsh=MXVsamhkd2lqZWF3eA==",
     },
     {
       name: "YouTube",
@@ -27,7 +27,7 @@ function Footer() {
     {
       name: "Facebook",
       image: facebookImg,
-      href: "https://www.facebook.com/share/1BbUufnsKQ/",
+      href: "https://www.facebook.com/share/1DPqLWypZ9/",
     },
   ];
 
@@ -171,7 +171,7 @@ function Footer() {
           </div>
 
           <span className="font-mono text-[7px] tracking-[.35em] text-white/20">
-            HFP / 2026
+            NFP / 2026
           </span>
 
         </div>
@@ -300,10 +300,10 @@ function Footer() {
             <div className="space-y-4">
 
               <a
-                href="mailto:Adalhambir946@gmail.com"
+                href="mailto:Nahomwelderufael570@gmail.Com"
                 className="block text-xs text-white/45 transition hover:text-[#FF4900]"
               >
-               petroshambirr@gmail.com
+               Nahomwelderufael570@gmail.Com
               </a>
 
               <a

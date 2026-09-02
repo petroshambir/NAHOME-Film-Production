@@ -118,10 +118,10 @@ export default function Contact() {
               <div>
                 <h4 className="text-lg font-serif font-bold text-zinc-100">ኢመይል (Email)</h4>
                 <a 
-                  href="mailto:Adalhambir946@gmail.com" 
+                  href="mailto:Nahomwelderufael570@gmail.Com" 
                   className="block text-zinc-400 text-sm mt-1 font-light hover:text-[#ff6600] transition-colors underline underline-offset-4"
                 >
-                  Adalhambir946@gmail.com
+                  Nahomwelderufael570@gmail.Com
                 </a>
                 <p className="text-zinc-500 text-xs mt-0.5">ብቐጥታ ኢመይል ንምጽሓፍ ኣብ ልዕሊኡ ጠውቑ</p>
               </div>
@@ -220,7 +220,7 @@ export default function Contact() {
       <section className="w-full h-96 px-4 max-w-7xl mx-auto mb-20">
         <div className="w-full h-full rounded-2xl overflow-hidden border border-[#ff6600]/20 shadow-2xl relative">
           <iframe 
-            title="Habesha Pictures Location"
+            title="NAHoM Pictures Location"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.751765275537!2d38.7420!3d8.9806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOGKwNTgnMjQuMiJOIDM4wrA0NCczMS4yIkU!5e0!3m2!1sen!2set!4v1650000000000!5m2!1sen!2set" 
             width="100%" 
             height="100%" 
