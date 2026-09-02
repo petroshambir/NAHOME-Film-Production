@@ -646,9 +646,9 @@ function Home() {
             FilmSection uses your LOCAL MOVIES array.
         ================================================= */}
 
-        <FilmSection
+        {/* <FilmSection
           preview={true}
-        />
+        /> */}
 
       </section>
 
@@ -725,9 +725,9 @@ function Home() {
             MusicSection will use its LOCAL data.
         ================================================= */}
 
-        <MusicSection
+        {/* <MusicSection
           preview={true}
-        />
+        /> */}
 
       </section>
 
