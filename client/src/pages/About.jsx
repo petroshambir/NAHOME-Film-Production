@@ -20,7 +20,7 @@ export default function About() {
         <div className="absolute inset-0 z-0">
          <img 
             src={bestWeedingPic} 
-            alt="Habesha Film Production Hero" 
+            alt="Nahom Film Production Hero" 
             className="w-full h-full object-cover brightness-50"
           />
 
@@ -37,7 +37,7 @@ export default function About() {
           </h1>
           <div className="w-16 h-[2px] bg-[#ff6600] mx-auto mb-4"></div>
           <h2 className="text-xl sm:text-2xl md:text-3xl font-serif text-[#ff6600] tracking-wider font-light drop-shadow">
-            NAHOME FILM PRODUCTION
+            NAHOM FILM PRODUCTION
           </h2>
         </div>
       </div>
@@ -59,7 +59,7 @@ export default function About() {
 
 ንነፍስወከፍ ደንበኛና ከም ሓደ ታሪኽ እምበር ከም ሓደ ፕሮጀክት ጥራይ ኣይንርእዮን። ምኽንያቱ እቲ ዝተቐረጸ ፍሬም ሎሚ ስእሊ ክኸውን ይኽእል፣ ጽባሕ ግን ክቡር ትውስታ፣ ድሕሪ ዓመታት ድማ ክትርእዮ እንከለኻ እቲ ናይ ቀደም ስምዒት እንደገና ዝመልስ ዘልኣለማዊ ታሪኽ ክኸውን ንደሊ።
 
-ኣብ **Nahome Film Production** ቴክኖሎጂን ስነ-ጥበብን ብሓደ ንደርሶም። ዘመናዊ መሳርሒታትን ሞያዊ ክእለትን ተጠቒምና፣ ናይ ሕብረተሰብና ታሪኻት ብሓድሽ፣ ልዩን ዘይርሳዕን መንገዲ ንገልጾም። ካብ ሓሳብ ክሳብ መወዳእታ ፕሮዳክሽን፣ ኩሉ ስራሕና ብፍቕሪ፣ ፈጠራን ተወፋይነትን ይምራሕ።
+ኣብ **Nahom Film Production** ቴክኖሎጂን ስነ-ጥበብን ብሓደ ንደርሶም። ዘመናዊ መሳርሒታትን ሞያዊ ክእለትን ተጠቒምና፣ ናይ ሕብረተሰብና ታሪኻት ብሓድሽ፣ ልዩን ዘይርሳዕን መንገዲ ንገልጾም። ካብ ሓሳብ ክሳብ መወዳእታ ፕሮዳክሽን፣ ኩሉ ስራሕና ብፍቕሪ፣ ፈጠራን ተወፋይነትን ይምራሕ።
 
 **ሓደ ፍሬም። ሓደ ስምዒት። ሓደ ታሪኽ። ንዘልኣለም።**
 

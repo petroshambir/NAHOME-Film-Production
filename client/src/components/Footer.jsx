@@ -135,7 +135,7 @@ function Footer() {
                   <span className="h-1 w-1 rounded-full bg-[#FF4900]/50" />
 
                   <span className="font-mono text-[7px] tracking-[.35em] text-[#FF4900]/40">
-                    HABESHA FILM
+                    Nahom FILM
                   </span>
 
                   <span className="h-1 w-1 rounded-full bg-white/10" />
@@ -165,7 +165,7 @@ function Footer() {
             <span className="soft-pulse h-2 w-2 rounded-full bg-[#FF4900]" />
 
             <span className="font-mono text-[7px] uppercase tracking-[.45em] text-white/30">
-              Habesha Film Production
+              Nahom Film Production
             </span>
 
           </div>
@@ -229,7 +229,7 @@ function Footer() {
           <div>
 
             <h3 className="font-serif text-2xl font-light text-[#2563eb] ">
-              NAHOME
+              NAHOM
               <span className="ml-2 italic text-[#FF4900]">
                 Film Production
               </span>
