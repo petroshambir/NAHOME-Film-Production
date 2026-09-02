@@ -348,7 +348,7 @@ function WeddingSection({
             </span>
 
 
-            <h2 className="mt-4 text-4xl sm:text-5xl md:text-7xl font-serif italic font-light text-white">
+            <h2 className="mt-4 text-4xl sm:text-5xl md:text-7xl font-serif italic font-light text-[#FF4900]">
 
               {title}
 
@@ -424,14 +424,14 @@ function WeddingSection({
 
                   <div className="absolute left-5 right-5 bottom-5">
 
-                    <span className="text-[8px] uppercase tracking-[0.35em] text-[#FF4900]">
+                    <span className="text-[8px] uppercase tracking-[0.35em] text-white">
 
                       {String(index + 1).padStart(2, '0')}
 
                     </span>
 
 
-                    <h3 className="mt-2 text-xl md:text-2xl font-serif italic text-[#FF4900]">
+                    <h3 className="mt-2 text-xl md:text-2xl font-serif italic text-white">
 
                       {headings[index] || 'Wedding Moment'}
 
