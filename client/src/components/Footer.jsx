@@ -446,7 +446,7 @@ function Footer() {
         <div className="mx-auto flex max-w-[1800px] flex-col items-center justify-between gap-5 px-6 py-6 sm:px-10 md:flex-row lg:px-16 xl:px-20">
 
           <span className="text-center text-[7px] uppercase tracking-[.3em] text-white/20 md:text-left">
-            © 2026 NAHOME Film Production — All Rights Reserved
+            © 2026 NAHOM Film Production — All Rights Reserved
           </span>
 
 

@@ -37,7 +37,7 @@ export default function About() {
           </h1>
           <div className="w-16 h-[2px] bg-[#ff6600] mx-auto mb-4"></div>
           <h2 className="text-xl sm:text-2xl md:text-3xl font-serif text-[#ff6600] tracking-wider font-light drop-shadow">
-            NAHOME FILIM PRODUCTION
+            NAHOME FILM PRODUCTION
           </h2>
         </div>
       </div>
@@ -51,7 +51,7 @@ export default function About() {
         <p className="text-zinc-400 text-base md:text-lg leading-relaxed font-light max-w-3xl mx-auto mb-12">
        ### ሞያዊ ስነ-ጥበባዊ ጉዕዞና
 
-ንሕና **Nahome Film Production**፣ ሕብረተሰብና፣ ባህልና፣ ልምድታትናን ክቡራት ዝክርታት ብፍሉይ ስነ-ጥበባዊ መነጽር ንምስናድን ንምዕቃብን  ብዘመናዊ Film Production Studio ኢና። ንነፍስወከፍ ታሪኽ ብፍሉይ ራእይ፣ ፈጠራን ሓቀኛ ስምዒትን ንቐርጾ፣ ካብ ሓንቲ ቀላል ክሳብ ዝዓበየ ፍጻመ ድማ ዘይርሳዕ ታሪኽ ንፈጥር።
+ንሕና **Nahom Film Production**፣ ሕብረተሰብና፣ ባህልና፣ ልምድታትናን ክቡራት ዝክርታት ብፍሉይ ስነ-ጥበባዊ መነጽር ንምስናድን ንምዕቃብን  ብዘመናዊ Film Production Studio ኢና። ንነፍስወከፍ ታሪኽ ብፍሉይ ራእይ፣ ፈጠራን ሓቀኛ ስምዒትን ንቐርጾ፣ ካብ ሓንቲ ቀላል ክሳብ ዝዓበየ ፍጻመ ድማ ዘይርሳዕ ታሪኽ ንፈጥር።
 
 ኣብ **Wedding, Bridal, Baby Shower, Documentary,film, Drama, Music Production** ከምኡውን ኣብ ካልኦት ሞያዊ ቀረጻታት፣ ነፍሲ ወከፍ ስእሊን ፍሬምን ሓደ ትርጉም ከምዘለዎ ንኣምን። ስለዚ ካብ ምምራጽ ኣንግል ካሜራ፣ ብርሃንን ድምጽን፣ ክሳብ ኤዲቲንግ፣ ኮለር ግሬዲንግን መወዳእታ ምቕራጽን፣ ነፍሲ ወከፍ ዝርዝር ብጥንቃቐን ብልዑል ሞያዊ ደረጃን ንሰርሖ።
 

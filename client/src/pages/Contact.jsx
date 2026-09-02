@@ -56,7 +56,7 @@ export default function Contact() {
           </h1>
           <div className="w-16 h-[2px] bg-[#ff6600] mx-auto mb-4"></div>
           <h2 className="text-xl sm:text-2xl md:text-3xl font-serif text-[#ff6600] tracking-wider font-light drop-shadow">
-            NAHOME FILIM PRODUCTION
+            NAHOM FILM PRODUCTION
           </h2>
         </div>
       </div>
