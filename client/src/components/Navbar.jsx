@@ -943,7 +943,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import logo from "../assets/images/";
+import logo from "../assets/images/nahom-logo.jpeg";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
