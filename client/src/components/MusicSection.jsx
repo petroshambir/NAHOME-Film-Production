@@ -341,7 +341,7 @@ function MusicSection({ section = {}, preview = true }) {
               "
             >
               {preview
-                ? 'Featured Music'
+                ? ' Music'
                 : 'Our Music'}
             </h2>
 

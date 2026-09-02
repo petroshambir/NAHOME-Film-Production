@@ -432,7 +432,7 @@ function FilmSection({
               "
             >
               {preview
-                ? 'Featured Film'
+                ? 'Feature Film'
                 : 'Our Films'}
             </h2>
 
