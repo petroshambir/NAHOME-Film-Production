@@ -405,7 +405,7 @@ function Footer() {
                 <div>
 
                   <div className="font-serif text-xl font-light tracking-wide text-[#2563eb] ">
-                    NAHOME
+                    NAHOM
                   </div>
 
                   <div className="text-[6px] uppercase tracking-[.45em] text-white/30">
