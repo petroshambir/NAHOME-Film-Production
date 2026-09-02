@@ -938,10 +938,12 @@
 
 // export default Navbar;
 
+
+
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import logo from "../assets/images/nahom-logo.jpeg";
+import logo from "../assets/images/";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -1053,9 +1055,9 @@ function Navbar() {
 
         <div
           className="
-            mx-auto flex h-[82px] sm:h-[88px] max-w-[1800px]
+            mx-auto flex h-[88px] max-w-[1800px]
             items-center justify-between
-            px-4 sm:px-8 lg:px-12 xl:px-20
+            px-5 sm:px-8 lg:px-12 xl:px-20
           "
         >
 
@@ -1068,9 +1070,9 @@ function Navbar() {
             className="
               group relative z-[110]
               flex items-center
-              shrink-0
             "
           >
+
             <div
               className="
                 relative overflow-hidden
@@ -1078,11 +1080,12 @@ function Navbar() {
                 group-hover:scale-[1.03]
               "
             >
+
               <img
                 src={logo}
                 alt="Nahom Film Production"
                 className="
-                  h-[52px] w-[70px]
+                  h-[58px] w-[76px]
                   object-contain
                   sm:h-[66px] sm:w-[88px]
                   md:h-[72px] md:w-[96px]
@@ -1102,7 +1105,9 @@ function Navbar() {
                   group-hover:opacity-100
                 "
               />
+
             </div>
+
           </Link>
 
 
@@ -1141,6 +1146,7 @@ function Navbar() {
                 }
               `}
             >
+
               Home
 
               {isActive("/home") && (
@@ -1154,6 +1160,7 @@ function Navbar() {
                   "
                 />
               )}
+
             </Link>
 
 
@@ -1175,6 +1182,7 @@ function Navbar() {
                 }
               `}
             >
+
               About
 
               {isActive("/about") && (
@@ -1188,6 +1196,7 @@ function Navbar() {
                   "
                 />
               )}
+
             </Link>
 
 
@@ -1216,6 +1225,7 @@ function Navbar() {
                   hover:text-white
                 "
               >
+
                 Gallery
 
                 <span
@@ -1228,6 +1238,7 @@ function Navbar() {
                 >
                   ↓
                 </span>
+
               </button>
 
 
@@ -1239,9 +1250,10 @@ function Navbar() {
                   w-[270px]
                   origin-top
                   transition-all duration-300
+                  pointer-events-auto
                   ${
                     workOpen
-                      ? "visible translate-y-0 opacity-100 pointer-events-auto"
+                      ? "visible translate-y-0 opacity-100"
                       : "invisible -translate-y-2 opacity-0 pointer-events-none"
                   }
                 `}
@@ -1271,6 +1283,7 @@ function Navbar() {
                       to-transparent
                     "
                   />
+
 
                   <div className="px-3 pb-3 pt-2">
 
@@ -1358,6 +1371,7 @@ function Navbar() {
 
                           </Link>
                         );
+
                       })
 
                     ) : (
@@ -1437,8 +1451,6 @@ function Navbar() {
 
           <div className="hidden lg:flex items-center gap-5">
 
-            {/* Small status */}
-
             <div className="flex items-center gap-2">
 
               <span
@@ -1463,8 +1475,6 @@ function Navbar() {
 
             </div>
 
-
-            {/* Client Selection */}
 
             <Link
               to="/client-selection"
@@ -1514,9 +1524,7 @@ function Navbar() {
             onClick={() => setIsOpen(!isOpen)}
             className="
               relative z-[110]
-              flex h-10 w-10
-              sm:h-11 sm:w-11
-              shrink-0
+              flex h-11 w-11
               items-center justify-center
               border border-white/15
               bg-black/20
@@ -1633,26 +1641,25 @@ function Navbar() {
               relative
               flex h-full
               flex-col
-              px-6
-              sm:px-10
+              justify-center
+              px-8
+              sm:px-14
               overflow-y-auto
-              py-24
+              py-20
             "
           >
 
             {/* Small label */}
 
-            <div className="mb-7 flex items-center gap-3 sm:mb-10">
+            <div className="mb-8 flex items-center gap-3">
 
-              <span className="h-px w-8 sm:w-10 bg-[#cda653]" />
+              <span className="h-px w-8 bg-[#cda653]" />
 
               <span
                 className="
                   text-[7px]
-                  sm:text-[8px]
                   uppercase
                   tracking-[0.3em]
-                  sm:tracking-[0.4em]
                   text-white/35
                 "
               >
@@ -1674,11 +1681,10 @@ function Navbar() {
                 to="/home"
                 className="
                   border-b border-white/10
-                  py-4
-                  sm:py-5
+                  py-3
                   font-serif
-                  text-3xl
-                  sm:text-4xl
+                  text-2xl
+                  sm:text-3xl
                   font-light
                   text-white/85
                   transition-colors
@@ -1695,11 +1701,10 @@ function Navbar() {
                 to="/about"
                 className="
                   border-b border-white/10
-                  py-4
-                  sm:py-5
+                  py-3
                   font-serif
-                  text-3xl
-                  sm:text-4xl
+                  text-2xl
+                  sm:text-3xl
                   font-light
                   text-white/85
                   transition-colors
@@ -1721,12 +1726,11 @@ function Navbar() {
                   flex items-center
                   justify-between
                   border-b border-white/10
-                  py-4
-                  sm:py-5
+                  py-3
                   text-left
                   font-serif
-                  text-3xl
-                  sm:text-4xl
+                  text-2xl
+                  sm:text-3xl
                   font-light
                   text-white/85
                   transition-colors
@@ -1739,8 +1743,8 @@ function Navbar() {
                 <span
                   className={`
                     font-sans
-                    text-base
-                    sm:text-lg
+                    text-sm
+                    sm:text-base
                     text-[#cda653]
                     transition-transform duration-300
                     ${
@@ -1758,7 +1762,6 @@ function Navbar() {
 
               {/* =================================================
                   MOBILE GALLERY SUBMENU
-                  COMPACT VERSION
               ================================================= */}
 
               {workOpen && (
@@ -1768,24 +1771,21 @@ function Navbar() {
                     mx-1
                     border-b border-white/10
                     bg-white/[0.025]
-                    py-2
+                    py-1
                   "
                 >
-
-                  {/* Small gallery label */}
 
                   <div
                     className="
                       flex items-center gap-2
                       px-3
-                      pb-2
-                      pt-1
+                      py-2
                     "
                   >
 
                     <span
                       className="
-                        h-px w-5
+                        h-px w-4
                         bg-[#cda653]/60
                       "
                     />
@@ -1794,7 +1794,7 @@ function Navbar() {
                       className="
                         text-[6px]
                         uppercase
-                        tracking-[0.35em]
+                        tracking-[0.3em]
                         text-[#cda653]/70
                       "
                     >
@@ -1804,104 +1804,74 @@ function Navbar() {
                   </div>
 
 
-                  {/* Gallery items */}
-
                   <div
                     className="
-                      max-h-[170px]
+                      max-h-[150px]
                       overflow-y-auto
-                      overscroll-contain
-                      pr-1
                     "
                   >
 
-                    {galleryLinks.length > 0 ? (
+                    {galleryLinks.map((item, index) => {
 
-                      galleryLinks.map((item, index) => {
+                      const rawTitle = item.title
+                        ? item.title.replace(/"/g, "")
+                        : "";
 
-                        const rawTitle = item.title
-                          ? item.title.replace(/"/g, "")
-                          : "";
+                      const slug = generateSlug(item.title);
 
-                        const slug = generateSlug(item.title);
+                      return (
+                        <Link
+                          key={item._id || index}
+                          to={`/gallery/${slug}`}
+                          onClick={() => {
+                            setWorkOpen(false);
+                            setIsOpen(false);
+                          }}
+                          className="
+                            flex
+                            min-h-[34px]
+                            items-center
+                            justify-between
+                            border-b border-white/[0.05]
+                            px-3
+                            py-1.5
+                            last:border-none
+                            transition-colors
+                            hover:bg-white/[0.04]
+                          "
+                        >
 
-                        return (
-                          <Link
-                            key={item._id || index}
-                            to={`/gallery/${slug}`}
-                            onClick={() => {
-                              setWorkOpen(false);
-                              setIsOpen(false);
-                            }}
+                          <span
                             className="
-                              group
-                              flex
-                              min-h-[38px]
-                              items-center
-                              justify-between
-                              border-b border-white/[0.06]
-                              px-3
-                              py-2
-                              last:border-none
-                              transition-all duration-300
-                              hover:bg-white/[0.04]
+                              max-w-[90%]
+                              truncate
+                              text-[7px]
+                              sm:text-[8px]
+                              uppercase
+                              tracking-[0.1em]
+                              text-white/45
+                              transition-colors
+                              hover:text-[#d8b76a]
                             "
                           >
+                            {rawTitle}
+                          </span>
 
-                            <span
-                              className="
-                                max-w-[85%]
-                                truncate
-                                text-[8px]
-                                sm:text-[9px]
-                                uppercase
-                                tracking-[0.12em]
-                                sm:tracking-[0.18em]
-                                text-white/45
-                                transition-colors
-                                group-hover:text-[#d8b76a]
-                              "
-                            >
-                              {rawTitle}
-                            </span>
+                          <span
+                            className="
+                              ml-2
+                              shrink-0
+                              text-[9px]
+                              text-[#cda653]/60
+                            "
+                          >
+                            →
+                          </span>
 
-                            <span
-                              className="
-                                ml-2
-                                shrink-0
-                                text-[10px]
-                                text-[#cda653]/70
-                                opacity-0
-                                transition-all duration-300
-                                group-hover:translate-x-1
-                                group-hover:opacity-100
-                              "
-                            >
-                              →
-                            </span>
+                        </Link>
+                      );
 
-                          </Link>
-                        );
-
-                      })
-
-                    ) : (
-
-                      <span
-                        className="
-                          block
-                          px-3
-                          py-3
-                          text-[7px]
-                          uppercase
-                          tracking-[0.2em]
-                          text-white/25
-                        "
-                      >
-                        Loading...
-                      </span>
-
-                    )}
+                    })}
 
                   </div>
 
@@ -1916,11 +1886,10 @@ function Navbar() {
                 to="/price"
                 className="
                   border-b border-white/10
-                  py-4
-                  sm:py-5
+                  py-3
                   font-serif
-                  text-3xl
-                  sm:text-4xl
+                  text-2xl
+                  sm:text-3xl
                   font-light
                   text-white/85
                   transition-colors
@@ -1937,11 +1906,10 @@ function Navbar() {
                 to="/contact"
                 className="
                   border-b border-white/10
-                  py-4
-                  sm:py-5
+                  py-3
                   font-serif
-                  text-3xl
-                  sm:text-4xl
+                  text-2xl
+                  sm:text-3xl
                   font-light
                   text-white/85
                   transition-colors
@@ -1955,10 +1923,10 @@ function Navbar() {
 
 
             {/* =================================================
-                MOBILE BOTTOM CTA
+                MOBILE CLIENT SELECTION
             ================================================= */}
 
-            <div className="mt-8 sm:mt-10">
+            <div className="mt-7">
 
               <Link
                 to="/client-selection"
@@ -1969,14 +1937,12 @@ function Navbar() {
                   justify-between
                   bg-[#cda653]
                   px-5
-                  py-3.5
-                  sm:px-6 sm:py-4
-                  text-[8px]
-                  sm:text-[9px]
+                  py-3
+                  text-[7px]
+                  sm:text-[8px]
                   font-semibold
                   uppercase
-                  tracking-[0.25em]
-                  sm:tracking-[0.3em]
+                  tracking-[0.22em]
                   text-black
                 "
               >
@@ -1988,7 +1954,6 @@ function Navbar() {
                 <span
                   className="
                     text-base
-                    sm:text-lg
                     transition-transform
                     group-hover:translate-x-1
                   "
@@ -2011,21 +1976,16 @@ function Navbar() {
                 flex
                 items-center
                 justify-between
-                gap-4
-                pb-5
+                pb-6
                 pt-8
-                sm:pb-8
-                sm:pt-10
               "
             >
 
               <span
                 className="
                   text-[6px]
-                  sm:text-[7px]
                   uppercase
                   tracking-[0.25em]
-                  sm:tracking-[0.35em]
                   text-white/25
                 "
               >
@@ -2035,10 +1995,8 @@ function Navbar() {
               <span
                 className="
                   text-[6px]
-                  sm:text-[7px]
                   uppercase
                   tracking-[0.25em]
-                  sm:tracking-[0.35em]
                   text-[#cda653]/60
                 "
               >
