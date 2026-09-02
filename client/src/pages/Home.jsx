@@ -649,7 +649,7 @@ function Home() {
         {/* <FilmSection
           preview={true}
         /> */}
-
+<FilmSection/>
       </section>
 
 
@@ -728,6 +728,7 @@ function Home() {
         {/* <MusicSection
           preview={true}
         /> */}
+        <MusicSection/>
 
       </section>
 
