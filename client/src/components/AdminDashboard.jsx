@@ -22,8 +22,8 @@ const compressImageFile = (file) => {
         let width = img.width;
         let height = img.height;
 
-        const MAX_WIDTH = 1200;
-        const MAX_HEIGHT = 1200;
+        const MAX_WIDTH = 2000;
+        const MAX_HEIGHT = 2000;
         if (width > height) {
           if (width > MAX_WIDTH) {
             height *= MAX_WIDTH / width;
@@ -47,7 +47,7 @@ const compressImageFile = (file) => {
             lastModified: Date.now(),
           });
           resolve(compressedFile);
-        }, 'image/jpeg', 0.5);
+        }, 'image/jpeg', 0.9);
       };
     };
   });
