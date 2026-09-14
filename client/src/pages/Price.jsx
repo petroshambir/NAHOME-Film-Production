@@ -1,28 +1,26 @@
-
-
-import React, { useState, useEffect } from 'react';
-import html2canvas from 'html2canvas';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import React, { useState, useEffect } from "react";
+import html2canvas from "html2canvas";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function Price() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const [passcode, setPasscode] = useState('');
+  const [passcode, setPasscode] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const [adminPasscode, setAdminPasscode] = useState('');
+  const [adminPasscode, setAdminPasscode] = useState("");
   const [isEditGateOpen, setIsEditGateOpen] = useState(false);
   const [adminError, setAdminError] = useState(false);
 
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
-  const [customerName, setCustomerName] = useState('');
-  const [bookingDate, setBookingDate] = useState('');
-  const [customizedPrice, setCustomizedPrice] = useState('');
+  const [customerName, setCustomerName] = useState("");
+  const [bookingDate, setBookingDate] = useState("");
+  const [customizedPrice, setCustomizedPrice] = useState("");
 
   const [editingNoteId, setEditingNoteId] = useState(null);
 
@@ -30,21 +28,18 @@ function Price() {
   const [isNotebookOpen, setIsNotebookOpen] = useState(false);
 
   const [isSavingPackages, setIsSavingPackages] = useState(false);
-  const [packageSaveError, setPackageSaveError] = useState('');
+  const [packageSaveError, setPackageSaveError] = useState("");
 
   // =========================================================
   // API
   // =========================================================
 
-  const API_BASE =
-    'https://nahome-film-production.onrender.com';
+  const API_BASE = "https://nahome-film-production.onrender.com";
 
   const NOTEBOOK_API = `${API_BASE}/api/notebook`;
   const PACKAGES_API = `${API_BASE}/api/packages`;
-  const PACKAGES_UPDATE_API =
-    `${API_BASE}/api/packages/update`;
-  const AUTH_API =
-    `${API_BASE}/api/auth/verify-passcode`;
+  const PACKAGES_UPDATE_API = `${API_BASE}/api/packages/update`;
+  const AUTH_API = `${API_BASE}/api/auth/verify-passcode`;
 
   // =========================================================
   // DEFAULT PACKAGES
@@ -156,83 +151,74 @@ function Price() {
     // },
 
     gold: {
-      tier: '1st Level',
-      name: 'Gold',
-      price: '350,000',
-      services: [
-        '• Mesk Studio, Kalkidan, Wedding, Hamawti',
-      ],
+      tier: "1st Level",
+      name: "Gold",
+      price: "350,000",
+      services: ["• Mesk Studio, Kalkidan, Wedding, Hamawti"],
       features: [
-        '✓ Board photo 3piece 50x80cm-30x45cm-30x90cm',
-        '✓ Laminate album 2piece 30x90cm and 30x60cm',
-        '✓ Mini laminate album',
-        '✓ drone',
-        '✓ Signboard 2',
-        '✓ Mesk video',
-        '✓ Mesk video trailer',
-        '✓ Mag 2piece',
-        '✓ Thank you card 300',
-        '✓ Save the date 4photos',
-        '✓ Wedding event photo 600',
-        '✓ Wedding event 4video camera',
-        '✓ Flash 4',
-        '✓ Banner 2mx80cm',
+        "✓ Board photo 3piece 50x80cm-30x45cm-30x90cm",
+        "✓ Laminate album 2piece 30x90cm and 30x60cm",
+        "✓ Mini laminate album",
+        "✓ drone",
+        "✓ Signboard 2",
+        "✓ Mesk video",
+        "✓ Mesk video trailer",
+        "✓ Mag 2piece",
+        "✓ Thank you card 300",
+        "✓ Save the date 4photos",
+        "✓ Wedding event photo 600",
+        "✓ Wedding event 4video camera",
+        "✓ Flash 4",
+        "✓ Banner 2mx80cm",
       ],
     },
 
     silver: {
-      tier: '2nd Level',
-      name: 'Silver',
-      price: '300,000',
-      services: [
-        '• Mesk Studio, Kalkidan, Wedding, Hamawti',
-      ],
+      tier: "2nd Level",
+      name: "Silver",
+      price: "300,000",
+      services: ["• Mesk Studio, Kalkidan, Wedding, Hamawti"],
       features: [
-        '✓ Board photo 2piece 50x80cm-30x45cm',
-        '✓ Laminate album 1piece 30x90cm',
-        '✓ Mini laminate album',
-        '✓ drone',
-        '✓ Signboard 2',
-        '✓ Mesk video',
-        '✓ Mesk video trailer',
-        '✓ Mag 2piece',
-        '✓ Thank you card 200',
-        '✓ Save the date 4photos',
-        '✓ Wedding event photo 500',
-        '✓ Wedding event 3video camera',
-        '✓ Flash 3',
-        '✓ Banner 2mx80cm',
+        "✓ Board photo 2piece 50x80cm-30x45cm",
+        "✓ Laminate album 1piece 30x90cm",
+        "✓ Mini laminate album",
+        "✓ drone",
+        "✓ Signboard 2",
+        "✓ Mesk video",
+        "✓ Mesk video trailer",
+        "✓ Mag 2piece",
+        "✓ Thank you card 200",
+        "✓ Save the date 4photos",
+        "✓ Wedding event photo 500",
+        "✓ Wedding event 3video camera",
+        "✓ Flash 3",
+        "✓ Banner 2mx80cm",
       ],
     },
 
     standard: {
-      tier: '3rd Level',
-      name: 'Standard',
-      price: '250,000',
-      services: [
-        '• Mesk Studio, Kalkidan, Wedding, Hamawti',
-      ],
+      tier: "3rd Level",
+      name: "Standard",
+      price: "250,000",
+      services: ["• Mesk Studio, Kalkidan, Wedding, Hamawti"],
       features: [
-        '✓ Board photo 1piece 50x80cm',
-        '✓ Laminate album 1piece 30x90cm',
-        '✓ Signboard 1',
-        '✓ Mesk video',
-        '✓ Mag 2piece',
-        '✓ Thank you card 150',
-        '✓ Wedding event photo 400',
-        '✓ Wedding event 2video camera',
-        '✓ Flash 2',
-        '✓ Banner 2mx80cm',
+        "✓ Board photo 1piece 50x80cm",
+        "✓ Laminate album 1piece 30x90cm",
+        "✓ Signboard 1",
+        "✓ Mesk video",
+        "✓ Mag 2piece",
+        "✓ Thank you card 150",
+        "✓ Wedding event photo 400",
+        "✓ Wedding event 2video camera",
+        "✓ Flash 2",
+        "✓ Banner 2mx80cm",
       ],
     },
   };
 
-  const [packages, setPackages] = useState(
-    defaultPackages
-  );
+  const [packages, setPackages] = useState(defaultPackages);
 
-  const [tempPackages, setTempPackages] =
-    useState(defaultPackages);
+  const [tempPackages, setTempPackages] = useState(defaultPackages);
 
   // =========================================================
   // HELPERS
@@ -242,46 +228,28 @@ function Price() {
     return JSON.parse(JSON.stringify(value));
   };
 
-  const normalizePackage = (
-    pkg,
-    fallback
-  ) => {
+  const normalizePackage = (pkg, fallback) => {
     return {
       ...(fallback || {}),
       ...(pkg || {}),
 
-      tier:
-        typeof pkg?.tier === 'string'
-          ? pkg.tier
-          : fallback?.tier || '',
+      tier: typeof pkg?.tier === "string" ? pkg.tier : fallback?.tier || "",
 
-      name:
-        typeof pkg?.name === 'string'
-          ? pkg.name
-          : fallback?.name || '',
+      name: typeof pkg?.name === "string" ? pkg.name : fallback?.name || "",
 
-      price:
-        typeof pkg?.price === 'string'
-          ? pkg.price
-          : fallback?.price || '',
+      price: typeof pkg?.price === "string" ? pkg.price : fallback?.price || "",
 
-      services: Array.isArray(
-        pkg?.services
-      )
+      services: Array.isArray(pkg?.services)
         ? pkg.services
         : fallback?.services || [],
 
-      features: Array.isArray(
-        pkg?.features
-      )
+      features: Array.isArray(pkg?.features)
         ? pkg.features
         : fallback?.features || [],
     };
   };
 
-  const normalizePackagesResponse = (
-    data
-  ) => {
+  const normalizePackagesResponse = (data) => {
     let source = data;
 
     if (data?.packages) {
@@ -293,134 +261,76 @@ function Price() {
     }
 
     return {
-      premium: normalizePackage(
-        source?.premium,
-        defaultPackages.premium
-      ),
+      premium: normalizePackage(source?.premium, defaultPackages.premium),
 
-      gold: normalizePackage(
-        source?.gold,
-        defaultPackages.gold
-      ),
+      gold: normalizePackage(source?.gold, defaultPackages.gold),
 
-      silver: normalizePackage(
-        source?.silver,
-        defaultPackages.silver
-      ),
+      silver: normalizePackage(source?.silver, defaultPackages.silver),
 
-      standard: normalizePackage(
-        source?.standard,
-        defaultPackages.standard
-      ),
+      standard: normalizePackage(source?.standard, defaultPackages.standard),
     };
   };
 
-  const normalizeNotebook = (
-    note
-  ) => {
-    if (
-      !note ||
-      typeof note !== 'object'
-    ) {
+  const normalizeNotebook = (note) => {
+    if (!note || typeof note !== "object") {
       return null;
     }
 
     const normalizedId =
-      note.id ??
-      note._id?.$oid ??
-      note._id ??
-      note.id?.$oid ??
-      null;
+      note.id ?? note._id?.$oid ?? note._id ?? note.id?.$oid ?? null;
 
     return {
       ...note,
 
       id: normalizedId,
 
-      _id:
-        note._id ??
-        normalizedId,
+      _id: note._id ?? normalizedId,
 
-      customerName:
-        note.customerName || '',
+      customerName: note.customerName || "",
 
-      bookingDate:
-        note.bookingDate || '',
+      bookingDate: note.bookingDate || "",
 
-      packageName:
-        note.packageName || '',
+      packageName: note.packageName || "",
 
-      packagePrice:
-        note.packagePrice || '',
+      packagePrice: note.packagePrice || "",
 
-      tier:
-        note.tier || '',
+      tier: note.tier || "",
 
-      packageServices:
-        Array.isArray(
-          note.packageServices
-        )
-          ? note.packageServices
-          : [],
+      packageServices: Array.isArray(note.packageServices)
+        ? note.packageServices
+        : [],
 
-      packageFeatures:
-        Array.isArray(
-          note.packageFeatures
-        )
-          ? note.packageFeatures
-          : [],
+      packageFeatures: Array.isArray(note.packageFeatures)
+        ? note.packageFeatures
+        : [],
 
       timestamp:
-        note.timestamp ||
-        note.createdAt ||
-        new Date().toLocaleString(),
+        note.timestamp || note.createdAt || new Date().toLocaleString(),
     };
   };
 
-  const extractNotebookArray = (
-    data
-  ) => {
+  const extractNotebookArray = (data) => {
     if (Array.isArray(data)) {
       return data;
     }
 
-    if (
-      Array.isArray(
-        data?.notes
-      )
-    ) {
+    if (Array.isArray(data?.notes)) {
       return data.notes;
     }
 
-    if (
-      Array.isArray(
-        data?.notebooks
-      )
-    ) {
+    if (Array.isArray(data?.notebooks)) {
       return data.notebooks;
     }
 
-    if (
-      Array.isArray(
-        data?.bookings
-      )
-    ) {
+    if (Array.isArray(data?.bookings)) {
       return data.bookings;
     }
 
-    if (
-      Array.isArray(
-        data?.data
-      )
-    ) {
+    if (Array.isArray(data?.data)) {
       return data.data;
     }
 
-    if (
-      Array.isArray(
-        data?.result
-      )
-    ) {
+    if (Array.isArray(data?.result)) {
       return data.result;
     }
 
@@ -431,16 +341,8 @@ function Price() {
     return [];
   };
 
-  const getNotebookId = (
-    note
-  ) => {
-    return (
-      note?.id ??
-      note?._id?.$oid ??
-      note?._id ??
-      note?.id?.$oid ??
-      null
-    );
+  const getNotebookId = (note) => {
+    return note?.id ?? note?._id?.$oid ?? note?._id ?? note?.id?.$oid ?? null;
   };
 
   // =========================================================
@@ -452,148 +354,83 @@ function Price() {
 
     const loadPackages = async () => {
       try {
-        const response =
-          await fetch(
-            PACKAGES_API,
-            {
-              method: 'GET',
-              cache: 'no-store',
-              headers: {
-                Accept:
-                  'application/json',
-              },
-            }
-          );
+        const response = await fetch(PACKAGES_API, {
+          method: "GET",
+          cache: "no-store",
+          headers: {
+            Accept: "application/json",
+          },
+        });
 
         if (!response.ok) {
-          throw new Error(
-            `Packages API error: ${response.status}`
-          );
+          throw new Error(`Packages API error: ${response.status}`);
         }
 
-        const data =
-          await response.json();
+        const data = await response.json();
 
-        console.log(
-          'Packages GET response:',
-          data
-        );
+        console.log("Packages GET response:", data);
 
-        const normalizedPackages =
-          normalizePackagesResponse(
-            data
-          );
+        const normalizedPackages = normalizePackagesResponse(data);
 
         if (mounted) {
-          setPackages(
-            normalizedPackages
-          );
+          setPackages(normalizedPackages);
 
-          setTempPackages(
-            deepClone(
-              normalizedPackages
-            )
-          );
+          setTempPackages(deepClone(normalizedPackages));
         }
       } catch (err) {
-        console.error(
-          'Failed to load packages:',
-          err
-        );
+        console.error("Failed to load packages:", err);
       }
     };
 
-    const loadNotebook =
-      async () => {
-        try {
-          const response =
-            await fetch(
-              NOTEBOOK_API,
-              {
-                method: 'GET',
-                cache: 'no-store',
-                headers: {
-                  Accept:
-                    'application/json',
-                },
-              }
-            );
+    const loadNotebook = async () => {
+      try {
+        const response = await fetch(NOTEBOOK_API, {
+          method: "GET",
+          cache: "no-store",
+          headers: {
+            Accept: "application/json",
+          },
+        });
 
-          if (!response.ok) {
-            throw new Error(
-              `Notebook API error: ${response.status}`
-            );
-          }
-
-          const data =
-            await response.json();
-
-          const notes =
-            extractNotebookArray(
-              data
-            )
-              .map(
-                normalizeNotebook
-              )
-              .filter(Boolean);
-
-          if (mounted) {
-            setNotebookList(
-              notes
-            );
-          }
-
-          console.log(
-            'Notebook loaded:',
-            notes
-          );
-        } catch (err) {
-          console.error(
-            'Failed to load notebook:',
-            err
-          );
+        if (!response.ok) {
+          throw new Error(`Notebook API error: ${response.status}`);
         }
-      };
+
+        const data = await response.json();
+
+        const notes = extractNotebookArray(data)
+          .map(normalizeNotebook)
+          .filter(Boolean);
+
+        if (mounted) {
+          setNotebookList(notes);
+        }
+
+        console.log("Notebook loaded:", notes);
+      } catch (err) {
+        console.error("Failed to load notebook:", err);
+      }
+    };
 
     const loadAuth = () => {
-      const authData =
-        localStorage.getItem(
-          'priceAuthData'
-        );
+      const authData = localStorage.getItem("priceAuthData");
 
       if (!authData) {
         return;
       }
 
       try {
-        const parsed =
-          JSON.parse(
-            authData
-          );
+        const parsed = JSON.parse(authData);
 
-        if (
-          parsed?.expiry &&
-          Date.now() <
-            Number(
-              parsed.expiry
-            )
-        ) {
-          setIsAuthenticated(
-            true
-          );
+        if (parsed?.expiry && Date.now() < Number(parsed.expiry)) {
+          setIsAuthenticated(true);
         } else {
-          localStorage.removeItem(
-            'priceAuthData'
-          );
+          localStorage.removeItem("priceAuthData");
 
-          setIsAuthenticated(
-            false
-          );
+          setIsAuthenticated(false);
         }
       } catch {
-        localStorage.removeItem(
-          'priceAuthData'
-        );
+        localStorage.removeItem("priceAuthData");
       }
     };
 
@@ -610,68 +447,47 @@ function Price() {
   // LOGIN
   // =========================================================
 
-  const handleLogin = async (
-    e
-  ) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     setLoading(true);
     setError(false);
 
     try {
-      const response =
-        await fetch(
-          AUTH_API,
-          {
-            method: 'POST',
+      const response = await fetch(AUTH_API, {
+        method: "POST",
 
-            headers: {
-              'Content-Type':
-                'application/json',
-              Accept:
-                'application/json',
-            },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
 
-            body: JSON.stringify({
-              passcode:
-                passcode.trim(),
-            }),
-          }
-        );
+        body: JSON.stringify({
+          passcode: passcode.trim(),
+        }),
+      });
 
-      const data =
-        await response.json();
+      const data = await response.json();
 
-      if (
-        response.ok &&
-        data?.success
-      ) {
-        setIsAuthenticated(
-          true
-        );
+      if (response.ok && data?.success) {
+        setIsAuthenticated(true);
 
-        const expiryDuration =
-          10 * 60 * 1000;
+        const expiryDuration = 10 * 60 * 1000;
 
         localStorage.setItem(
-          'priceAuthData',
+          "priceAuthData",
           JSON.stringify({
-            value: 'true',
-            expiry:
-              Date.now() +
-              expiryDuration,
-          })
+            value: "true",
+            expiry: Date.now() + expiryDuration,
+          }),
         );
 
-        setPasscode('');
+        setPasscode("");
       } else {
         setError(true);
       }
     } catch (err) {
-      console.error(
-        'Error verifying passcode:',
-        err
-      );
+      console.error("Error verifying passcode:", err);
 
       setError(true);
     } finally {
@@ -683,21 +499,14 @@ function Price() {
   // ADMIN EDIT GATE
   // =========================================================
 
-  const handleEditGateSubmit = (
-    e
-  ) => {
+  const handleEditGateSubmit = (e) => {
     e.preventDefault();
 
-    if (
-      adminPasscode.trim() ===
-      'ADMIN2026'
-    ) {
+    if (adminPasscode.trim() === "ADMIN2026") {
       setAdminError(false);
-      setAdminPasscode('');
+      setAdminPasscode("");
 
-      setTempPackages(
-        deepClone(packages)
-      );
+      setTempPackages(deepClone(packages));
 
       setIsEditGateOpen(true);
       setIsEditMode(true);
@@ -710,208 +519,124 @@ function Price() {
   // PACKAGE UPDATE HELPERS
   // =========================================================
 
-  const updateTempPackageField =
-    (
-      key,
-      field,
-      value
-    ) => {
-      setTempPackages(
-        (prev) => ({
-          ...prev,
+  const updateTempPackageField = (key, field, value) => {
+    setTempPackages((prev) => ({
+      ...prev,
 
-          [key]: {
-            ...prev[key],
-            [field]:
-              value,
-          },
-        })
-      );
-    };
+      [key]: {
+        ...prev[key],
+        [field]: value,
+      },
+    }));
+  };
 
-  const updateTempPackageArray =
-    (
-      key,
-      field,
-      value
-    ) => {
-      const arrayValue =
-        String(value)
-          .split('\n')
-          .map(
-            (item) =>
-              item.trim()
-          )
-          .filter(Boolean);
+  const updateTempPackageArray = (key, field, value) => {
+    const arrayValue = String(value)
+      .split("\n")
+      .map((item) => item.trim())
+      .filter(Boolean);
 
-      setTempPackages(
-        (prev) => ({
-          ...prev,
+    setTempPackages((prev) => ({
+      ...prev,
 
-          [key]: {
-            ...prev[key],
-            [field]:
-              arrayValue,
-          },
-        })
-      );
-    };
+      [key]: {
+        ...prev[key],
+        [field]: arrayValue,
+      },
+    }));
+  };
 
   // =========================================================
   // SAVE MAIN WEBSITE PACKAGES
   // =========================================================
 
-  const handleSaveAndExit =
-    async () => {
-      if (
-        isSavingPackages
-      ) {
-        return;
-      }
+  const handleSaveAndExit = async () => {
+    if (isSavingPackages) {
+      return;
+    }
 
-      setIsSavingPackages(
-        true
-      );
+    setIsSavingPackages(true);
 
-      setPackageSaveError('');
+    setPackageSaveError("");
+
+    try {
+      const payload = deepClone(tempPackages);
+
+      console.log("Saving packages:", payload);
+
+      const response = await fetch(PACKAGES_UPDATE_API, {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+
+          Accept: "application/json",
+        },
+
+        body: JSON.stringify(payload),
+      });
+
+      let data = null;
 
       try {
-        const payload =
-          deepClone(
-            tempPackages
-          );
+        data = await response.json();
+      } catch {
+        data = null;
+      }
 
-        console.log(
-          'Saving packages:',
-          payload
+      console.log("Packages UPDATE response:", response.status, data);
+
+      if (!response.ok) {
+        throw new Error(
+          data?.message || `Package update failed: ${response.status}`,
         );
+      }
 
-        const response =
-          await fetch(
-            PACKAGES_UPDATE_API,
-            {
-              method: 'POST',
+      const returnedPackages =
+        data?.packages || data?.data?.packages || data?.data || null;
 
-              headers: {
-                'Content-Type':
-                  'application/json',
+      const finalPackages =
+        returnedPackages &&
+        typeof returnedPackages === "object" &&
+        !Array.isArray(returnedPackages)
+          ? normalizePackagesResponse(returnedPackages)
+          : normalizePackagesResponse(payload);
 
-                Accept:
-                  'application/json',
-              },
+      setPackages(finalPackages);
 
-              body: JSON.stringify(
-                payload
-              ),
-            }
-          );
+      setTempPackages(deepClone(finalPackages));
 
-        let data = null;
+      setPackageSaveError("");
 
-        try {
-          data =
-            await response.json();
-        } catch {
-          data = null;
-        }
+      alert("✅ ዳታ ብሰላም ተዓቂቡ።");
 
-        console.log(
-          'Packages UPDATE response:',
-          response.status,
-          data
-        );
+      setIsEditMode(false);
 
-        if (!response.ok) {
-          throw new Error(
-            data?.message ||
-              `Package update failed: ${response.status}`
-          );
-        }
+      setIsEditGateOpen(false);
+    } catch (err) {
+      console.error("Error saving packages:", err);
 
-        const returnedPackages =
-          data?.packages ||
-          data?.data?.packages ||
-          data?.data ||
-          null;
+      setPackageSaveError(err?.message || "Package data could not be saved.");
 
-        const finalPackages =
-          returnedPackages &&
-          typeof returnedPackages ===
-            'object' &&
-          !Array.isArray(
-            returnedPackages
-          )
-            ? normalizePackagesResponse(
-                returnedPackages
-              )
-            : normalizePackagesResponse(
-                payload
-              );
+      alert(`❌ Save ኣይተዓወተን.\n\n${err?.message || "Server error"}`);
 
-        setPackages(
-          finalPackages
-        );
-
-        setTempPackages(
-          deepClone(
-            finalPackages
-          )
-        );
-
-        setPackageSaveError(
-          ''
-        );
-
-        alert(
-          '✅ ዳታ ብሰላም ተዓቂቡ።'
-        );
-
-        setIsEditMode(
-          false
-        );
-
-        setIsEditGateOpen(
-          false
-        );
-      } catch (err) {
-        console.error(
-          'Error saving packages:',
-          err
-        );
-
-        setPackageSaveError(
-          err?.message ||
-            'Package data could not be saved.'
-        );
-
-        alert(
-          `❌ Save ኣይተዓወተን.\n\n${
-            err?.message ||
-            'Server error'
-          }`
-        );
-
-        /*
+      /*
           Save fail እንተኾይኑ
           Edit Mode ኣይንዕጾን።
         */
-      } finally {
-        setIsSavingPackages(
-          false
-        );
-      }
-    };
+    } finally {
+      setIsSavingPackages(false);
+    }
+  };
 
   // =========================================================
   // CANCEL MAIN EDIT MODE
   // =========================================================
 
   const handleCancelEdit = () => {
-    setTempPackages(
-      deepClone(packages)
-    );
+    setTempPackages(deepClone(packages));
 
-    setPackageSaveError('');
+    setPackageSaveError("");
 
     setIsEditMode(false);
     setIsEditGateOpen(false);
@@ -921,640 +646,350 @@ function Price() {
   // SELECT PACKAGE FOR NOTEBOOK
   // =========================================================
 
-  const handleSelectPackageClick =
-    (pkgKey) => {
-      if (!isEditMode) {
-        return;
-      }
+  const handleSelectPackageClick = (pkgKey) => {
+    if (!isEditMode) {
+      return;
+    }
 
-      const pkg =
-        tempPackages?.[
-          pkgKey
-        ];
+    const pkg = tempPackages?.[pkgKey];
 
-      if (!pkg) {
-        console.error(
-          'Package not found:',
-          pkgKey
-        );
-        return;
-      }
+    if (!pkg) {
+      console.error("Package not found:", pkgKey);
+      return;
+    }
 
-      const independentPackageCopy =
-        {
-          tier:
-            pkg.tier || '',
+    const independentPackageCopy = {
+      tier: pkg.tier || "",
 
-          name:
-            pkg.name || '',
+      name: pkg.name || "",
 
-          price:
-            pkg.price || '',
+      price: pkg.price || "",
 
-          services:
-            Array.isArray(
-              pkg.services
-            )
-              ? [
-                  ...pkg.services,
-                ]
-              : [],
+      services: Array.isArray(pkg.services) ? [...pkg.services] : [],
 
-          features:
-            Array.isArray(
-              pkg.features
-            )
-              ? [
-                  ...pkg.features,
-                ]
-              : [],
-        };
-
-      setSelectedPackage(
-        independentPackageCopy
-      );
-
-      setCustomerName('');
-      setBookingDate('');
-
-      setCustomizedPrice(
-        independentPackageCopy.price
-      );
-
-      setEditingNoteId(
-        null
-      );
-
-      setIsBookingModalOpen(
-        true
-      );
+      features: Array.isArray(pkg.features) ? [...pkg.features] : [],
     };
+
+    setSelectedPackage(independentPackageCopy);
+
+    setCustomerName("");
+    setBookingDate("");
+
+    setCustomizedPrice(independentPackageCopy.price);
+
+    setEditingNoteId(null);
+
+    setIsBookingModalOpen(true);
+  };
 
   // =========================================================
   // NOTEBOOK MODAL HELPERS
   // =========================================================
 
-  const updateSelectedPackageField =
-    (
-      field,
-      value
-    ) => {
-      setSelectedPackage(
-        (prev) => {
-          if (!prev) {
-            return prev;
-          }
+  const updateSelectedPackageField = (field, value) => {
+    setSelectedPackage((prev) => {
+      if (!prev) {
+        return prev;
+      }
 
-          return {
-            ...prev,
-            [field]:
-              value,
-          };
-        }
-      );
-    };
+      return {
+        ...prev,
+        [field]: value,
+      };
+    });
+  };
 
-  const updateSelectedPackageArray =
-    (
-      field,
-      value
-    ) => {
-      const arrayValue =
-        String(value)
-          .split('\n')
-          .map(
-            (item) =>
-              item.trim()
-          )
-          .filter(Boolean);
+  const updateSelectedPackageArray = (field, value) => {
+    const arrayValue = String(value)
+      .split("\n")
+      .map((item) => item.trim())
+      .filter(Boolean);
 
-      setSelectedPackage(
-        (prev) => {
-          if (!prev) {
-            return prev;
-          }
+    setSelectedPackage((prev) => {
+      if (!prev) {
+        return prev;
+      }
 
-          return {
-            ...prev,
-            [field]:
-              arrayValue,
-          };
-        }
-      );
-    };
+      return {
+        ...prev,
+        [field]: arrayValue,
+      };
+    });
+  };
 
   // =========================================================
   // SAVE NOTEBOOK
   // =========================================================
 
-  const handleBookingSubmit =
-    async (e) => {
-      e.preventDefault();
+  const handleBookingSubmit = async (e) => {
+    e.preventDefault();
 
-      if (
-        !customerName.trim() ||
-        !bookingDate ||
-        !selectedPackage
-      ) {
-        return;
-      }
+    if (!customerName.trim() || !bookingDate || !selectedPackage) {
+      return;
+    }
 
-      const currentEditingId =
-        editingNoteId !== null
-          ? editingNoteId
-          : null;
+    const currentEditingId = editingNoteId !== null ? editingNoteId : null;
 
-      const existingNote =
-        currentEditingId !== null
-          ? notebookList.find(
-              (item) =>
-                String(
-                  getNotebookId(
-                    item
-                  )
-                ) ===
-                String(
-                  currentEditingId
-                )
-            )
-          : null;
+    const existingNote =
+      currentEditingId !== null
+        ? notebookList.find(
+            (item) => String(getNotebookId(item)) === String(currentEditingId),
+          )
+        : null;
 
-      const bookingPayload =
-        {
-          customerName:
-            customerName.trim(),
+    const bookingPayload = {
+      customerName: customerName.trim(),
 
-          bookingDate,
+      bookingDate,
 
-          packageName:
-            selectedPackage.name ||
-            '',
+      packageName: selectedPackage.name || "",
 
-          packagePrice:
-            customizedPrice ||
-            '',
+      packagePrice: customizedPrice || "",
 
-          tier:
-            selectedPackage.tier ||
-            '',
+      tier: selectedPackage.tier || "",
 
-          packageServices:
-            Array.isArray(
-              selectedPackage.services
-            )
-              ? [
-                  ...selectedPackage.services,
-                ]
-              : [],
+      packageServices: Array.isArray(selectedPackage.services)
+        ? [...selectedPackage.services]
+        : [],
 
-          packageFeatures:
-            Array.isArray(
-              selectedPackage.features
-            )
-              ? [
-                  ...selectedPackage.features,
-                ]
-              : [],
+      packageFeatures: Array.isArray(selectedPackage.features)
+        ? [...selectedPackage.features]
+        : [],
 
-          timestamp:
-            existingNote?.timestamp ||
-            new Date().toLocaleString(),
-        };
-
-      try {
-        // =====================================================
-        // UPDATE EXISTING NOTE
-        // =====================================================
-
-        if (
-          currentEditingId !==
-          null
-        ) {
-          const response =
-            await fetch(
-              `${NOTEBOOK_API}/${encodeURIComponent(
-                currentEditingId
-              )}`,
-              {
-                method: 'PUT',
-
-                headers: {
-                  'Content-Type':
-                    'application/json',
-
-                  Accept:
-                    'application/json',
-                },
-
-                body: JSON.stringify(
-                  bookingPayload
-                ),
-              }
-            );
-
-          const data =
-            await response.json();
-
-          if (!response.ok) {
-            throw new Error(
-              data?.message ||
-                `Failed to update notebook: ${response.status}`
-            );
-          }
-
-          const updatedNote =
-            normalizeNotebook(
-              data?.note ||
-                data?.notebook ||
-                data?.data ||
-                data
-            );
-
-          if (
-            !updatedNote
-          ) {
-            throw new Error(
-              'Updated notebook response is empty.'
-            );
-          }
-
-          setNotebookList(
-            (prev) =>
-              prev.map(
-                (item) =>
-                  String(
-                    getNotebookId(
-                      item
-                    )
-                  ) ===
-                  String(
-                    currentEditingId
-                  )
-                    ? updatedNote
-                    : item
-              )
-          );
-
-          alert(
-            '✅ Notebook ብሰላም ተስተካኺሉ።'
-          );
-        }
-
-        // =====================================================
-        // CREATE NEW NOTE
-        // =====================================================
-
-        else {
-          const response =
-            await fetch(
-              NOTEBOOK_API,
-              {
-                method: 'POST',
-
-                headers: {
-                  'Content-Type':
-                    'application/json',
-
-                  Accept:
-                    'application/json',
-                },
-
-                body: JSON.stringify(
-                  bookingPayload
-                ),
-              }
-            );
-
-          const data =
-            await response.json();
-
-          if (!response.ok) {
-            throw new Error(
-              data?.message ||
-                `Failed to save notebook: ${response.status}`
-            );
-          }
-
-          const savedNote =
-            normalizeNotebook(
-              data?.note ||
-                data?.notebook ||
-                data?.data ||
-                data
-            );
-
-          if (
-            !savedNote
-          ) {
-            throw new Error(
-              'Saved notebook response is empty.'
-            );
-          }
-
-          setNotebookList(
-            (prev) => [
-              savedNote,
-              ...prev,
-            ]
-          );
-
-          alert(
-            '✅ Notebook ኣብ MongoDB ብሰላም ተዓቂቡ።'
-          );
-        }
-
-        setIsBookingModalOpen(
-          false
-        );
-
-        setSelectedPackage(
-          null
-        );
-
-        setEditingNoteId(
-          null
-        );
-      } catch (err) {
-        console.error(
-          'Notebook save error:',
-          err
-        );
-
-        alert(
-          `❌ Notebook ምዕቃብ ኣይተዓወተን።\n\n${
-            err?.message ||
-            'Server error'
-          }`
-        );
-      }
+      timestamp: existingNote?.timestamp || new Date().toLocaleString(),
     };
+
+    try {
+      // =====================================================
+      // UPDATE EXISTING NOTE
+      // =====================================================
+
+      if (currentEditingId !== null) {
+        const response = await fetch(
+          `${NOTEBOOK_API}/${encodeURIComponent(currentEditingId)}`,
+          {
+            method: "PUT",
+
+            headers: {
+              "Content-Type": "application/json",
+
+              Accept: "application/json",
+            },
+
+            body: JSON.stringify(bookingPayload),
+          },
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data?.message || `Failed to update notebook: ${response.status}`,
+          );
+        }
+
+        const updatedNote = normalizeNotebook(
+          data?.note || data?.notebook || data?.data || data,
+        );
+
+        if (!updatedNote) {
+          throw new Error("Updated notebook response is empty.");
+        }
+
+        setNotebookList((prev) =>
+          prev.map((item) =>
+            String(getNotebookId(item)) === String(currentEditingId)
+              ? updatedNote
+              : item,
+          ),
+        );
+
+        alert("✅ Notebook ብሰላም ተስተካኺሉ።");
+      }
+
+      // =====================================================
+      // CREATE NEW NOTE
+      // =====================================================
+      else {
+        const response = await fetch(NOTEBOOK_API, {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+
+            Accept: "application/json",
+          },
+
+          body: JSON.stringify(bookingPayload),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data?.message || `Failed to save notebook: ${response.status}`,
+          );
+        }
+
+        const savedNote = normalizeNotebook(
+          data?.note || data?.notebook || data?.data || data,
+        );
+
+        if (!savedNote) {
+          throw new Error("Saved notebook response is empty.");
+        }
+
+        setNotebookList((prev) => [savedNote, ...prev]);
+
+        alert("✅ Notebook ኣብ MongoDB ብሰላም ተዓቂቡ።");
+      }
+
+      setIsBookingModalOpen(false);
+
+      setSelectedPackage(null);
+
+      setEditingNoteId(null);
+    } catch (err) {
+      console.error("Notebook save error:", err);
+
+      alert(`❌ Notebook ምዕቃብ ኣይተዓወተን።\n\n${err?.message || "Server error"}`);
+    }
+  };
 
   // =========================================================
   // EDIT NOTEBOOK
   // =========================================================
 
-  const handleEditNoteItem =
-    (note) => {
-      const foundKey =
-        Object.keys(
-          packages
-        ).find(
-          (key) =>
-            packages[key]
-              ?.name ===
-            note.packageName
-        );
+  const handleEditNoteItem = (note) => {
+    const foundKey = Object.keys(packages).find(
+      (key) => packages[key]?.name === note.packageName,
+    );
 
-      const pkg =
-        packages[foundKey] ||
-        packages.gold;
+    const pkg = packages[foundKey] || packages.gold;
 
-      const copy = {
-        tier:
-          note.tier ||
-          pkg?.tier ||
-          '',
+    const copy = {
+      tier: note.tier || pkg?.tier || "",
 
-        name:
-          note.packageName ||
-          pkg?.name ||
-          '',
+      name: note.packageName || pkg?.name || "",
 
-        price:
-          note.packagePrice ||
-          pkg?.price ||
-          '',
+      price: note.packagePrice || pkg?.price || "",
 
-        services:
-          Array.isArray(
-            note.packageServices
-          )
-            ? [
-                ...note.packageServices,
-              ]
-            : Array.isArray(
-                pkg?.services
-              )
-            ? [
-                ...pkg.services,
-              ]
-            : [],
+      services: Array.isArray(note.packageServices)
+        ? [...note.packageServices]
+        : Array.isArray(pkg?.services)
+          ? [...pkg.services]
+          : [],
 
-        features:
-          Array.isArray(
-            note.packageFeatures
-          )
-            ? [
-                ...note.packageFeatures,
-              ]
-            : Array.isArray(
-                pkg?.features
-              )
-            ? [
-                ...pkg.features,
-              ]
-            : [],
-      };
-
-      setSelectedPackage(
-        copy
-      );
-
-      setCustomerName(
-        note.customerName ||
-          ''
-      );
-
-      setBookingDate(
-        note.bookingDate ||
-          ''
-      );
-
-      setCustomizedPrice(
-        note.packagePrice ||
-          ''
-      );
-
-      setEditingNoteId(
-        getNotebookId(
-          note
-        )
-      );
-
-      setIsBookingModalOpen(
-        true
-      );
+      features: Array.isArray(note.packageFeatures)
+        ? [...note.packageFeatures]
+        : Array.isArray(pkg?.features)
+          ? [...pkg.features]
+          : [],
     };
+
+    setSelectedPackage(copy);
+
+    setCustomerName(note.customerName || "");
+
+    setBookingDate(note.bookingDate || "");
+
+    setCustomizedPrice(note.packagePrice || "");
+
+    setEditingNoteId(getNotebookId(note));
+
+    setIsBookingModalOpen(true);
+  };
 
   // =========================================================
   // DELETE NOTEBOOK
   // =========================================================
 
-  const handleDeleteNote =
-    async (id) => {
-      if (!id) {
-        alert(
-          'Notebook ID ኣይተረኽበን።'
-        );
-        return;
+  const handleDeleteNote = async (id) => {
+    if (!id) {
+      alert("Notebook ID ኣይተረኽበን።");
+      return;
+    }
+
+    const confirmed = window.confirm("እዚ Notebook ብርግጸኝነት ክትድምስሶ ትደሊዶ?");
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${NOTEBOOK_API}/${encodeURIComponent(id)}`,
+        {
+          method: "DELETE",
+
+          headers: {
+            Accept: "application/json",
+          },
+        },
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data?.message || `Delete failed: ${response.status}`);
       }
 
-      const confirmed =
-        window.confirm(
-          'እዚ Notebook ብርግጸኝነት ክትድምስሶ ትደሊዶ?'
-        );
+      setNotebookList((prev) =>
+        prev.filter((note) => String(getNotebookId(note)) !== String(id)),
+      );
 
-      if (!confirmed) {
-        return;
-      }
+      alert("✅ Notebook ተደምሲሱ።");
+    } catch (err) {
+      console.error("Delete notebook error:", err);
 
-      try {
-        const response =
-          await fetch(
-            `${NOTEBOOK_API}/${encodeURIComponent(
-              id
-            )}`,
-            {
-              method:
-                'DELETE',
-
-              headers: {
-                Accept:
-                  'application/json',
-              },
-            }
-          );
-
-        const data =
-          await response.json();
-
-        if (!response.ok) {
-          throw new Error(
-            data?.message ||
-              `Delete failed: ${response.status}`
-          );
-        }
-
-        setNotebookList(
-          (prev) =>
-            prev.filter(
-              (note) =>
-                String(
-                  getNotebookId(
-                    note
-                  )
-                ) !==
-                String(id)
-            )
-        );
-
-        alert(
-          '✅ Notebook ተደምሲሱ።'
-        );
-      } catch (err) {
-        console.error(
-          'Delete notebook error:',
-          err
-        );
-
-        alert(
-          `❌ Notebook ምድምሳስ ኣይተዓወተን።\n\n${
-            err?.message ||
-            'Server error'
-          }`
-        );
-      }
-    };
+      alert(`❌ Notebook ምድምሳስ ኣይተዓወተን።\n\n${err?.message || "Server error"}`);
+    }
+  };
 
   // =========================================================
   // CLOSE NOTEBOOK MODAL
   // =========================================================
 
-  const handleCloseBookingModal =
-    () => {
-      setIsBookingModalOpen(
-        false
-      );
+  const handleCloseBookingModal = () => {
+    setIsBookingModalOpen(false);
 
-      setSelectedPackage(
-        null
-      );
+    setSelectedPackage(null);
 
-      setEditingNoteId(
-        null
-      );
-    };
+    setEditingNoteId(null);
+  };
 
   // =========================================================
   // ESCAPE HTML
   // =========================================================
 
-  const escapeHtml = (
-    value
-  ) =>
-    String(value ?? '')
-      .replace(
-        /&/g,
-        '&amp;'
-      )
-      .replace(
-        /</g,
-        '&lt;'
-      )
-      .replace(
-        />/g,
-        '&gt;'
-      )
-      .replace(
-        /"/g,
-        '&quot;'
-      )
-      .replace(
-        /'/g,
-        '&#039;'
-      );
+  const escapeHtml = (value) =>
+    String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
 
   // =========================================================
   // SHARE RECEIPT
   // =========================================================
 
-  const handleShareReceipt =
-    async (note) => {
-      const servicesHtml =
-        Array.isArray(
-          note.packageServices
-        ) &&
-        note
-          .packageServices
-          .length
-          ? note.packageServices
-              .map(
-                (service) =>
-                  `<li>${escapeHtml(
-                    service
-                  )}</li>`
-              )
-              .join('')
-          : '<li>ኣገልግሎት የለን</li>';
+  const handleShareReceipt = async (note) => {
+    const servicesHtml =
+      Array.isArray(note.packageServices) && note.packageServices.length
+        ? note.packageServices
+            .map((service) => `<li>${escapeHtml(service)}</li>`)
+            .join("")
+        : "<li>ኣገልግሎት የለን</li>";
 
-      const featuresHtml =
-        Array.isArray(
-          note.packageFeatures
-        ) &&
-        note
-          .packageFeatures
-          .length
-          ? note.packageFeatures
-              .map(
-                (feature) =>
-                  `<li>${escapeHtml(
-                    feature
-                  )}</li>`
-              )
-              .join('')
-          : '<li>የለን</li>';
+    const featuresHtml =
+      Array.isArray(note.packageFeatures) && note.packageFeatures.length
+        ? note.packageFeatures
+            .map((feature) => `<li>${escapeHtml(feature)}</li>`)
+            .join("")
+        : "<li>የለን</li>";
 
-      const receiptHtml = `
+    const receiptHtml = `
         <div
           id="receipt-share-card"
           style="
@@ -1596,7 +1031,7 @@ function Price() {
                 margin-bottom:10px;
               "
             >
-              HABESHA FILM PRODUCTION
+              Nahom FILM PRODUCTION
             </div>
 
             <div
@@ -1658,9 +1093,7 @@ function Price() {
                     font-weight:700;
                   "
                 >
-                  ${escapeHtml(
-                    note.customerName
-                  )}
+                  ${escapeHtml(note.customerName)}
                 </div>
               </div>
 
@@ -1682,9 +1115,7 @@ function Price() {
                     font-weight:600;
                   "
                 >
-                  ${escapeHtml(
-                    note.bookingDate
-                  )}
+                  ${escapeHtml(note.bookingDate)}
                 </div>
               </div>
 
@@ -1726,9 +1157,7 @@ function Price() {
                     font-weight:700;
                   "
                 >
-                  ${escapeHtml(
-                    note.packageName
-                  )}
+                  ${escapeHtml(note.packageName)}
                 </div>
 
                 <div
@@ -1738,9 +1167,7 @@ function Price() {
                     margin-top:5px;
                   "
                 >
-                  ${escapeHtml(
-                    note.tier
-                  )}
+                  ${escapeHtml(note.tier)}
                 </div>
 
               </div>
@@ -1752,9 +1179,7 @@ function Price() {
                   font-weight:800;
                 "
               >
-                ${escapeHtml(
-                  note.packagePrice
-                )}
+                ${escapeHtml(note.packagePrice)}
               </div>
 
             </div>
@@ -1860,169 +1285,96 @@ function Price() {
         </div>
       `;
 
-      let container = null;
+    let container = null;
 
-      try {
-        container =
-          document.createElement(
-            'div'
-          );
+    try {
+      container = document.createElement("div");
 
-        container.style.position =
-          'fixed';
+      container.style.position = "fixed";
 
-        container.style.left =
-          '-100000px';
+      container.style.left = "-100000px";
 
-        container.style.top =
-          '0';
+      container.style.top = "0";
 
-        container.style.width =
-          '900px';
+      container.style.width = "900px";
 
-        container.style.zIndex =
-          '-1';
+      container.style.zIndex = "-1";
 
-        container.innerHTML =
-          receiptHtml;
+      container.innerHTML = receiptHtml;
 
-        document.body.appendChild(
-          container
-        );
+      document.body.appendChild(container);
 
-        const receiptElement =
-          container.querySelector(
-            '#receipt-share-card'
-          );
+      const receiptElement = container.querySelector("#receipt-share-card");
 
-        await new Promise(
-          (resolve) =>
-            requestAnimationFrame(
-              resolve
-            )
-        );
+      await new Promise((resolve) => requestAnimationFrame(resolve));
 
-        const canvas =
-          await html2canvas(
-            receiptElement,
-            {
-              backgroundColor:
-                '#050505',
+      const canvas = await html2canvas(receiptElement, {
+        backgroundColor: "#050505",
 
-              scale: 2,
+        scale: 2,
 
-              useCORS: true,
+        useCORS: true,
 
-              logging: false,
-            }
-          );
+        logging: false,
+      });
 
-        const blob =
-          await new Promise(
-            (resolve) =>
-              canvas.toBlob(
-                resolve,
-                'image/png',
-                1
-              )
-          );
+      const blob = await new Promise((resolve) =>
+        canvas.toBlob(resolve, "image/png", 1),
+      );
 
-        if (!blob) {
-          throw new Error(
-            'Could not create receipt image.'
-          );
-        }
-
-        const file =
-          new File(
-            [blob],
-            `Nahom-Film-Receipt-${Date.now()}.png`,
-            {
-              type:
-                'image/png',
-            }
-          );
-
-        if (
-          navigator.share &&
-          (!navigator.canShare ||
-            navigator.canShare({
-              files: [
-                file,
-              ],
-            }))
-        ) {
-          await navigator.share(
-            {
-              title:
-                'Booking Receipt - Nahom Film Production',
-
-              text:
-                'Booking Receipt - Nahom Film Production',
-
-              files: [
-                file,
-              ],
-            }
-          );
-        } else {
-          const imageUrl =
-            URL.createObjectURL(
-              blob
-            );
-
-          const link =
-            document.createElement(
-              'a'
-            );
-
-          link.href =
-            imageUrl;
-
-          link.download =
-            file.name;
-
-          document.body.appendChild(
-            link
-          );
-
-          link.click();
-
-          link.remove();
-
-          URL.revokeObjectURL(
-            imageUrl
-          );
-
-          alert(
-            'Receipt PNG ተዳልዩ ኣሎ።'
-          );
-        }
-      } catch (err) {
-        console.error(
-          'Receipt error:',
-          err
-        );
-
-        if (
-          err?.name !==
-          'AbortError'
-        ) {
-          alert(
-            'Receipt ምፍጣር ኣይተዓወተን።'
-          );
-        }
-      } finally {
-        if (
-          container &&
-          container.parentNode
-        ) {
-          container.parentNode.removeChild(
-            container
-          );
-        }
+      if (!blob) {
+        throw new Error("Could not create receipt image.");
       }
-    };
+
+      const file = new File([blob], `Nahom-Film-Receipt-${Date.now()}.png`, {
+        type: "image/png",
+      });
+
+      if (
+        navigator.share &&
+        (!navigator.canShare ||
+          navigator.canShare({
+            files: [file],
+          }))
+      ) {
+        await navigator.share({
+          title: "Booking Receipt - Nahom Film Production",
+
+          text: "Booking Receipt - Nahom Film Production",
+
+          files: [file],
+        });
+      } else {
+        const imageUrl = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+
+        link.href = imageUrl;
+
+        link.download = file.name;
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        link.remove();
+
+        URL.revokeObjectURL(imageUrl);
+
+        alert("Receipt PNG ተዳልዩ ኣሎ።");
+      }
+    } catch (err) {
+      console.error("Receipt error:", err);
+
+      if (err?.name !== "AbortError") {
+        alert("Receipt ምፍጣር ኣይተዓወተን።");
+      }
+    } finally {
+      if (container && container.parentNode) {
+        container.parentNode.removeChild(container);
+      }
+    }
+  };
 
   // =========================================================
   // RENDER
@@ -2030,18 +1382,15 @@ function Price() {
 
   return (
     <div className="min-h-screen bg-[#050505] text-zinc-100 font-sans overflow-x-hidden flex flex-col justify-between">
-
       <Navbar />
 
       <div className="flex-grow flex items-center justify-center px-4 py-32">
-
         {!isAuthenticated ? (
           /* =================================================
              LOGIN text-[#FF4900] 
           ================================================= */
 
           <div className="bg-zinc-950 p-8 md:p-12 shadow-2xl border-2 border-[#FF4900] rounded-2xl max-w-md w-full text-center">
-
             <span className="text-[10px] tracking-[0.4em] uppercase text-[#001595] font-semibold block mb-2">
               Secure Access
             </span>
@@ -2056,22 +1405,12 @@ function Price() {
               እዚ ገጽ ብሚጢራዊ ፓስኮድ ዝተዓጸወ እዩ።
             </p>
 
-            <form
-              onSubmit={
-                handleLogin
-              }
-              className="space-y-4"
-            >
-
+            <form onSubmit={handleLogin} className="space-y-4">
               <input
                 type="password"
                 placeholder="Enter Passcode"
                 value={passcode}
-                onChange={(e) =>
-                  setPasscode(
-                    e.target.value
-                  )
-                }
+                onChange={(e) => setPasscode(e.target.value)}
                 className="w-full px-4 py-3 bg-zinc-900 border border-[#FF4900] rounded-xl focus:outline-none focus:border-[#dfb557] text-center tracking-widest text-lg"
               />
 
@@ -2080,30 +1419,21 @@ function Price() {
                 disabled={loading}
                 className="w-full bg-[#FF4900] text-black py-3 uppercase text-xs font-bold tracking-[0.3em] rounded-xl disabled:opacity-50"
               >
-                {loading
-                  ? 'Checking...'
-                  : 'Submit'}
+                {loading ? "Checking..." : "Submit"}
               </button>
 
               {error && (
-                <p className="text-red-400 text-xs">
-                  ጌጋ ፓስኮድ! ደጊምካ ፈትን።
-                </p>
+                <p className="text-red-400 text-xs">ጌጋ ፓስኮድ! ደጊምካ ፈትን።</p>
               )}
-
             </form>
           </div>
-
         ) : isEditMode ? (
-
           /* =================================================
              ADMIN EDIT MODE
           ================================================= */
 
           <div className="max-w-7xl mx-auto px-2 sm:px-4 py-6 sm:py-12 w-full">
-
             <div className="text-center mb-8">
-
               <span className="text-[10px] tracking-[0.5em] uppercase text-[#001595]">
                 Administration Mode
               </span>
@@ -2111,30 +1441,20 @@ function Price() {
               <h1 className="text-3xl font-serif mt-2">
                 Edit Packages & Admin Notebook
               </h1>
-
             </div>
 
             <div className="bg-zinc-950 border border-[#FF4900] p-3 sm:p-6 md:p-8 rounded-2xl space-y-8 shadow-2xl">
-
               {/* =================================================
                   NOTEBOOK
               ================================================= */}
 
               <div className="bg-zinc-900 rounded-xl border border-[#FF4900] overflow-hidden">
-
                 <button
                   type="button"
-                  onClick={() =>
-                    setIsNotebookOpen(
-                      (prev) =>
-                        !prev
-                    )
-                  }
+                  onClick={() => setIsNotebookOpen((prev) => !prev)}
                   className="w-full flex justify-between items-center gap-4 p-4 sm:p-6 text-left hover:bg-zinc-800/60"
                 >
-
                   <div>
-
                     <span className="text-xs font-bold uppercase text-[#001595]">
                       📝 Admin Notebook & Customer Bookings
                     </span>
@@ -2142,208 +1462,133 @@ function Price() {
                     <span className="hidden sm:block text-[10px] text-zinc-400 mt-1">
                       ዋጋ፣ ኣገልግሎትን ባህርያትን ሒዙ ይዕቀብ
                     </span>
-
                   </div>
 
                   <span
                     className={`text-[#001595] transition-transform ${
-                      isNotebookOpen
-                        ? 'rotate-180'
-                        : ''
+                      isNotebookOpen ? "rotate-180" : ""
                     }`}
                   >
                     ▼
                   </span>
-
                 </button>
 
                 {isNotebookOpen && (
                   <div className="px-3 sm:px-6 pb-6 border-t border-zinc-800">
-
                     <div className="space-y-4 max-h-[60vh] overflow-y-auto pt-4">
-
-                      {notebookList.length ===
-                      0 ? (
+                      {notebookList.length === 0 ? (
                         <p className="text-zinc-500 text-xs italic text-center py-4">
                           ዝኾነ ዝተመዝገበ ዓሚል የልቦን።
                         </p>
                       ) : (
-                        notebookList.map(
-                          (note) => (
-                            <div
-                              key={String(
-                                getNotebookId(
-                                  note
-                                )
-                              )}
-                              className="bg-zinc-950 border border-zinc-800 p-3 sm:p-5 rounded-xl space-y-4"
-                            >
-
-                              <div className="flex flex-col sm:flex-row justify-between gap-2 border-b border-zinc-900 pb-3">
-
-                                <div className="flex items-center gap-3 flex-wrap">
-
-                                  <span className="text-base font-serif font-bold text-[#001595]]">
-                                    {note.customerName}
-                                  </span>
-
-                                  <span className="text-[10px] bg-zinc-900 border border-zinc-700 px-2.5 py-1 rounded-md">
-                                    📅 {note.bookingDate}
-                                  </span>
-
-                                </div>
-
-                                <span className="text-[9px] text-zinc-500">
-                                  {note.timestamp}
+                        notebookList.map((note) => (
+                          <div
+                            key={String(getNotebookId(note))}
+                            className="bg-zinc-950 border border-zinc-800 p-3 sm:p-5 rounded-xl space-y-4"
+                          >
+                            <div className="flex flex-col sm:flex-row justify-between gap-2 border-b border-zinc-900 pb-3">
+                              <div className="flex items-center gap-3 flex-wrap">
+                                <span className="text-base font-serif font-bold text-[#001595]]">
+                                  {note.customerName}
                                 </span>
 
+                                <span className="text-[10px] bg-zinc-900 border border-zinc-700 px-2.5 py-1 rounded-md">
+                                  📅 {note.bookingDate}
+                                </span>
                               </div>
 
-                              <div className="bg-zinc-900/80 border border-[#FF4900] p-3 sm:p-4 rounded-xl space-y-4">
-
-                                <div className="flex justify-between items-start gap-3">
-
-                                  <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-[#001595]">
-                                    {note.tier}
-                                  </span>
-
-                                  <span className="text-lg font-serif font-bold text-[#001595]">
-                                    {note.packagePrice}
-                                  </span>
-
-                                </div>
-
-                                <h4 className="text-lg sm:text-xl font-serif break-words">
-                                  {note.packageName}{' '}
-                                  Package
-                                </h4>
-
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-3 border-t border-zinc-800">
-
-                                  <div>
-                                    <span className="text-[10px] text-[#001595] font-semibold uppercase block mb-2">
-                                      SERVICES
-                                    </span>
-
-                                    <ul className="space-y-1 text-xs text-zinc-300">
-
-                                      {note.packageServices.length >
-                                      0 ? (
-                                        note.packageServices.map(
-                                          (
-                                            item,
-                                            index
-                                          ) => (
-                                            <li
-                                              key={
-                                                index
-                                              }
-                                            >
-                                              {
-                                                item
-                                              }
-                                            </li>
-                                          )
-                                        )
-                                      ) : (
-                                        <li className="text-zinc-500">
-                                          የለን
-                                        </li>
-                                      )}
-
-                                    </ul>
-                                  </div>
-
-                                  <div>
-                                    <span className="text-[10px] text-[#001595] font-semibold uppercase block mb-2">
-                                      FEATURES
-                                    </span>
-
-                                    <ul className="space-y-1 text-xs text-zinc-300">
-
-                                      {note.packageFeatures.length >
-                                      0 ? (
-                                        note.packageFeatures.map(
-                                          (
-                                            item,
-                                            index
-                                          ) => (
-                                            <li
-                                              key={
-                                                index
-                                              }
-                                            >
-                                              {
-                                                item
-                                              }
-                                            </li>
-                                          )
-                                        )
-                                      ) : (
-                                        <li className="text-zinc-500">
-                                          የለን
-                                        </li>
-                                      )}
-
-                                    </ul>
-                                  </div>
-
-                                </div>
-
-                              </div>
-
-                              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-
-                                <button
-                                  type="button"
-                                  onClick={() =>
-                                    handleShareReceipt(
-                                      note
-                                    )
-                                  }
-                                  className="px-3 py-2.5 bg-zinc-800 hover:bg-zinc-700 rounded-lg text-[10px] uppercase font-semibold"
-                                >
-                                  Share 🔗
-                                </button>
-
-                                <button
-                                  type="button"
-                                  onClick={() =>
-                                    handleEditNoteItem(
-                                      note
-                                    )
-                                  }
-                                  className="px-3 py-2.5 bg-[#FF4900] hover:bg-[#dfb557]/40 text-[#001595] rounded-lg text-[10px] uppercase font-semibold"
-                                >
-                                  Edit
-                                </button>
-
-                                <button
-                                  type="button"
-                                  onClick={() =>
-                                    handleDeleteNote(
-                                      getNotebookId(
-                                        note
-                                      )
-                                    )
-                                  }
-                                  className="px-3 py-2.5 bg-red-950/60 hover:bg-red-900 text-red-300 rounded-lg text-[10px] uppercase font-semibold"
-                                >
-                                  Delete
-                                </button>
-
-                              </div>
-
+                              <span className="text-[9px] text-zinc-500">
+                                {note.timestamp}
+                              </span>
                             </div>
-                          )
-                        )
+
+                            <div className="bg-zinc-900/80 border border-[#FF4900] p-3 sm:p-4 rounded-xl space-y-4">
+                              <div className="flex justify-between items-start gap-3">
+                                <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-[#001595]">
+                                  {note.tier}
+                                </span>
+
+                                <span className="text-lg font-serif font-bold text-[#001595]">
+                                  {note.packagePrice}
+                                </span>
+                              </div>
+
+                              <h4 className="text-lg sm:text-xl font-serif break-words">
+                                {note.packageName} Package
+                              </h4>
+
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-3 border-t border-zinc-800">
+                                <div>
+                                  <span className="text-[10px] text-[#001595] font-semibold uppercase block mb-2">
+                                    SERVICES
+                                  </span>
+
+                                  <ul className="space-y-1 text-xs text-zinc-300">
+                                    {note.packageServices.length > 0 ? (
+                                      note.packageServices.map(
+                                        (item, index) => (
+                                          <li key={index}>{item}</li>
+                                        ),
+                                      )
+                                    ) : (
+                                      <li className="text-zinc-500">የለን</li>
+                                    )}
+                                  </ul>
+                                </div>
+
+                                <div>
+                                  <span className="text-[10px] text-[#001595] font-semibold uppercase block mb-2">
+                                    FEATURES
+                                  </span>
+
+                                  <ul className="space-y-1 text-xs text-zinc-300">
+                                    {note.packageFeatures.length > 0 ? (
+                                      note.packageFeatures.map(
+                                        (item, index) => (
+                                          <li key={index}>{item}</li>
+                                        ),
+                                      )
+                                    ) : (
+                                      <li className="text-zinc-500">የለን</li>
+                                    )}
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                              <button
+                                type="button"
+                                onClick={() => handleShareReceipt(note)}
+                                className="px-3 py-2.5 bg-zinc-800 hover:bg-zinc-700 rounded-lg text-[10px] uppercase font-semibold"
+                              >
+                                Share 🔗
+                              </button>
+
+                              <button
+                                type="button"
+                                onClick={() => handleEditNoteItem(note)}
+                                className="px-3 py-2.5 bg-[#FF4900] hover:bg-[#dfb557]/40 text-[#001595] rounded-lg text-[10px] uppercase font-semibold"
+                              >
+                                Edit
+                              </button>
+
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  handleDeleteNote(getNotebookId(note))
+                                }
+                                className="px-3 py-2.5 bg-red-950/60 hover:bg-red-900 text-red-300 rounded-lg text-[10px] uppercase font-semibold"
+                              >
+                                Delete
+                              </button>
+                            </div>
+                          </div>
+                        ))
                       )}
-
                     </div>
-
                   </div>
                 )}
-
               </div>
 
               {/* =================================================
@@ -2351,9 +1596,7 @@ function Price() {
               ================================================= */}
 
               <div>
-
                 <div className="flex justify-between items-center mb-4">
-
                   <h3 className="text-sm font-bold uppercase text-[#001595] tracking-wider">
                     ⚙️ Edit Website Packages
                   </h3>
@@ -2361,44 +1604,30 @@ function Price() {
                   <span className="lg:hidden text-[9px] text-zinc-500">
                     ← Swipe →
                   </span>
-
                 </div>
 
                 <div className="flex lg:grid lg:grid-cols-4 gap-4 overflow-x-auto lg:overflow-x-visible pb-4">
-
-                  {Object.keys(
-                    tempPackages
-                  ).map((key) => {
-                    const pkg =
-                      tempPackages[
-                        key
-                      ];
+                  {Object.keys(tempPackages).map((key) => {
+                    const pkg = tempPackages[key];
 
                     return (
                       <div
                         key={key}
                         className="flex-none w-[86vw] sm:w-[68vw] md:w-[48vw] lg:w-auto bg-zinc-900 border-2 border-[#FF4900] p-4 sm:p-6 rounded-2xl shadow-xl space-y-4"
                       >
-
                         <div className="space-y-3">
-
                           <div>
                             <label className="text-[9px] uppercase text-zinc-400 font-semibold block mb-1">
                               Tier Title
                             </label>
 
                             <input
-                              value={
-                                pkg.tier ||
-                                ''
-                              }
-                              onChange={(
-                                e
-                              ) =>
+                              value={pkg.tier || ""}
+                              onChange={(e) =>
                                 updateTempPackageField(
                                   key,
-                                  'tier',
-                                  e.target.value
+                                  "tier",
+                                  e.target.value,
                                 )
                               }
                               className="w-full bg-zinc-950 border border-zinc-700 p-2 rounded-lg text-xs"
@@ -2411,17 +1640,12 @@ function Price() {
                             </label>
 
                             <input
-                              value={
-                                pkg.name ||
-                                ''
-                              }
-                              onChange={(
-                                e
-                              ) =>
+                              value={pkg.name || ""}
+                              onChange={(e) =>
                                 updateTempPackageField(
                                   key,
-                                  'name',
-                                  e.target.value
+                                  "name",
+                                  e.target.value,
                                 )
                               }
                               className="w-full bg-zinc-950 border border-zinc-700 p-2 rounded-lg text-xs font-serif font-bold text-lg"
@@ -2434,17 +1658,12 @@ function Price() {
                             </label>
 
                             <input
-                              value={
-                                pkg.price ||
-                                ''
-                              }
-                              onChange={(
-                                e
-                              ) =>
+                              value={pkg.price || ""}
+                              onChange={(e) =>
                                 updateTempPackageField(
                                   key,
-                                  'price',
-                                  e.target.value
+                                  "price",
+                                  e.target.value,
                                 )
                               }
                               className="w-full bg-zinc-950 border border-zinc-700 p-2 rounded-lg text-xs text-[#001595] font-bold"
@@ -2458,17 +1677,12 @@ function Price() {
 
                             <textarea
                               rows={5}
-                              value={(
-                                pkg.services ||
-                                []
-                              ).join('\n')}
-                              onChange={(
-                                e
-                              ) =>
+                              value={(pkg.services || []).join("\n")}
+                              onChange={(e) =>
                                 updateTempPackageArray(
                                   key,
-                                  'services',
-                                  e.target.value
+                                  "services",
+                                  e.target.value,
                                 )
                               }
                               className="w-full bg-zinc-950 border border-zinc-700 p-2 rounded-lg text-[11px]"
@@ -2482,43 +1696,29 @@ function Price() {
 
                             <textarea
                               rows={6}
-                              value={(
-                                pkg.features ||
-                                []
-                              ).join('\n')}
-                              onChange={(
-                                e
-                              ) =>
+                              value={(pkg.features || []).join("\n")}
+                              onChange={(e) =>
                                 updateTempPackageArray(
                                   key,
-                                  'features',
-                                  e.target.value
+                                  "features",
+                                  e.target.value,
                                 )
                               }
                               className="w-full bg-zinc-950 border border-zinc-700 p-2 rounded-lg text-[11px]"
                             />
                           </div>
-
                         </div>
 
                         <button
                           type="button"
-                          onClick={() =>
-                            handleSelectPackageClick(
-                              key
-                            )
-                          }
+                          onClick={() => handleSelectPackageClick(key)}
                           className="w-full bg-[#FF4900] text-black py-2.5 rounded-xl text-[10px] uppercase font-bold"
                         >
-                          Select{' '}
-                          {pkg.name}{' '}
-                          ➔
+                          Select {pkg.name} ➔
                         </button>
-
                       </div>
                     );
                   })}
-
                 </div>
               </div>
 
@@ -2533,15 +1733,10 @@ function Price() {
               ================================================= */}
 
               <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 pt-4 border-t border-zinc-900">
-
                 <button
                   type="button"
-                  onClick={
-                    handleCancelEdit
-                  }
-                  disabled={
-                    isSavingPackages
-                  }
+                  onClick={handleCancelEdit}
+                  disabled={isSavingPackages}
                   className="w-full sm:w-auto px-6 py-3 bg-zinc-900 text-zinc-300 rounded-xl text-xs uppercase font-bold disabled:opacity-50"
                 >
                   Cancel
@@ -2549,66 +1744,40 @@ function Price() {
 
                 <button
                   type="button"
-                  onClick={
-                    handleSaveAndExit
-                  }
-                  disabled={
-                    isSavingPackages
-                  }
+                  onClick={handleSaveAndExit}
+                  disabled={isSavingPackages}
                   className="w-full sm:w-auto px-6 py-3 bg-[#FF4900] text-black rounded-xl text-xs uppercase font-bold disabled:opacity-50"
                 >
-                  {isSavingPackages
-                    ? 'Saving...'
-                    : 'Save Changes'}
+                  {isSavingPackages ? "Saving..." : "Save Changes"}
                 </button>
-
               </div>
-
             </div>
           </div>
-
         ) : (
-
           /* =================================================
              CUSTOMER VIEW
           ================================================= */
 
           <div className="max-w-7xl mx-auto text-center px-2 sm:px-4 py-6 sm:py-12 w-full">
-
             <div className="flex justify-end mb-4">
-
               {!isEditGateOpen ? (
-
                 <div className="flex flex-col items-end">
-
                   <div className="flex items-center gap-2 bg-zinc-900 p-2 rounded-xl border border-[#dfb557]/40">
-
                     <input
                       type="password"
                       placeholder="Admin Code"
-                      value={
-                        adminPasscode
-                      }
-                      onChange={(
-                        e
-                      ) =>
-                        setAdminPasscode(
-                          e.target.value
-                        )
-                      }
+                      value={adminPasscode}
+                      onChange={(e) => setAdminPasscode(e.target.value)}
                       className="bg-transparent text-zinc-100 text-xs px-2 focus:outline-none w-28"
                     />
 
                     <button
                       type="button"
-                      onClick={
-                        handleEditGateSubmit
-                      }
+                      onClick={handleEditGateSubmit}
                       className="px-3 py-1.5 bg-[#FF4900] text-black rounded-lg text-[10px] font-bold uppercase"
                     >
                       Unlock
                     </button>
-
                   </div>
 
                   {adminError && (
@@ -2616,25 +1785,16 @@ function Price() {
                       Wrong Admin Code!
                     </p>
                   )}
-
                 </div>
-
               ) : (
-
                 <button
                   type="button"
-                  onClick={() =>
-                    setIsEditMode(
-                      true
-                    )
-                  }
+                  onClick={() => setIsEditMode(true)}
                   className="px-4 py-2 bg-[#FF4900] text-black rounded-xl text-xs uppercase font-semibold"
                 >
                   Enter Edit Mode ⚙️
                 </button>
-
               )}
-
             </div>
 
             <span className="text-[10px] md:text-[11px] tracking-[0.5em] uppercase text-[#001595] block mb-2">
@@ -2652,33 +1812,26 @@ function Price() {
             </p>
 
             <div className="flex lg:grid lg:grid-cols-4 gap-5 lg:gap-6 text-left overflow-x-auto lg:overflow-x-visible pb-5">
-
-              {Object.keys(
-                packages
-              ).map((key) => {
-                const pkg =
-                  packages[key];
+              {Object.keys(packages).map((key) => {
+                const pkg = packages[key];
 
                 return (
                   <div
                     key={key}
                     className={`flex-none w-[82vw] sm:w-[65vw] md:w-[45vw] lg:w-auto bg-zinc-950/90 border-2 ${
-                      key === 'gold'
-                        ? 'border-[#FF4900]'
-                        : 'border-[#dfb557]/50'
+                      key === "gold"
+                        ? "border-[#FF4900]"
+                        : "border-[#dfb557]/50"
                     } p-6 sm:p-8 rounded-2xl shadow-2xl relative`}
                   >
-
-                    {key === 'gold' && (
+                    {key === "gold" && (
                       <span className="absolute -top-3 right-6 bg-[#FF4900] text-black text-[9px] uppercase font-bold px-3 py-1 rounded-full">
                         {pkg.tier}
                       </span>
                     )}
 
                     <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-[#001595]">
-                      {key === 'gold'
-                        ? 'Exclusive'
-                        : pkg.tier}
+                      {key === "gold" ? "Exclusive" : pkg.tier}
                     </span>
 
                     <h3 className="text-xl sm:text-2xl font-serif mt-1 mb-2 break-words">
@@ -2689,397 +1842,237 @@ function Price() {
                       {pkg.price}
                     </p>
 
-                    {pkg.services?.length >
-                      0 && (
+                    {pkg.services?.length > 0 && (
                       <div className="text-xs sm:text-sm text-zinc-300 space-y-2 mb-4 border-b border-zinc-900 pb-4">
-
-                        {pkg.services.map(
-                          (
-                            service,
-                            index
-                          ) => (
-                            <p
-                              key={
-                                index
-                              }
-                            >
-                              {service}
-                            </p>
-                          )
-                        )}
-
+                        {pkg.services.map((service, index) => (
+                          <p key={index}>{service}</p>
+                        ))}
                       </div>
                     )}
 
                     <ul className="text-xs sm:text-sm text-zinc-300 space-y-3">
-
-                      {(
-                        pkg.features ||
-                        []
-                      ).map(
-                        (
-                          feature,
-                          index
-                        ) => (
-                          <li
-                            key={
-                              index
-                            }
-                          >
-                            {feature}
-                          </li>
-                        )
-                      )}
-
+                      {(pkg.features || []).map((feature, index) => (
+                        <li key={index}>{feature}</li>
+                      ))}
                     </ul>
-
                   </div>
                 );
               })}
-
             </div>
-
           </div>
-
         )}
-
       </div>
 
       {/* =======================================================
           NOTEBOOK MODAL
       ======================================================= */}
 
-      {isBookingModalOpen &&
-        selectedPackage && (
-          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-start sm:items-center justify-center p-2 sm:p-4 overflow-y-auto">
+      {isBookingModalOpen && selectedPackage && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-start sm:items-center justify-center p-2 sm:p-4 overflow-y-auto">
+          <div className="bg-zinc-950 border border-[#FF4900] p-4 sm:p-6 md:p-8 rounded-2xl max-w-5xl w-full max-h-[calc(100dvh-1rem)] sm:max-h-[calc(100dvh-2rem)] overflow-y-auto shadow-2xl">
+            <div className="flex justify-between items-start gap-3 border-b border-zinc-900 pb-3 mb-5">
+              <div>
+                <h3 className="text-base sm:text-lg font-serif text-[#001595]">
+                  {editingNoteId !== null
+                    ? "✏️ Edit Admin Notebook"
+                    : "ዝርዝር መረጻ ንዓሚል ምዝገባ"}
+                </h3>
 
-            <div className="bg-zinc-950 border border-[#FF4900] p-4 sm:p-6 md:p-8 rounded-2xl max-w-5xl w-full max-h-[calc(100dvh-1rem)] sm:max-h-[calc(100dvh-2rem)] overflow-y-auto shadow-2xl">
-
-              <div className="flex justify-between items-start gap-3 border-b border-zinc-900 pb-3 mb-5">
-
-                <div>
-
-                  <h3 className="text-base sm:text-lg font-serif text-[#001595]">
-
-                    {editingNoteId !==
-                    null
-                      ? '✏️ Edit Admin Notebook'
-                      : 'ዝርዝር መረጻ ንዓሚል ምዝገባ'}
-
-                  </h3>
-
-                  <span className="text-[10px] text-zinc-500">
-
-                    {editingNoteId !==
-                    null
-                      ? 'ናይዚ Notebook ጥራሕ እዩ ዝቕየር'
-                      : 'Selected package is an independent copy'}
-
-                  </span>
-
-                </div>
-
-                <button
-                  type="button"
-                  onClick={
-                    handleCloseBookingModal
-                  }
-                  className="text-zinc-400 hover:text-white"
-                >
-                  ✕
-                </button>
-
+                <span className="text-[10px] text-zinc-500">
+                  {editingNoteId !== null
+                    ? "ናይዚ Notebook ጥራሕ እዩ ዝቕየር"
+                    : "Selected package is an independent copy"}
+                </span>
               </div>
 
-              <form
-                onSubmit={
-                  handleBookingSubmit
-                }
-                className="space-y-5"
+              <button
+                type="button"
+                onClick={handleCloseBookingModal}
+                className="text-zinc-400 hover:text-white"
               >
+                ✕
+              </button>
+            </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                  <div>
-
-                    <label className="text-[10px] uppercase text-zinc-400 block mb-1">
-                      ስም ዓሚል
-                    </label>
-
-                    <input
-                      required
-                      type="text"
-                      value={
-                        customerName
-                      }
-                      onChange={(
-                        e
-                      ) =>
-                        setCustomerName(
-                          e.target.value
-                        )
-                      }
-                      className="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-xs focus:outline-none focus:border-[#dfb557]"
-                    />
-
-                  </div>
-
-                  <div>
-
-                    <label className="text-[10px] uppercase text-zinc-400 block mb-1">
-                      ዕለት መደብ
-                    </label>
-
-                    <input
-                      required
-                      type="date"
-                      value={
-                        bookingDate
-                      }
-                      onChange={(
-                        e
-                      ) =>
-                        setBookingDate(
-                          e.target.value
-                        )
-                      }
-                      className="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-xs focus:outline-none focus:border-[#dfb557]"
-                    />
-
-                  </div>
-
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                  <div>
-
-                    <label className="text-[10px] uppercase text-zinc-400 block mb-1">
-                      Package Name
-                    </label>
-
-                    <input
-                      type="text"
-                      value={
-                        selectedPackage.name ||
-                        ''
-                      }
-                      onChange={(
-                        e
-                      ) =>
-                        updateSelectedPackageField(
-                          'name',
-                          e.target.value
-                        )
-                      }
-                      className="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-xs"
-                    />
-
-                  </div>
-
-                  <div>
-
-                    <label className="text-[10px] uppercase text-zinc-400 block mb-1">
-                      Tier
-                    </label>
-
-                    <input
-                      type="text"
-                      value={
-                        selectedPackage.tier ||
-                        ''
-                      }
-                      onChange={(
-                        e
-                      ) =>
-                        updateSelectedPackageField(
-                          'tier',
-                          e.target.value
-                        )
-                      }
-                      className="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-xs"
-                    />
-
-                  </div>
-
-                </div>
-
+            <form onSubmit={handleBookingSubmit} className="space-y-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-
                   <label className="text-[10px] uppercase text-zinc-400 block mb-1">
-                    ዋጋ
+                    ስም ዓሚል
                   </label>
 
                   <input
                     required
                     type="text"
-                    value={
-                      customizedPrice
-                    }
-                    onChange={(
-                      e
-                    ) => {
-                      setCustomizedPrice(
-                        e.target.value
-                      );
-
-                      updateSelectedPackageField(
-                        'price',
-                        e.target.value
-                      );
-                    }}
-                    className="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-xs text-[#001595] font-bold"
+                    value={customerName}
+                    onChange={(e) => setCustomerName(e.target.value)}
+                    className="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-xs focus:outline-none focus:border-[#dfb557]"
                   />
-
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-[10px] uppercase text-zinc-400 block mb-1">
+                    ዕለት መደብ
+                  </label>
 
-                  <div className="bg-zinc-900 border border-[#FF4900] rounded-xl p-4">
+                  <input
+                    required
+                    type="date"
+                    value={bookingDate}
+                    onChange={(e) => setBookingDate(e.target.value)}
+                    className="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-xs focus:outline-none focus:border-[#dfb557]"
+                  />
+                </div>
+              </div>
 
-                    <h4 className="text-[10px] uppercase font-bold text-[#001595] mb-3">
-                      SERVICES
-                    </h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-[10px] uppercase text-zinc-400 block mb-1">
+                    Package Name
+                  </label>
 
-                    <textarea
-                      rows={12}
-                      value={(
-                        selectedPackage.services ||
-                        []
-                      ).join('\n')}
-                      onChange={(
-                        e
-                      ) =>
-                        updateSelectedPackageArray(
-                          'services',
-                          e.target.value
-                        )
-                      }
-                      className="w-full bg-zinc-950 border border-zinc-700 p-3 rounded-xl text-xs"
-                    />
-
-                  </div>
-
-                  <div className="bg-zinc-900 border border-[#FF4900] rounded-xl p-4">
-
-                    <h4 className="text-[10px] uppercase font-bold text-[#001595] mb-3">
-                      FEATURES
-                    </h4>
-
-                    <textarea
-                      rows={12}
-                      value={(
-                        selectedPackage.features ||
-                        []
-                      ).join('\n')}
-                      onChange={(
-                        e
-                      ) =>
-                        updateSelectedPackageArray(
-                          'features',
-                          e.target.value
-                        )
-                      }
-                      className="w-full bg-zinc-950 border border-zinc-700 p-3 rounded-xl text-xs"
-                    />
-
-                  </div>
-
+                  <input
+                    type="text"
+                    value={selectedPackage.name || ""}
+                    onChange={(e) =>
+                      updateSelectedPackageField("name", e.target.value)
+                    }
+                    className="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-xs"
+                  />
                 </div>
 
-                <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4">
+                <div>
+                  <label className="text-[10px] uppercase text-zinc-400 block mb-1">
+                    Tier
+                  </label>
 
-                  <h4 className="text-[10px] uppercase font-bold text-[#001595] mb-4">
-                    Notebook Preview
+                  <input
+                    type="text"
+                    value={selectedPackage.tier || ""}
+                    onChange={(e) =>
+                      updateSelectedPackageField("tier", e.target.value)
+                    }
+                    className="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-xs"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-[10px] uppercase text-zinc-400 block mb-1">
+                  ዋጋ
+                </label>
+
+                <input
+                  required
+                  type="text"
+                  value={customizedPrice}
+                  onChange={(e) => {
+                    setCustomizedPrice(e.target.value);
+
+                    updateSelectedPackageField("price", e.target.value);
+                  }}
+                  className="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-xs text-[#001595] font-bold"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-zinc-900 border border-[#FF4900] rounded-xl p-4">
+                  <h4 className="text-[10px] uppercase font-bold text-[#001595] mb-3">
+                    SERVICES
                   </h4>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <textarea
+                    rows={12}
+                    value={(selectedPackage.services || []).join("\n")}
+                    onChange={(e) =>
+                      updateSelectedPackageArray("services", e.target.value)
+                    }
+                    className="w-full bg-zinc-950 border border-zinc-700 p-3 rounded-xl text-xs"
+                  />
+                </div>
 
-                    <div>
+                <div className="bg-zinc-900 border border-[#FF4900] rounded-xl p-4">
+                  <h4 className="text-[10px] uppercase font-bold text-[#001595] mb-3">
+                    FEATURES
+                  </h4>
 
-                      <span className="text-[9px] text-zinc-500 uppercase">
-                        Customer
-                      </span>
+                  <textarea
+                    rows={12}
+                    value={(selectedPackage.features || []).join("\n")}
+                    onChange={(e) =>
+                      updateSelectedPackageArray("features", e.target.value)
+                    }
+                    className="w-full bg-zinc-950 border border-zinc-700 p-3 rounded-xl text-xs"
+                  />
+                </div>
+              </div>
 
-                      <p className="text-sm font-semibold">
-                        {customerName ||
-                          '—'}
-                      </p>
+              <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4">
+                <h4 className="text-[10px] uppercase font-bold text-[#001595] mb-4">
+                  Notebook Preview
+                </h4>
 
-                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <span className="text-[9px] text-zinc-500 uppercase">
+                      Customer
+                    </span>
 
-                    <div>
-
-                      <span className="text-[9px] text-zinc-500 uppercase">
-                        Date
-                      </span>
-
-                      <p className="text-sm">
-                        {bookingDate ||
-                          '—'}
-                      </p>
-
-                    </div>
-
-                    <div>
-
-                      <span className="text-[9px] text-zinc-500 uppercase">
-                        Package
-                      </span>
-
-                      <p className="text-sm font-semibold">
-                        {selectedPackage.name ||
-                          '—'}
-                      </p>
-
-                    </div>
-
-                    <div>
-
-                      <span className="text-[9px] text-zinc-500 uppercase">
-                        Price
-                      </span>
-
-                      <p className="text-sm text-[#001595] font-bold">
-                        {customizedPrice ||
-                          '—'}
-                      </p>
-
-                    </div>
-
+                    <p className="text-sm font-semibold">
+                      {customerName || "—"}
+                    </p>
                   </div>
 
+                  <div>
+                    <span className="text-[9px] text-zinc-500 uppercase">
+                      Date
+                    </span>
+
+                    <p className="text-sm">{bookingDate || "—"}</p>
+                  </div>
+
+                  <div>
+                    <span className="text-[9px] text-zinc-500 uppercase">
+                      Package
+                    </span>
+
+                    <p className="text-sm font-semibold">
+                      {selectedPackage.name || "—"}
+                    </p>
+                  </div>
+
+                  <div>
+                    <span className="text-[9px] text-zinc-500 uppercase">
+                      Price
+                    </span>
+
+                    <p className="text-sm text-[#001595] font-bold">
+                      {customizedPrice || "—"}
+                    </p>
+                  </div>
                 </div>
+              </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 pt-2 border-t border-zinc-900">
+              <div className="flex flex-col sm:flex-row gap-3 pt-2 border-t border-zinc-900">
+                <button
+                  type="button"
+                  onClick={handleCloseBookingModal}
+                  className="w-full sm:w-1/2 bg-zinc-900 text-zinc-300 py-3 rounded-xl text-xs uppercase font-bold"
+                >
+                  ሰርዝ
+                </button>
 
-                  <button
-                    type="button"
-                    onClick={
-                      handleCloseBookingModal
-                    }
-                    className="w-full sm:w-1/2 bg-zinc-900 text-zinc-300 py-3 rounded-xl text-xs uppercase font-bold"
-                  >
-                    ሰርዝ
-                  </button>
-
-                  <button
-                    type="submit"
-                    className="w-full sm:w-1/2 bg-[#FF4900] text-black py-3 rounded-xl text-xs uppercase font-bold"
-                  >
-                    {editingNoteId !==
-                    null
-                      ? 'Update / Save'
-                      : 'ኣቐመጥ (Save)'}
-                  </button>
-
-                </div>
-
-              </form>
-
-            </div>
+                <button
+                  type="submit"
+                  className="w-full sm:w-1/2 bg-[#FF4900] text-black py-3 rounded-xl text-xs uppercase font-bold"
+                >
+                  {editingNoteId !== null ? "Update / Save" : "ኣቐመጥ (Save)"}
+                </button>
+              </div>
+            </form>
           </div>
-        )}
+        </div>
+      )}
 
       <Footer />
     </div>
