@@ -1,12 +1,10 @@
-
-
-import React, { useState, useEffect } from 'react';
-import JSZip from 'jszip';
+import React, { useState, useEffect } from "react";
+import JSZip from "jszip";
 
 const sectionsConfig = [
-  { title: 'Weddings', storageKey: 'portfolio_weddings' },
-  { title: 'Bridal Shoots', storageKey: 'portfolio_bridal' },
-  { title: 'Baby Shower & Baptism', storageKey: 'portfolio_babyshower' }
+  { title: "Weddings", storageKey: "portfolio_weddings" },
+  { title: "Bridal Shoots", storageKey: "portfolio_bridal" },
+  { title: "Baby Shower & Baptism", storageKey: "portfolio_babyshower" },
 ];
 
 // // ምስሊ ናብ ኣዝዩ ንኡስ ኪሎባይት (KB) ንምቕናስ ዝሕግዝ ፈንክሽን - ንካስተመር ፖርታል ጥራሕ ዝዓለመ
@@ -73,24 +71,21 @@ const compressImageFile = (file) => {
         const MAX_HEIGHT = 4500;
 
         if (width > MAX_WIDTH || height > MAX_HEIGHT) {
-          const ratio = Math.min(
-            MAX_WIDTH / width,
-            MAX_HEIGHT / height
-          );
+          const ratio = Math.min(MAX_WIDTH / width, MAX_HEIGHT / height);
 
           width = Math.round(width * ratio);
           height = Math.round(height * ratio);
         }
 
-        const canvas = document.createElement('canvas');
+        const canvas = document.createElement("canvas");
         canvas.width = width;
         canvas.height = height;
 
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext("2d");
 
         // Better quality when resizing
         ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = 'high';
+        ctx.imageSmoothingQuality = "high";
 
         ctx.drawImage(img, 0, 0, width, height);
 
@@ -99,68 +94,70 @@ const compressImageFile = (file) => {
         canvas.toBlob(
           (blob) => {
             if (!blob) {
-              reject(new Error('Image compression failed'));
+              reject(new Error("Image compression failed"));
               return;
             }
 
             const compressedFile = new File(
               [blob],
-              file.name.replace(/\.[^/.]+$/, '') + '.jpg',
+              file.name.replace(/\.[^/.]+$/, "") + ".jpg",
               {
-                type: 'image/jpeg',
+                type: "image/jpeg",
                 lastModified: Date.now(),
-              }
+              },
             );
 
             resolve(compressedFile);
           },
-          'image/jpeg',
-          0.88
+          "image/jpeg",
+          0.88,
         );
       };
 
       img.onerror = () => {
-        reject(new Error('Could not load image'));
+        reject(new Error("Could not load image"));
       };
 
       img.src = event.target.result;
     };
 
     reader.onerror = () => {
-      reject(new Error('Could not read image'));
+      reject(new Error("Could not read image"));
     };
 
     reader.readAsDataURL(file);
   });
 };
 
-
 function AdminDashboard() {
   const [sectionsData, setSectionsData] = useState({});
 
-  const [clientName, setClientName] = useState('');
-  const [portalNumber, setPortalNumber] = useState('');
+  const [clientName, setClientName] = useState("");
+  const [portalNumber, setPortalNumber] = useState("");
   const [clientImages, setClientImages] = useState([]);
   const [portalsList, setPortalsList] = useState([]);
   const [creatingPortal, setCreatingPortal] = useState(false);
 
   const [viewingPortalSelections, setViewingPortalSelections] = useState(null);
-  const [activeTab, setActiveTab] = useState('manager');
+  const [activeTab, setActiveTab] = useState("manager");
 
   useEffect(() => {
-    fetch('https://nahome-film-production.onrender.com/api/projects')
-      .then(res => res.json())
-      .then(data => {
+    fetch("https://nahome-film-production.onrender.com/api/projects")
+      .then((res) => res.json())
+      .then((data) => {
         const dataMap = {};
-        data.forEach(item => {
+        data.forEach((item) => {
           let parsedDescriptions = [];
           let parsedHeadings = [];
-          
+
           try {
-            if (typeof item.description === 'string' && item.description.includes('||DESCS||')) {
-              const parts = item.description.split('||DESCS||');
-              parsedDescriptions = JSON.parse(parts[1] || '[]');
-              parsedHeadings = JSON.parse(parts[2] || '[]');
+            if (
+              typeof item.description === "string" &&
+              item.description.includes("||DESCS||")
+            ) {
+              const parts = item.description.split("||DESCS||");
+              parsedDescriptions = JSON.parse(parts[1] || "[]");
+              parsedHeadings = JSON.parse(parts[2] || "[]");
             }
           } catch (e) {
             console.log("Parsing error", e);
@@ -168,22 +165,24 @@ function AdminDashboard() {
 
           dataMap[item.title] = {
             ...item,
-            desc: item.desc || item.description || '',
+            desc: item.desc || item.description || "",
             descriptions: item.descriptions || parsedDescriptions,
             headings: item.headings || parsedHeadings,
-            images: item.images || []
+            images: item.images || [],
           };
         });
         setSectionsData(dataMap);
       })
-      .catch(err => console.error("Error loading admin data:", err));
+      .catch((err) => console.error("Error loading admin data:", err));
 
     fetchPortals();
   }, []);
 
   const fetchPortals = async () => {
     try {
-      const res = await fetch('https://nahome-film-production.onrender.com/api/client/portals');
+      const res = await fetch(
+        "https://nahome-film-production.onrender.com/api/client/portals",
+      );
       if (res.ok) {
         const data = await res.json();
         setPortalsList(data);
@@ -192,64 +191,72 @@ function AdminDashboard() {
       console.error("Error fetching portals:", err);
     }
   };
-  
+
   // እቲ ዝተስተኻኸለ ናይ Cloudinary Widget ኣሰራርሓ (ንዘይደልዮም ምንቅስቓሳት ዝኽልክል)
   const openUploadWidget = () => {
     if (!window.cloudinary) {
-      alert('Cloudinary script not loaded!');
+      alert("Cloudinary script not loaded!");
       return;
     }
-    window.cloudinary.createUploadWidget({
-      cloudName: 'YOUR_CLOUD_NAME',
-      uploadPreset: 'YOUR_UPLOAD_PRESET',
-      sources: ['local', 'camera'], // ንGoogle Drive ወዘተ እንዳተሳእለ ከይሸገር ንኽትክልክሎ
-      multiple: true
-    }, (error, result) => {
-      if (!error && result && result.event === "success") {
-        const imageUrl = result.info.secure_url;
-        // ንዘድልዮ ክፍሊ ክትጥቀመሉ ትኽእል
-        console.log("Uploaded Image URL:", imageUrl);
-      }
-    }).open();
+    window.cloudinary
+      .createUploadWidget(
+        {
+          cloudName: "YOUR_CLOUD_NAME",
+          uploadPreset: "YOUR_UPLOAD_PRESET",
+          sources: ["local", "camera"], // ንGoogle Drive ወዘተ እንዳተሳእለ ከይሸገር ንኽትክልክሎ
+          multiple: true,
+        },
+        (error, result) => {
+          if (!error && result && result.event === "success") {
+            const imageUrl = result.info.secure_url;
+            // ንዘድልዮ ክፍሊ ክትጥቀመሉ ትኽእል
+            console.log("Uploaded Image URL:", imageUrl);
+          }
+        },
+      )
+      .open();
   };
 
   const handleCreatePortal = async (e) => {
     e.preventDefault();
     if (!clientName || !portalNumber || clientImages.length === 0) {
-      alert('በጃኹም ሽም ካስተመር፡ ቑጽሪ ፖርታል፡ ከምኡውን ብዘይውሕድ ሓደ ስእሊ ኣእትዉ!');
+      alert("በጃኹም ሽም ካስተመር፡ ቑጽሪ ፖርታል፡ ከምኡውን ብዘይውሕድ ሓደ ስእሊ ኣእትዉ!");
       return;
     }
 
     if (clientImages.length > 500) {
-      alert('ጌጋ: ኣብ ሓደ ፖርታል ካብ 500 ምስልታት ንላዕሊ ክጽዓን ኣይፍቀድን እዩ!');
+      alert("ጌጋ: ኣብ ሓደ ፖርታል ካብ 500 ምስልታት ንላዕሊ ክጽዓን ኣይፍቀድን እዩ!");
       return;
     }
 
     setCreatingPortal(true);
     try {
-      const res = await fetch('https://nahome-film-production.onrender.com/api/client/create-portal', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          clientName: clientName.trim(), 
-          portalNumber: portalNumber.trim(), 
-          images: clientImages 
-        })
-      });
+      const res = await fetch(
+        "https://nahome-film-production.onrender.com/api/client/create-portal",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            clientName: clientName.trim(),
+            portalNumber: portalNumber.trim(),
+            images: clientImages,
+          }),
+        },
+      );
 
       const data = await res.json();
       if (res.ok && data.success) {
         alert(`ፖርታል ብሰላም ተፈጢሩ! ፓስኮድ: [ ${data.passcode} ]`);
-        setClientName('');
-        setPortalNumber('');
+        setClientName("");
+        setPortalNumber("");
         setClientImages([]);
         fetchPortals();
       } else {
-        alert(data.message || 'ፖርታል ምፍጣር ኣይከኣለን።');
+        alert(data.message || "ፖርታል ምፍጣር ኣይከኣለን።");
       }
     } catch (err) {
       console.error("Error creating portal:", err);
-      alert('ሰርቨር ጌጋ ኣጋጢሙ ኣሎ።');
+      alert("ሰርቨር ጌጋ ኣጋጢሙ ኣሎ።");
     } finally {
       setCreatingPortal(false);
     }
@@ -261,13 +268,13 @@ function AdminDashboard() {
     if (files.length === 0) return;
 
     if (clientImages.length + files.length > 500) {
-      alert('ጌጋ: ጠቕላላ ብዝሒ ምስልታት ካብ 500 ክልላት ክልል ክበዝሕ የብሉን!');
+      alert("ጌጋ: ጠቕላላ ብዝሒ ምስልታት ካብ 500 ክልላት ክልል ክበዝሕ የብሉን!");
       return;
     }
 
     alert(`ስእሊታት ይዳለዉ ኣለዉ (ጠቕላላ: ${files.length}). በጃኹም ቅሩብ ጽንሑ...`);
 
-    const BATCH_SIZE = 10; 
+    const BATCH_SIZE = 10;
     let allUploadedImages = [];
 
     try {
@@ -277,23 +284,26 @@ function AdminDashboard() {
 
         for (let file of batchFiles) {
           const compressedFile = await compressImageFile(file); // እዚ ንፖርታል ጥራሕ ይጽቀጥ
-          formData.append('images', compressedFile);
+          formData.append("images", compressedFile);
         }
 
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 300000); 
+        const timeoutId = setTimeout(() => controller.abort(), 300000);
 
-        const res = await fetch('https://nahome-film-production.onrender.com/api/client/upload-image', {
-          method: 'POST',
-          body: formData,
-          signal: controller.signal
-        });
+        const res = await fetch(
+          "https://nahome-film-production.onrender.com/api/client/upload-image",
+          {
+            method: "POST",
+            body: formData,
+            signal: controller.signal,
+          },
+        );
 
         clearTimeout(timeoutId);
 
         if (!res.ok) {
           const errData = await res.json().catch(() => ({}));
-          throw new Error(errData.message || 'ስእሊ ክስቀል ኣይከኣለን።');
+          throw new Error(errData.message || "ስእሊ ክስቀል ኣይከኣለን።");
         }
 
         const data = await res.json();
@@ -302,36 +312,38 @@ function AdminDashboard() {
         }
       }
 
-      setClientImages(prev => {
+      setClientImages((prev) => {
         const updated = [...prev, ...allUploadedImages];
         if (updated.length > 500) {
-          alert('ጌጋ: 500 ምስልታት ሰጊሩ ኣሎ!');
+          alert("ጌጋ: 500 ምስልታት ሰጊሩ ኣሎ!");
           return prev;
         }
         return updated;
       });
 
       alert(`${allUploadedImages.length} ስእሊታት ብሰላም ተሰቒሎም ኣለዉ!`);
-
     } catch (err) {
       console.error("Error uploading client images:", err);
-      if (err.name === 'AbortError') {
-        alert('ሰርቨር መልሲ ንምሃብ ኣዝዩ ነዊሕ ወሲዱ።');
+      if (err.name === "AbortError") {
+        alert("ሰርቨር መልሲ ንምሃብ ኣዝዩ ነዊሕ ወሲዱ።");
       } else {
-        alert(err.message || 'ሰርቨር ጌጋ ኣጋጢሙ ኣሎ።');
+        alert(err.message || "ሰርቨር ጌጋ ኣጋጢሙ ኣሎ።");
       }
     }
   };
 
   const handleDeletePortal = async (id) => {
-    if (!window.confirm('ነዚ ፖርታል ከተጥፍኦ ትደል ኢኻ?')) return;
+    if (!window.confirm("ነዚ ፖርታል ከተጥፍኦ ትደል ኢኻ?")) return;
     try {
-      const res = await fetch(`https://nahome-film-production.onrender.com/api/client/delete-portal/${id}`, {
-        method: 'DELETE'
-      });
+      const res = await fetch(
+        `https://nahome-film-production.onrender.com/api/client/delete-portal/${id}`,
+        {
+          method: "DELETE",
+        },
+      );
       if (res.ok) {
-        setPortalsList(portalsList.filter(p => p._id !== id));
-        alert('ፖርታል ተደምሲሱ ኣሎ!');
+        setPortalsList(portalsList.filter((p) => p._id !== id));
+        alert("ፖርታል ተደምሲሱ ኣሎ!");
       }
     } catch (err) {
       console.error("Delete error:", err);
@@ -340,22 +352,25 @@ function AdminDashboard() {
 
   const handleSave = async (title, data) => {
     try {
-      const combinedPayloadString = `${data.desc || ''}||DESCS||${JSON.stringify(data.descriptions || [])}||DESCS||${JSON.stringify(data.headings || [])}`;
+      const combinedPayloadString = `${data.desc || ""}||DESCS||${JSON.stringify(data.descriptions || [])}||DESCS||${JSON.stringify(data.headings || [])}`;
 
       const payload = {
         ...data,
         description: combinedPayloadString,
         desc: data.desc,
         descriptions: data.descriptions,
-        headings: data.headings
+        headings: data.headings,
       };
 
-      const res = await fetch(`https://nahome-film-production.onrender.com/api/projects/${title}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      
+      const res = await fetch(
+        `https://nahome-film-production.onrender.com/api/projects/${title}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        },
+      );
+
       if (!res.ok) throw new Error("Failed to save");
       alert(`ብሰላም ናብ ዳታቤዝ ተዓቂቡ ኣሎ! (${title})`);
     } catch (err) {
@@ -369,41 +384,49 @@ function AdminDashboard() {
       <aside className="w-full md:w-72 bg-zinc-900 border-b md:border-r border-zinc-800 p-4 md:p-6 flex flex-col justify-between shrink-0 md:sticky md:top-0 md:h-screen z-20">
         <div>
           <div className="flex items-center gap-3 mb-6 md:mb-8">
-            <div className="bg-[#FF4900] text-black p-2 rounded-xl font-black text-xl">N</div>
+            <div className="bg-[#FF4900] text-black p-2 rounded-xl font-black text-xl">
+              N
+            </div>
             <div>
-              <h1 className="text-lg font-bold text-[#001595] leading-tight">Admin Portal</h1>
+              <h1 className="text-lg font-bold text-[#001595] leading-tight">
+                Admin Portal
+              </h1>
               <p className="text-xs text-zinc-400">NAHOM Film Production</p>
             </div>
           </div>
 
           <nav className="flex md:flex-col gap-2 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 scrollbar-none">
             <button
-              onClick={() => setActiveTab('manager')}
+              onClick={() => setActiveTab("manager")}
               className={`whitespace-nowrap px-4 py-3 rounded-xl font-medium text-sm transition-all flex items-center justify-between ${
-                activeTab === 'manager' 
-                  ? 'bg-[#FF4900] text-black font-bold shadow-lg shadow-amber-500/20' 
-                  : 'text-zinc-300 hover:bg-zinc-800 hover:text-white'
+                activeTab === "manager"
+                  ? "bg-[#FF4900] text-black font-bold shadow-lg shadow-amber-500/20"
+                  : "text-zinc-300 hover:bg-zinc-800 hover:text-white"
               }`}
             >
               <span>📊 Dashboard Overview</span>
             </button>
 
             <button
-              onClick={() => setActiveTab('portal')}
+              onClick={() => setActiveTab("portal")}
               className={`whitespace-nowrap px-4 py-3 rounded-xl font-medium text-sm transition-all flex items-center justify-between ${
-                activeTab === 'portal' 
-                  ? 'bg-[#FF4900] text-black font-bold shadow-lg shadow-amber-500/20' 
-                  : 'text-zinc-300 hover:bg-zinc-800 hover:text-white'
+                activeTab === "portal"
+                  ? "bg-[#FF4900] text-black font-bold shadow-lg shadow-amber-500/20"
+                  : "text-zinc-300 hover:bg-zinc-800 hover:text-white"
               }`}
             >
               <span>👥 Client Portals</span>
-              <span className={`text-xs px-2 py-0.5 rounded-full ml-2 ${activeTab === 'portal' ? 'bg-black text-[#001595]' : 'bg-zinc-800 text-zinc-400'}`}>
+              <span
+                className={`text-xs px-2 py-0.5 rounded-full ml-2 ${activeTab === "portal" ? "bg-black text-[#001595]" : "bg-zinc-800 text-zinc-400"}`}
+              >
                 {portalsList.length}
               </span>
             </button>
 
             <div className="hidden md:block pt-4 pb-2">
-              <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold px-3">Portfolio Sections</p>
+              <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold px-3">
+                Portfolio Sections
+              </p>
             </div>
 
             {sectionsConfig.map((sec) => (
@@ -411,9 +434,9 @@ function AdminDashboard() {
                 key={sec.title}
                 onClick={() => setActiveTab(sec.title)}
                 className={`whitespace-nowrap px-4 py-3 rounded-xl font-medium text-sm transition-all flex items-center justify-between ${
-                  activeTab === sec.title 
-                    ? 'bg-[#FF4900] text-black font-bold shadow-lg shadow-amber-500/20' 
-                    : 'text-zinc-300 hover:bg-zinc-800 hover:text-white'
+                  activeTab === sec.title
+                    ? "bg-[#FF4900] text-black font-bold shadow-lg shadow-amber-500/20"
+                    : "text-zinc-300 hover:bg-zinc-800 hover:text-white"
                 }`}
               >
                 <span>✨ {sec.title}</span>
@@ -428,45 +451,69 @@ function AdminDashboard() {
       </aside>
 
       <main className="flex-1 p-4 md:p-10 overflow-y-auto max-w-full">
-        {activeTab === 'manager' && (
+        {activeTab === "manager" && (
           <div className="space-y-6">
             <div className="bg-zinc-900 border border-zinc-800 p-6 md:p-8 rounded-2xl">
-              <h2 className="text-2xl md:text-3xl font-bold text-[#001595] mb-2">Welcome to Admin Control Panel</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#001595] mb-2">
+                Welcome to Admin Control Panel
+              </h2>
               <p className="text-zinc-400 text-sm">
-                መረብካ (Website) ንምምሕዳር ካብዚ ሳድባር ዝደለኻዮ ክፍሊ ብምጥዋቕ ብቐሊሉ ክትእርምን ስእሊታት ክተሰቅልን ትኽእል።
+                መረብካ (Website) ንምምሕዳር ካብዚ ሳድባር ዝደለኻዮ ክፍሊ ብምጥዋቕ ብቐሊሉ ክትእርምን ስእሊታት
+                ክተሰቅልን ትኽእል።
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              <div onClick={() => setActiveTab('portal')} className="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl cursor-pointer hover:border-amber-500/50 transition-all group">
-                <h3 className="text-lg font-bold text-[#001595] group-hover:text-amber-400 mb-1">Active Client Portals</h3>
-                <p className="text-2xl font-black text-white mt-2">{portalsList.length}</p>
-                <p className="text-xs text-zinc-500 mt-2">ካስተመራት ዝመረጽዎ ስእሊታትን ፓስኮድን መርመሮ</p>
+              <div
+                onClick={() => setActiveTab("portal")}
+                className="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl cursor-pointer hover:border-amber-500/50 transition-all group"
+              >
+                <h3 className="text-lg font-bold text-[#001595] group-hover:text-amber-400 mb-1">
+                  Active Client Portals
+                </h3>
+                <p className="text-2xl font-black text-white mt-2">
+                  {portalsList.length}
+                </p>
+                <p className="text-xs text-zinc-500 mt-2">
+                  ካስተመራት ዝመረጽዎ ስእሊታትን ፓስኮድን መርመሮ
+                </p>
               </div>
 
-              {sectionsConfig.map(sec => (
-                <div key={sec.title} onClick={() => setActiveTab(sec.title)} className="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl cursor-pointer hover:border-amber-500/50 transition-all group">
-                  <h3 className="text-lg font-bold text-[#001595] group-hover:text-amber-400 mb-1">{sec.title}</h3>
+              {sectionsConfig.map((sec) => (
+                <div
+                  key={sec.title}
+                  onClick={() => setActiveTab(sec.title)}
+                  className="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl cursor-pointer hover:border-amber-500/50 transition-all group"
+                >
+                  <h3 className="text-lg font-bold text-[#001595] group-hover:text-amber-400 mb-1">
+                    {sec.title}
+                  </h3>
                   <p className="text-2xl font-black text-white mt-2">
                     {sectionsData[sec.title]?.images?.length || 0} Photos
                   </p>
-                  <p className="text-xs text-zinc-500 mt-2">ናይዚ ክፍሊ መግለጫን ስእሊታትን ኣስተኻኽል</p>
+                  <p className="text-xs text-zinc-500 mt-2">
+                    ናይዚ ክፍሊ መግለጫን ስእሊታትን ኣስተኻኽል
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         )}
 
-        {activeTab === 'portal' && (
+        {activeTab === "portal" && (
           <div className="space-y-8">
             <div className="p-4 md:p-6 border bg-[#FF4900] rounded-2xl bg-zinc-900 shadow-2xl">
-              <h2 className="text-xl md:text-2xl font-bold text-[#001595] mb-6">Create Client Selection Portal (Max 500 Photos)</h2>
+              <h2 className="text-xl md:text-2xl font-bold text-[#001595] mb-6">
+                Create Client Selection Portal (Max 500 Photos)
+              </h2>
               <form onSubmit={handleCreatePortal} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-zinc-400 mb-1 text-sm">Client Name (ሽም ካስተመር):</label>
-                    <input 
-                      type="text" 
+                    <label className="block text-zinc-400 mb-1 text-sm">
+                      Client Name (ሽም ካስተመር):
+                    </label>
+                    <input
+                      type="text"
                       value={clientName}
                       onChange={(e) => setClientName(e.target.value)}
                       placeholder="ንኣብነት: Dawit & Meron"
@@ -475,9 +522,11 @@ function AdminDashboard() {
                     />
                   </div>
                   <div>
-                    <label className="block text-zinc-400 mb-1 text-sm">Portal Number (ቑጽሪ ፖርታል):</label>
-                    <input 
-                      type="text" 
+                    <label className="block text-zinc-400 mb-1 text-sm">
+                      Portal Number (ቑጽሪ ፖርታል):
+                    </label>
+                    <input
+                      type="text"
                       value={portalNumber}
                       onChange={(e) => setPortalNumber(e.target.value)}
                       placeholder="ንኣብነት: 01 ወይ 102"
@@ -488,23 +537,30 @@ function AdminDashboard() {
                 </div>
 
                 <div>
-                  <label className="block text-zinc-400 mb-1 text-sm">Upload Client Photos (ስእሊታት ምጽዓን - ክሳብ 500):</label>
-                  <input 
-                    type="file" 
+                  <label className="block text-zinc-400 mb-1 text-sm">
+                    Upload Client Photos (ስእሊታት ምጽዓን - ክሳብ 500):
+                  </label>
+                  <input
+                    type="file"
                     multiple
                     onChange={handleClientImageUpload}
-                    className="text-zinc-400 text-xs file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-amber-500 file:text-black hover:file:bg-amber-400 w-full bg-zinc-800 p-2 rounded-lg" 
+                    className="text-zinc-400 text-xs file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-amber-500 file:text-black hover:file:bg-amber-400 w-full bg-zinc-800 p-2 rounded-lg"
                   />
-                  <p className="text-xs text-zinc-500 mt-1">ዝተመረጹ ስእሊታት ቑጽሪ: {clientImages.length} / 500</p>
+                  <p className="text-xs text-zinc-500 mt-1">
+                    ዝተመረጹ ስእሊታት ቑጽሪ: {clientImages.length} / 500
+                  </p>
                 </div>
 
                 {clientImages.length > 0 && (
                   <div className="grid grid-cols-4 sm:grid-cols-6 gap-2 mt-4 p-3 bg-zinc-950 rounded-xl border border-zinc-800 max-h-40 overflow-y-auto">
                     {clientImages.map((imgObj, i) => (
-                      <div key={i} className="relative aspect-square rounded overflow-hidden border border-zinc-700">
-                        <img 
-                          src={imgObj.compressed || imgObj.original} 
-                          alt={`preview-${i}`} 
+                      <div
+                        key={i}
+                        className="relative aspect-square rounded overflow-hidden border border-zinc-700"
+                      >
+                        <img
+                          src={imgObj.compressed || imgObj.original}
+                          alt={`preview-${i}`}
                           className="w-full h-full object-cover rounded"
                         />
                       </div>
@@ -512,47 +568,63 @@ function AdminDashboard() {
                   </div>
                 )}
 
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   disabled={creatingPortal}
                   className="bg-[#FF4900] hover:bg-amber-600 text-black font-bold px-6 py-3 rounded-lg w-full transition-colors text-sm"
                 >
-                  {creatingPortal ? 'Generating Portal & Passcode...' : 'Create Portal & Generate Passcode'}
+                  {creatingPortal
+                    ? "Generating Portal & Passcode..."
+                    : "Create Portal & Generate Passcode"}
                 </button>
               </form>
 
               <div className="mt-8">
-                <h3 className="text-lg font-semibold text-zinc-300 mb-4">Active Client Portals ({portalsList.length})</h3>
+                <h3 className="text-lg font-semibold text-zinc-300 mb-4">
+                  Active Client Portals ({portalsList.length})
+                </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {portalsList.map(portal => {
-                    const hasSubmitted = portal.selectedImages && portal.selectedImages.length > 0;
+                  {portalsList.map((portal) => {
+                    const hasSubmitted =
+                      portal.selectedImages && portal.selectedImages.length > 0;
                     return (
-                      <div key={portal._id} className="bg-zinc-800 p-4 rounded-xl border border-zinc-700 flex flex-col justify-between gap-3">
+                      <div
+                        key={portal._id}
+                        className="bg-zinc-800 p-4 rounded-xl border border-zinc-700 flex flex-col justify-between gap-3"
+                      >
                         <div>
                           <div className="flex justify-between items-start gap-2">
-                            <h4 className="font-bold text-[#001595] truncate">{portal.clientName}</h4>
+                            <h4 className="font-bold text-[#001595] truncate">
+                              {portal.clientName}
+                            </h4>
                             {hasSubmitted && (
                               <span className="bg-green-500/20 text-green-400 text-[10px] uppercase font-bold px-2 py-0.5 rounded border border-green-500/30 shrink-0">
                                 Submitted ({portal.selectedImages.length})
                               </span>
                             )}
                           </div>
-                          <p className="text-xs text-zinc-400">Portal #{portal.portalNumber}</p>
-                          <p className="text-xs text-[#001595] font-mono mt-1">Passcode: {portal.passcode}</p>
+                          <p className="text-xs text-zinc-400">
+                            Portal #{portal.portalNumber}
+                          </p>
+                          <p className="text-xs text-[#001595] font-mono mt-1">
+                            Passcode: {portal.passcode}
+                          </p>
                         </div>
 
                         <div className="flex items-center gap-2 pt-2 border-t border-zinc-700/50">
                           {hasSubmitted ? (
-                            <button 
+                            <button
                               onClick={() => setViewingPortalSelections(portal)}
                               className="bg-[#FF4900] hover:bg-amber-700 text-white px-3 py-1.5 rounded text-xs font-bold flex-1 transition-colors truncate"
                             >
                               View Selections ({portal.selectedImages.length})
                             </button>
                           ) : (
-                            <span className="text-[11px] text-zinc-500 italic flex-1">No selection yet</span>
+                            <span className="text-[11px] text-zinc-500 italic flex-1">
+                              No selection yet
+                            </span>
                           )}
-                          <button 
+                          <button
                             onClick={() => handleDeletePortal(portal._id)}
                             className="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs font-bold shrink-0"
                           >
@@ -570,15 +642,23 @@ function AdminDashboard() {
 
         {sectionsConfig.map((sec) => {
           if (activeTab !== sec.title) return null;
-          const currentData = sectionsData[sec.title] || { names: '', desc: '', images: [], descriptions: [], headings: [] };
+          const currentData = sectionsData[sec.title] || {
+            names: "",
+            desc: "",
+            images: [],
+            descriptions: [],
+            headings: [],
+          };
 
           return (
-            <SectionRenderer 
+            <SectionRenderer
               key={sec.title}
-              title={sec.title} 
-              data={currentData} 
-              setData={(newData) => setSectionsData({ ...sectionsData, [sec.title]: newData })} 
-              onSave={() => handleSave(sec.title, currentData)} 
+              title={sec.title}
+              data={currentData}
+              setData={(newData) =>
+                setSectionsData({ ...sectionsData, [sec.title]: newData })
+              }
+              onSave={() => handleSave(sec.title, currentData)}
             />
           );
         })}
@@ -589,10 +669,15 @@ function AdminDashboard() {
           <div className="bg-zinc-900 border border-zinc-700 rounded-2xl max-w-4xl w-full p-4 md:p-6 max-h-[95vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-4 border-b border-zinc-800 pb-3 gap-2">
               <div className="overflow-hidden">
-                <h3 className="text-lg md:text-xl font-bold text-[#001595] truncate">{viewingPortalSelections.clientName} - Selected Photos</h3>
-                <p className="text-xs text-zinc-400">Portal #{viewingPortalSelections.portalNumber} (Total: {viewingPortalSelections.selectedImages.length})</p>
+                <h3 className="text-lg md:text-xl font-bold text-[#001595] truncate">
+                  {viewingPortalSelections.clientName} - Selected Photos
+                </h3>
+                <p className="text-xs text-zinc-400">
+                  Portal #{viewingPortalSelections.portalNumber} (Total:{" "}
+                  {viewingPortalSelections.selectedImages.length})
+                </p>
               </div>
-              <button 
+              <button
                 onClick={() => setViewingPortalSelections(null)}
                 className="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 font-bold px-3 py-1.5 rounded-lg text-xs shrink-0"
               >
@@ -602,37 +687,55 @@ function AdminDashboard() {
 
             <div className="flex flex-col sm:flex-row gap-3 mb-6 p-3 md:p-4 bg-zinc-800/60 rounded-xl border border-zinc-700 items-stretch sm:items-center justify-between">
               <div className="text-xs text-zinc-300">
-                ማዕቀብ: <span className="text-[#001595] font-bold">{viewingPortalSelections.selectedImages.length} ስእሊታት</span> ተመርጺዮም ኣለዉ።
+                ማዕቀብ:{" "}
+                <span className="text-[#001595] font-bold">
+                  {viewingPortalSelections.selectedImages.length} ስእሊታት
+                </span>{" "}
+                ተመርጺዮም ኣለዉ።
               </div>
               <div className="flex flex-col sm:flex-row gap-2">
-                <button 
+                <button
                   onClick={async () => {
-                    const defaultFolderName = `${viewingPortalSelections.clientName}_Selected_Photos`.replace(/\s+/g, '_');
-                    const folderName = prompt("ናይቲ ፎልደር ሽም ኣእቱ (Enter Folder Name):", defaultFolderName);
+                    const defaultFolderName =
+                      `${viewingPortalSelections.clientName}_Selected_Photos`.replace(
+                        /\s+/g,
+                        "_",
+                      );
+                    const folderName = prompt(
+                      "ናይቲ ፎልደር ሽም ኣእቱ (Enter Folder Name):",
+                      defaultFolderName,
+                    );
                     if (!folderName) return;
 
-                    alert('ስእሊታት ተኣኪቦም ዚፕ (Zip) ክሳብ ዝለኣኹ በጃኹም ቁሩብ ጽንሑ...');
+                    alert("ስእሊታት ተኣኪቦም ዚፕ (Zip) ክሳብ ዝለኣኹ በጃኹም ቁሩብ ጽንሑ...");
 
                     try {
                       const zip = new JSZip();
                       const folder = zip.folder(folderName);
 
-                      for (let i = 0; i < viewingPortalSelections.selectedImages.length; i++) {
-                        const imgObj = viewingPortalSelections.selectedImages[i];
-                        const downloadUrl = imgObj.original || imgObj.compressed;
+                      for (
+                        let i = 0;
+                        i < viewingPortalSelections.selectedImages.length;
+                        i++
+                      ) {
+                        const imgObj =
+                          viewingPortalSelections.selectedImages[i];
+                        const downloadUrl =
+                          imgObj.original || imgObj.compressed;
                         try {
                           const response = await fetch(downloadUrl);
                           const blob = await response.blob();
-                          const extension = downloadUrl.split('.').pop().split('?')[0] || 'jpg';
+                          const extension =
+                            downloadUrl.split(".").pop().split("?")[0] || "jpg";
                           folder.file(`photo_${i + 1}.${extension}`, blob);
                         } catch (err) {
                           console.error(`Error fetching image ${i}:`, err);
                         }
                       }
 
-                      const content = await zip.generateAsync({ type: 'blob' });
+                      const content = await zip.generateAsync({ type: "blob" });
                       const blobUrl = window.URL.createObjectURL(content);
-                      const link = document.createElement('a');
+                      const link = document.createElement("a");
                       link.href = blobUrl;
                       link.download = `${folderName}.zip`;
                       document.body.appendChild(link);
@@ -640,10 +743,10 @@ function AdminDashboard() {
                       document.body.removeChild(link);
                       window.URL.revokeObjectURL(blobUrl);
 
-                      alert('ኩሎም ስእሊታት ብሓደ ፎልደር (Zip) ብሰላም ወሪዶም!');
+                      alert("ኩሎም ስእሊታት ብሓደ ፎልደር (Zip) ብሰላም ወሪዶም!");
                     } catch (err) {
                       console.error("Zip generation error:", err);
-                      alert('ስእሊታት ከውርድ እንተሎ ጌጋ ኣጋጢሙ።');
+                      alert("ስእሊታት ከውርድ እንተሎ ጌጋ ኣጋጢሙ።");
                     }
                   }}
                   className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg text-xs font-bold transition-colors flex items-center justify-center gap-1.5"
@@ -651,26 +754,39 @@ function AdminDashboard() {
                   📦 Download All as Zip
                 </button>
 
-                <button 
+                <button
                   onClick={() => {
-                    const targetSection = prompt("እዞም ስእሊታት ናበይ ክሰጋገሩ ትደሊ? (Weddings, Bridal Shoots, ወይ Baby Shower & Baptism ብትኽክል ጽሓፍ):");
+                    const targetSection = prompt(
+                      "እዞም ስእሊታት ናበይ ክሰጋገሩ ትደሊ? (Weddings, Bridal Shoots, ወይ Baby Shower & Baptism ብትኽክል ጽሓፍ):",
+                    );
                     if (!targetSection) return;
 
                     const currentSecData = sectionsData[targetSection];
                     if (!currentSecData) {
-                      alert('እቲ ዝበልካዮ ሽም ክፍሊ ኣይተረኽበን። በጃኹም ብትኽክል ጽሓፍዎ።');
+                      alert("እቲ ዝበልካዮ ሽም ክፍሊ ኣይተረኽበን። በጃኹም ብትኽክል ጽሓፍዎ።");
                       return;
                     }
 
-                    const plainUrls = viewingPortalSelections.selectedImages.map(img => img.original || img);
-                    const updatedImages = [...(currentSecData.images || []), ...plainUrls];
-                    
+                    const plainUrls =
+                      viewingPortalSelections.selectedImages.map(
+                        (img) => img.original || img,
+                      );
+                    const updatedImages = [
+                      ...(currentSecData.images || []),
+                      ...plainUrls,
+                    ];
+
                     setSectionsData({
                       ...sectionsData,
-                      [targetSection]: { ...currentSecData, images: updatedImages }
+                      [targetSection]: {
+                        ...currentSecData,
+                        images: updatedImages,
+                      },
                     });
 
-                    alert(`ስእሊታት ብሰላም ናብቲ የዕሩኽ ፖርትፎሊዮ [ ${targetSection} ] ተሰጊሮም ኣለዉ! ሕጂ 'Save' ግበሮ።`);
+                    alert(
+                      `ስእሊታት ብሰላም ናብቲ የዕሩኽ ፖርትፎሊዮ [ ${targetSection} ] ተሰጊሮም ኣለዉ! ሕጂ 'Save' ግበሮ።`,
+                    );
                   }}
                   className="bg-[#FF4900] hover:bg-amber-600 text-black px-3 py-2 rounded-lg text-xs font-bold transition-colors flex items-center justify-center gap-1.5"
                 >
@@ -684,17 +800,22 @@ function AdminDashboard() {
                 const displayUrl = imgObj.compressed || imgObj.original;
                 const fullUrl = imgObj.original || imgObj.compressed;
                 return (
-                  <div key={idx} className="aspect-square bg-zinc-800 border border-zinc-700 rounded-lg overflow-hidden relative group">
-                    <img 
-                      src={displayUrl} 
-                      alt={`Selected ${idx}`} 
-                      className="w-full h-full object-cover" 
-                      onError={(e) => e.target.src = 'https://via.placeholder.com/150'} 
+                  <div
+                    key={idx}
+                    className="aspect-square bg-zinc-800 border border-zinc-700 rounded-lg overflow-hidden relative group"
+                  >
+                    <img
+                      src={displayUrl}
+                      alt={`Selected ${idx}`}
+                      className="w-full h-full object-cover"
+                      onError={(e) =>
+                        (e.target.src = "https://via.placeholder.com/150")
+                      }
                     />
-                    <a 
-                      href={fullUrl} 
-                      target="_blank" 
-                      rel="noreferrer" 
+                    <a
+                      href={fullUrl}
+                      target="_blank"
+                      rel="noreferrer"
                       className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-xs font-bold text-amber-300 underline p-1 text-center"
                     >
                       View Full
@@ -717,14 +838,16 @@ function SectionRenderer({ title, data, setData, onSave }) {
 
     const currentImagesCount = (data.images || []).length;
     if (currentImagesCount + files.length > 500) {
-      alert(`ጌጋ: ሓደ ፖርታል ካብ 500 ምስልታት ንላዕሊ ክሕዝ ኣይፍቀድን እዩ! (ህጂ ዘለዉ: ${currentImagesCount})`);
-      event.target.value = '';
+      alert(
+        `ጌጋ: ሓደ ፖርታል ካብ 500 ምስልታት ንላዕሊ ክሕዝ ኣይፍቀድን እዩ! (ህጂ ዘለዉ: ${currentImagesCount})`,
+      );
+      event.target.value = "";
       return;
     }
 
-    alert('ስእሊታት ናብ ፖርትፎሊዮ ይስቀሉ ኣለዉ፣ ጽንሕ በል...');
+    alert("ስእሊታት ናብ ፖርትፎሊዮ ይስቀሉ ኣለዉ፣ ጽንሕ በል...");
 
-    const BATCH_SIZE = 3; 
+    const BATCH_SIZE = 3;
     let allNewImages = [...(data.images || [])];
     let allHeadings = [...(data.headings || [])];
     let allDescriptions = [...(data.descriptions || [])];
@@ -735,26 +858,31 @@ function SectionRenderer({ title, data, setData, onSave }) {
         const formData = new FormData();
 
         for (let file of batch) {
-          formData.append('images', file);
+          formData.append("images", file);
         }
 
-        const res = await fetch(`https://nahome-film-production.onrender.com/api/projects/${title}/upload`, {
-          method: 'POST',
-          body: formData
-        });
+        const res = await fetch(
+          `https://nahome-film-production.onrender.com/api/projects/${title}/upload`,
+          {
+            method: "POST",
+            body: formData,
+          },
+        );
 
         if (!res.ok) throw new Error("Upload failed");
-        
+
         const result = await res.json();
         const newImagesFromBackend = result.images || [];
-        
+
         // እቶም ሓዲሾች ስእሊታት ጥራሕ ብምውሳኽ ንDuplicate ንከላኸለሉ ሎጂክ
         newImagesFromBackend.forEach((img) => {
           if (!allNewImages.includes(img)) {
             allNewImages.push(img);
             const totalIdx = allNewImages.length - 1;
             allHeadings.push(`Featured Moment ${totalIdx + 1}`);
-            allDescriptions.push(`0${totalIdx + 1}. A wonderful captured memory of the special day.`);
+            allDescriptions.push(
+              `0${totalIdx + 1}. A wonderful captured memory of the special day.`,
+            );
           }
         });
       }
@@ -763,7 +891,7 @@ function SectionRenderer({ title, data, setData, onSave }) {
         ...data,
         images: allNewImages,
         headings: allHeadings,
-        descriptions: allDescriptions
+        descriptions: allDescriptions,
       });
 
       alert(`${files.length} ስእሊ(ታት) ብትኽክል ተሰቒሎም ኣለዉ!`);
@@ -771,20 +899,24 @@ function SectionRenderer({ title, data, setData, onSave }) {
       console.error("Upload Error:", err);
       alert("ስእሊ ኣብ ምጽዓን ጸገም ኣጋጢሙ! (Timeout ጸገም ንምውጋድ ብውሑድ ፈትን)");
     } finally {
-      event.target.value = '';
+      event.target.value = "";
     }
   };
 
   const deleteImage = async (imgIndex) => {
     const updatedImages = (data.images || []).filter((_, i) => i !== imgIndex);
-    const updatedHeadings = (data.headings || []).filter((_, i) => i !== imgIndex);
-    const updatedDescriptions = (data.descriptions || []).filter((_, i) => i !== imgIndex);
+    const updatedHeadings = (data.headings || []).filter(
+      (_, i) => i !== imgIndex,
+    );
+    const updatedDescriptions = (data.descriptions || []).filter(
+      (_, i) => i !== imgIndex,
+    );
 
-    setData({ 
-      ...data, 
+    setData({
+      ...data,
       images: updatedImages,
       headings: updatedHeadings,
-      descriptions: updatedDescriptions
+      descriptions: updatedDescriptions,
     });
   };
 
@@ -803,76 +935,111 @@ function SectionRenderer({ title, data, setData, onSave }) {
   return (
     <div className="p-4 md:p-8 border border-zinc-700 rounded-2xl bg-zinc-900 shadow-2xl overflow-hidden">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 border-b border-zinc-700 pb-4 gap-4">
-        <h2 className="text-xl md:text-3xl font-bold text-[#001595]">{title} Control Panel</h2>
-        <button onClick={onSave} className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-bold w-full sm:w-auto text-sm">
+        <h2 className="text-xl md:text-3xl font-bold text-[#001595]">
+          {title} Control Panel
+        </h2>
+        <button
+          onClick={onSave}
+          className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-bold w-full sm:w-auto text-sm"
+        >
           Save {title}
         </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="flex flex-col w-full">
-          <label className="block text-zinc-400 mb-2 text-sm">Names / Title:</label>
-          <input 
-            type="text" 
-            value={data.names || ''}
+          <label className="block text-zinc-400 mb-2 text-sm">
+            Names / Title:
+          </label>
+          <input
+            type="text"
+            value={data.names || ""}
             onChange={(e) => setData({ ...data, names: e.target.value })}
             className="bg-zinc-800 border border-zinc-600 p-3 rounded-lg w-full text-white mb-6 text-sm"
             placeholder="ማእከላይ ሽም (ንኣብነት Sara & Robel)"
           />
 
-          <label className="block text-zinc-400 mb-2 text-sm">Section Main Description (መግለጫ):</label>
-          <textarea 
+          <label className="block text-zinc-400 mb-2 text-sm">
+            Section Main Description (መግለጫ):
+          </label>
+          <textarea
             rows="3"
-            value={data.desc || ''}
+            value={data.desc || ""}
             onChange={(e) => setData({ ...data, desc: e.target.value })}
             className="bg-zinc-800 border border-zinc-600 p-3 rounded-lg w-full text-white text-sm focus:outline-none focus:border-amber-400 transition-colors"
             placeholder="እዚ ስራሕ እዚ ዝገልጽ ጽሑፍ ኣብዚ ጽሓፍ..."
           />
-        </div> 
+        </div>
 
         <div className="flex flex-col w-full">
-          <label className="block text-zinc-400 mb-2 text-sm">Upload Images (Multiple Allowed):</label>
-          <input 
-            type="file" 
+          <label className="block text-zinc-400 mb-2 text-sm">
+            Upload Images (Multiple Allowed):
+          </label>
+          <input
+            type="file"
             multiple
-            onChange={handleImageUpload} 
-            className="text-zinc-400 text-xs file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-amber-500 file:text-black hover:file:bg-amber-400 w-full bg-zinc-800 p-2 rounded-lg" 
+            onChange={handleImageUpload}
+            className="text-zinc-400 text-xs file:mr-2 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-amber-500 file:text-black hover:file:bg-amber-400 w-full bg-zinc-800 p-2 rounded-lg"
           />
         </div>
       </div>
 
       <div className="mt-8 space-y-4">
-        <h3 className="text-lg md:text-xl font-semibold text-[#001595] border-b border-zinc-800 pb-2">Manage Image Headings & Descriptions</h3>
-        {data.images && data.images.map((img, index) => {
-          const defaultHeading = `Featured Moment ${index + 1}`;
-          const defaultDesc = `0${index + 1}. A wonderful captured memory of the special day.`;
-          const imgSrc = typeof img === 'string' ? img : (img?.url || img?.original || '');
+        <h3 className="text-lg md:text-xl font-semibold text-[#001595] border-b border-zinc-800 pb-2">
+          Manage Image Headings & Descriptions
+        </h3>
+        {data.images &&
+          data.images.map((img, index) => {
+            const defaultHeading = `Featured Moment ${index + 1}`;
+            const defaultDesc = `0${index + 1}. A wonderful captured memory of the special day.`;
+            const imgSrc =
+              typeof img === "string" ? img : img?.url || img?.original || "";
 
-          return (
-            <div key={index} className="flex flex-col sm:flex-row gap-4 p-4 bg-zinc-800/50 border border-zinc-700 rounded-xl items-center">
-              <img src={imgSrc} alt="" className="w-20 h-20 object-cover rounded-lg shrink-0 border border-zinc-600" />
-              <div className="flex-1 w-full space-y-2">
-                <input 
-                  type="text"
-                  value={data.headings?.[index] !== undefined ? data.headings[index] : defaultHeading}
-                  onChange={(e) => handleHeadingChange(index, e.target.value)}
-                  className="bg-zinc-800 border border-zinc-600 p-2 rounded w-full text-white text-xs"
-                  placeholder="Heading"
+            return (
+              <div
+                key={index}
+                className="flex flex-col sm:flex-row gap-4 p-4 bg-zinc-800/50 border border-zinc-700 rounded-xl items-center"
+              >
+                <img
+                  src={imgSrc}
+                  alt=""
+                  className="w-20 h-20 object-cover rounded-lg shrink-0 border border-zinc-600"
                 />
-                <textarea 
-                  rows="2"
-                  value={data.descriptions?.[index] !== undefined ? data.descriptions[index] : defaultDesc}
-                  onChange={(e) => handleDescriptionChange(index, e.target.value)}
-                  className="bg-zinc-800 border border-zinc-600 p-2 rounded w-full text-white text-xs"
-                  placeholder="Description"
-                />
+                <div className="flex-1 w-full space-y-2">
+                  <input
+                    type="text"
+                    value={
+                      data.headings?.[index] !== undefined
+                        ? data.headings[index]
+                        : defaultHeading
+                    }
+                    onChange={(e) => handleHeadingChange(index, e.target.value)}
+                    className="bg-zinc-800 border border-zinc-600 p-2 rounded w-full text-white text-xs"
+                    placeholder="Heading"
+                  />
+                  <textarea
+                    rows="2"
+                    value={
+                      data.descriptions?.[index] !== undefined
+                        ? data.descriptions[index]
+                        : defaultDesc
+                    }
+                    onChange={(e) =>
+                      handleDescriptionChange(index, e.target.value)
+                    }
+                    className="bg-zinc-800 border border-zinc-600 p-2 rounded w-full text-white text-xs"
+                    placeholder="Description"
+                  />
+                </div>
+                <button
+                  onClick={() => deleteImage(index)}
+                  className="bg-red-600 hover:bg-red-700 text-white p-2 rounded-lg text-xs font-bold shrink-0 self-start sm:self-center"
+                >
+                  Delete
+                </button>
               </div>
-              <button onClick={() => deleteImage(index)} className="bg-red-600 hover:bg-red-700 text-white p-2 rounded-lg text-xs font-bold shrink-0 self-start sm:self-center">
-                Delete
-              </button>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );
