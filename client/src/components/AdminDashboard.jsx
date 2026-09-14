@@ -110,7 +110,7 @@ const compressImageFile = (file) => {
             resolve(compressedFile);
           },
           "image/jpeg",
-          0.88,
+          0.95,
         );
       };
 
