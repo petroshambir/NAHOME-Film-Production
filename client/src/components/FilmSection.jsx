@@ -243,7 +243,7 @@ const MOVIES = [
     description:
       'A cinematic story created with vision, emotion and unforgettable moments.',
     youtubeUrl:
-      'https://www.youtube.com/watch?v=YOUR_VIDEO_ID_1',
+      'https://youtube.com/watch?v=6bE6COgE5Ew&si=g0j-l8Ea7sxoKxEG',
     poster: haxurkiP,
     behindScenes: [
       haxurki1,
@@ -258,7 +258,7 @@ const MOVIES = [
     description:
       'A powerful production where every frame tells a story.',
     youtubeUrl:
-      'https://www.youtube.com/watch?v=YOUR_VIDEO_ID_2',
+      'https://youtube.com/watch?v=vdT1pWZyNZ4&si=Ku1Kg8xtEXmnADsv',
     poster: bfkri,
     behindScenes: [
       bfkri1,
@@ -273,7 +273,7 @@ const MOVIES = [
     description:
       'A powerful production where every frame tells a story.',
     youtubeUrl:
-      'https://www.youtube.com/watch?v=YOUR_VIDEO_ID_3',
+      'https://youtube.com/watch?v=UuyDHnL0Ues&si=FzyyhAthR7pFvB8J',
     poster: kstet,
     behindScenes: [
       kstet1,
