@@ -1936,7 +1936,7 @@ function Price() {
         const file =
           new File(
             [blob],
-            `Habesha-Film-Receipt-${Date.now()}.png`,
+            `Nahom-Film-Receipt-${Date.now()}.png`,
             {
               type:
                 'image/png',
@@ -1955,10 +1955,10 @@ function Price() {
           await navigator.share(
             {
               title:
-                'Booking Receipt - Habesha Film Production',
+                'Booking Receipt - Nahom Film Production',
 
               text:
-                'Booking Receipt - Habesha Film Production',
+                'Booking Receipt - Nahom Film Production',
 
               files: [
                 file,
