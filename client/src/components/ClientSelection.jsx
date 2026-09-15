@@ -753,7 +753,6 @@
 
 // export default ClientSelection;
 
-
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -1076,6 +1075,11 @@ function ClientSelection() {
   const lightboxSlides =
     project?.images?.map((imgObj) => ({
       src: imgObj.original,
+
+      // These dimensions allow the Zoom plugin
+      // to work with the custom ProtectedImage renderer.
+      width: 2000,
+      height: 1333,
     })) || [];
 
   // ============================================================
@@ -1516,4 +1520,3 @@ function ClientSelection() {
 }
 
 export default ClientSelection;
-
