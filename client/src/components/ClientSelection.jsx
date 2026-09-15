@@ -1525,7 +1525,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import ProtectedImage from '../components/ProtectedImage';
+import ProtectedImage from '../components/ProrectedImage';//am fix thi import 
 
 import Lightbox from 'yet-another-react-lightbox';
 import Zoom from 'yet-another-react-lightbox/plugins/zoom';
