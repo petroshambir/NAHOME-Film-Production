@@ -2280,7 +2280,7 @@ function Price() {
     // NEW PACKAGE 4: DREAM LUXURY — $3,000
     // =======================================================
 
-    dreamLuxury: {
+    NAHOMLuxury: {
       tier: "New Package",
       name: "NAHOME LUXURY",
       price: "$3,000",
@@ -2365,9 +2365,9 @@ function Price() {
 
       premium: normalizePackage(source?.premium, defaultPackages.premium),
 
-      dreamLuxury: normalizePackage(
-        source?.dreamLuxury,
-        defaultPackages.dreamLuxury,
+      NAHOMLuxury: normalizePackage(
+        source?.NAHOMLuxury,
+        defaultPackages.NAHOMLuxury,
       ),
     };
   };
