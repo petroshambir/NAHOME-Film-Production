@@ -2131,186 +2131,182 @@ function Price() {
   // DEFAULT PACKAGES
   // =========================================================
 
-  // const defaultPackages = {
-  //   premium: {
-  //     tier: 'Ultimate VIP',
-  //     name: 'Premium',
-  //     price: '$1,000+',
-  //     services: [
-  //       '• ቪድዮ ቀረጻ (Unlimited)',
-  //       '• ክልተ ኤክስፐርት ካሜራማን',
-  //       '• Cinematic Color Grading & VFX',
-  //     ],
-  //     features: [
-  //       '✓ ዘይተወሰነ ሰዓታት ቀረጻ (Unlimited)',
-  //       '✓ ክልተ ኤክስፐርት ካሜራማን',
-  //       '✓ Cinematic Color Grading & VFX',
-  //       '🎁 ቦናስ: ምሉእ ድሮን ቀረጻ + ሓደ ነጻ ዌብሳይት ባነር',
-  //     ],
-  //   },
-
-  //   gold: {
-  //     tier: 'Top Tier',
-  //     name: 'Gold',
-  //     price: '300,000',
-  //     services: [
-  //       '• ስቱዲዮ / ኣብ መስክ (2 ካሜራ: 1 ቪድዮ፣ 1 ፎቶ)',
-  //       '• ቃል ኪዳን (2 ካሜራ: 1 ቪድዮ፣ 1 ፎቶ)',
-  //       '• መዓልቲ መርዓ (5 ካሜራ: 4 ቪድዮ፣ 1 ፎቶ)',
-  //       '• ሓማውቲ (1 ቪድዮ፣ 1 ፎቶ)',
-  //       '• ኩሉ ሶፍት ኮፒ (All Soft Copy)',
-  //     ],
-  //     features: [
-  //       '✓ 800 ፎቶዎች (10×15)',
-  //       '✓ 2 ላሚኔትድ ፎቶ (30×90 & 30×60)',
-  //       '✓ 2 ሳይን ቦርድ (30×45)',
-  //       '✓ 3 ቦርድ (50×80, 40×60, 30×45)',
-  //       '✓ 400 ምስጋና ካርድ (Thank You Card)',
-  //       '✓ 8 ዩኤስቢ ፍላሽ (64 GB)',
-  //       '✓ 2 ባነር',
-  //       '✓ 2 ራማ / ቆብዕ (Cap)',
-  //     ],
-  //   },
-
-  //   silver: {
-  //     tier: 'Advanced',
-  //     name: 'Silver',
-  //     price: '240,000',
-  //     services: [
-  //       '• ስቱዲዮ / ኣብ መስክ (2 ካሜራ: 1 ቪድዮ፣ 1 ፎቶ)',
-  //       '• ቃል ኪዳን (2 ካሜራ: 1 ቪድዮ፣ 1 ፎቶ)',
-  //       '• መዓልቲ መርዓ (4 ካሜራ: 3 ቪድዮ፣ 1 ፎቶ)',
-  //       '• ሓማውቲ (1 ቪድዮ፣ 1 ፎቶ)',
-  //     ],
-  //     features: [
-  //       '✓ 500 ፎቶዎች (10×15)',
-  //       '✓ 2 ላሚኔትድ ፎቶ (30×90 & 40×60)',
-  //       '✓ 1 ሳይን ቦርድ (30×45)',
-  //       '✓ 2 ቦርድ (50×80 & 40×60)',
-  //       '✓ 250 ምስጋና ካርድ (Thank You Card)',
-  //       '✓ 6 ዩኤስቢ ፍላሽ (64 GB)',
-  //       '✓ 2 ባነር',
-  //       '✓ 2 ራማ / ቆብዕ (Cap)',
-  //     ],
-  //   },
-
-  //   standard: {
-  //     tier: 'Standard',
-  //     name: 'Standard',
-  //     price: '190,000',
-  //     services: [
-  //       '• ስቱዲዮ / ኣብ መስክ (1 ቪድዮ፣ 1 ፎቶ)',
-  //       '• ቃል ኪዳን (2 ካሜራ: 1 ቪድዮ፣ 1 ፎቶ)',
-  //       '• መዓልቲ መርዓ (3 ካሜራ: 2 ቪድዮ፣ 1 ፎቶ)',
-  //       '• ሓማውቲ (2 ካሜራ: 1 ፎቶ፣ 1 ቪድዮ)',
-  //     ],
-  //     features: [
-  //       '✓ 300 ፎቶዎች (10×15)',
-  //       '✓ 1 ላሚኔትድ ፎቶ (30×90)',
-  //       '✓ 1 ሳይን ቦርድ (30×45)',
-  //       '✓ 1 ቦርድ (50×80)',
-  //       '✓ 200 ምስጋና ካርድ (Thank You Card)',
-  //       '✓ 4 ዩኤስቢ ፍላሽ (64 GB)',
-  //       '✓ 2 ባነር',
-  //       '✓ 2 ራማ / ቆብዕ (Cap)',
-  //     ],
-  //   },
-  // };
-  // Updated defaultPackages reflecting the correct levels and pricing from your price sheets:
+  // እዞም ናይ ቀደም ፓኬጃት ከምዘለዉ ተዓቂቦም ኣለዉ።
 
   const defaultPackages = {
-    standard: {
-      tier: "Package 1",
-      name: "BASIC",
-      price: "$1,800",
-      services: [
-        "Pre-Wedding: Photo",
-        "Qal Kidan: Video + Photo",
-        "Wedding Day: 2 Video + 1 Photo",
-      ],
+    gold: {
+      tier: "1st Level",
+      name: "Gold",
+      price: "350,000",
+      services: ["• Mesk Studio, Kalkidan, Wedding, Hamawti"],
       features: [
-        "1 Pull-Up Banner",
-        "Board: A2",
-        "Magazine Book: 1 (250 photos)",
-        "50 Thank You Cards",
-        "10 Car Stickers",
-        "3 USB Flash Drives",
+        "✓ Board photo 3piece 50x80cm-30x45cm-30x90cm",
+        "✓ Laminate album 2piece 30x90cm and 30x60cm",
+        "✓ Mini laminate album",
+        "✓ drone",
+        "✓ Signboard 2",
+        "✓ Mesk video",
+        "✓ Mesk video trailer",
+        "✓ Mag 2piece",
+        "✓ Thank you card 300",
+        "✓ Save the date 4photos",
+        "✓ Wedding event photo 600",
+        "✓ Wedding event 4video camera",
+        "✓ Flash 4",
+        "✓ Banner 2mx80cm",
       ],
     },
 
     silver: {
-      tier: "Package 2",
+      tier: "2nd Level",
+      name: "Silver",
+      price: "300,000",
+      services: ["• Mesk Studio, Kalkidan, Wedding, Hamawti"],
+      features: [
+        "✓ Board photo 2piece 50x80cm-30x45cm",
+        "✓ Laminate album 1piece 30x90cm",
+        "✓ Mini laminate album",
+        "✓ drone",
+        "✓ Signboard 2",
+        "✓ Mesk video",
+        "✓ Mesk video trailer",
+        "✓ Mag 2piece",
+        "✓ Thank you card 200",
+        "✓ Save the date 4photos",
+        "✓ Wedding event photo 500",
+        "✓ Wedding event 3video camera",
+        "✓ Flash 3",
+        "✓ Banner 2mx80cm",
+      ],
+    },
+
+    standard: {
+      tier: "3rd Level",
+      name: "Standard",
+      price: "250,000",
+      services: ["• Mesk Studio, Kalkidan, Wedding, Hamawti"],
+      features: [
+        "✓ Board photo 1piece 50x80cm",
+        "✓ Laminate album 1piece 30x90cm",
+        "✓ Signboard 1",
+        "✓ Mesk video",
+        "✓ Mag 2piece",
+        "✓ Thank you card 150",
+        "✓ Wedding event photo 400",
+        "✓ Wedding event 2video camera",
+        "✓ Flash 2",
+        "✓ Banner 2mx80cm",
+      ],
+    },
+
+    // =======================================================
+    // NEW PACKAGE 1: BASIC — $1,800
+    // =======================================================
+
+    basic: {
+      tier: "New Package",
+      name: "BASIC",
+      price: "$1,800",
+      services: [
+        "• Pre-Wedding: Photo",
+        "• Qal Kidan: Video + Photo",
+        "• Wedding Day: 2 Video + 1 Photo",
+      ],
+      features: [
+        "✓ 1 Pull-Up Banner",
+        "✓ Board: A2",
+        "✓ Magazine Book: 1 (250 photos)",
+        "✓ 50 Thank You Cards",
+        "✓ 10 Car Stickers",
+        "✓ 3 USB Flash Drives",
+      ],
+    },
+
+    // =======================================================
+    // NEW PACKAGE 2: STANDARD — $2,300
+    // ካብቲ ናይ ቀደም standard ፓኬጅ ዝተፈልየ key ኣለዎ።
+    // =======================================================
+
+    standard2300: {
+      tier: "New Package",
       name: "STANDARD",
       price: "$2,300",
       services: [
-        "Pre-Wedding: Photo + Video",
-        "Qal Kidan: Video + Photo",
-        "Wedding Day: 2 Video + 1 Photo",
-        "Hamawite: Video + Photo",
+        "• Pre-Wedding: Photo + Video",
+        "• Qal Kidan: Video + Photo",
+        "• Wedding Day: 2 Video + 1 Photo",
+        "• Hamawite: Video + Photo",
       ],
       features: [
-        "1 Pull-Up Banner",
-        "Board: 2 (A2)",
-        "Magazine Book: 2 (400 photos)",
-        "150 Thank You Cards",
-        "10 Car Stickers",
-        "3 USB Flash Drives",
-        "All Edited Photos",
+        "✓ 1 Pull-Up Banner",
+        "✓ Board: 2 × A2",
+        "✓ Magazine Book: 2 (400 photos)",
+        "✓ 150 Thank You Cards",
+        "✓ 10 Car Stickers",
+        "✓ 3 USB Flash Drives",
+        "✓ All Edited Photos",
       ],
     },
 
-    gold: {
-      tier: "Package 3",
+    // =======================================================
+    // NEW PACKAGE 3: PREMIUM — $2,500
+    // =======================================================
+
+    premium: {
+      tier: "New Package",
       name: "PREMIUM",
       price: "$2,500",
       services: [
-        "Pre-Wedding: Photo + Video",
-        "Qal Kidan: Video + Photo",
-        "Wedding Day: 3 Video + 1 Photo",
-        "Hamawite: Video + Photo",
+        "• Pre-Wedding: Photo + Video",
+        "• Qal Kidan: Video + Photo",
+        "• Wedding Day: 3 Video + 1 Photo",
+        "• Hamawite: Video + Photo",
       ],
       features: [
-        "Drone",
-        "2 Pull-Up Banners",
-        "Board: 2 (A1 + A2)",
-        "1 Sign Board",
-        "Magazine Book: 2 (500 photos)",
-        "250 Thank You Cards",
-        "15 Car Stickers",
-        "1 Car Banner",
-        "3 USB Flash Drives",
-        "All Edited Photos",
+        "✓ Drone",
+        "✓ 2 Pull-Up Banners",
+        "✓ Boards: A1 + A2",
+        "✓ 1 Sign Board",
+        "✓ Magazine Book: 2 (500 photos)",
+        "✓ 250 Thank You Cards",
+        "✓ 15 Car Stickers",
+        "✓ 1 Car Banner",
+        "✓ 3 USB Flash Drives",
+        "✓ All Edited Photos",
       ],
     },
 
-    premium: {
-      tier: "Package 4",
+    // =======================================================
+    // NEW PACKAGE 4: DREAM LUXURY — $3,000
+    // =======================================================
+
+    dreamLuxury: {
+      tier: "New Package",
       name: "DREAM LUXURY",
       price: "$3,000",
       services: [
-        "Pre-Wedding: Photo + Video",
-        "Qal Kidan: 2 Video + Photo",
-        "Wedding Day: 4 Video + 1 Photo",
-        "Hamawite: Video + Photo",
+        "• Pre-Wedding: Photo + Video",
+        "• Qal Kidan: 2 Video + Photo",
+        "• Wedding Day: 4 Video + 1 Photo",
+        "• Hamawite: Video + Photo",
       ],
       features: [
-        "2 Drones",
-        "2 Pull-Up Banners",
-        "Board: 3 (A1 + A2 + A3)",
-        "1 Sign Board",
-        "Magazine Book: 3 (600 photos)",
-        "300 Thank You Cards",
-        "20 Car Stickers",
-        "2 Car Banners",
-        "2 Cups",
-        "3 USB Flash Drives",
-        "All Edited Photos + Raw Photos",
+        "✓ 2 Drones",
+        "✓ 2 Pull-Up Banners",
+        "✓ Boards: A1 + A2 + A3",
+        "✓ 1 Sign Board",
+        "✓ Magazine Book: 3 (600 photos)",
+        "✓ 300 Thank You Cards",
+        "✓ 20 Car Stickers",
+        "✓ 2 Car Banners",
+        "✓ 2 Cups",
+        "✓ 3 USB Flash Drives",
+        "✓ All Edited Photos + RAW Photos",
       ],
     },
   };
 
   const [packages, setPackages] = useState(defaultPackages);
-
   const [tempPackages, setTempPackages] = useState(defaultPackages);
 
   // =========================================================
@@ -2353,30 +2349,26 @@ function Price() {
       source = data.result;
     }
 
-    const sourcePackages = [
-      source?.standard,
-      source?.silver,
-      source?.gold,
-      source?.premium,
-    ].filter(Boolean);
-
-    const hasDreamPicturesPackages =
-      sourcePackages.some((pkg) => pkg?.name === "BASIC") &&
-      sourcePackages.some((pkg) => pkg?.name === "STANDARD") &&
-      sourcePackages.some((pkg) => pkg?.name === "PREMIUM") &&
-      sourcePackages.some((pkg) => pkg?.name === "DREAM LUXURY");
-
-    // If the API still contains the previous package list, use the new PDF packages.
-    const packageSource = hasDreamPicturesPackages ? source : defaultPackages;
-
     return {
-      standard: normalizePackage(packageSource?.standard, defaultPackages.standard),
+      gold: normalizePackage(source?.gold, defaultPackages.gold),
 
-      silver: normalizePackage(packageSource?.silver, defaultPackages.silver),
+      silver: normalizePackage(source?.silver, defaultPackages.silver),
 
-      gold: normalizePackage(packageSource?.gold, defaultPackages.gold),
+      standard: normalizePackage(source?.standard, defaultPackages.standard),
 
-      premium: normalizePackage(packageSource?.premium, defaultPackages.premium),
+      basic: normalizePackage(source?.basic, defaultPackages.basic),
+
+      standard2300: normalizePackage(
+        source?.standard2300,
+        defaultPackages.standard2300,
+      ),
+
+      premium: normalizePackage(source?.premium, defaultPackages.premium),
+
+      dreamLuxury: normalizePackage(
+        source?.dreamLuxury,
+        defaultPackages.dreamLuxury,
+      ),
     };
   };
 
@@ -2483,7 +2475,6 @@ function Price() {
 
         if (mounted) {
           setPackages(normalizedPackages);
-
           setTempPackages(deepClone(normalizedPackages));
         }
       } catch (err) {
@@ -2535,7 +2526,6 @@ function Price() {
           setIsAuthenticated(true);
         } else {
           localStorage.removeItem("priceAuthData");
-
           setIsAuthenticated(false);
         }
       } catch {
@@ -2565,12 +2555,10 @@ function Price() {
     try {
       const response = await fetch(AUTH_API, {
         method: "POST",
-
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-
         body: JSON.stringify({
           passcode: passcode.trim(),
         }),
@@ -2597,7 +2585,6 @@ function Price() {
       }
     } catch (err) {
       console.error("Error verifying passcode:", err);
-
       setError(true);
     } finally {
       setLoading(false);
@@ -2631,7 +2618,6 @@ function Price() {
   const updateTempPackageField = (key, field, value) => {
     setTempPackages((prev) => ({
       ...prev,
-
       [key]: {
         ...prev[key],
         [field]: value,
@@ -2647,7 +2633,6 @@ function Price() {
 
     setTempPackages((prev) => ({
       ...prev,
-
       [key]: {
         ...prev[key],
         [field]: arrayValue,
@@ -2665,7 +2650,6 @@ function Price() {
     }
 
     setIsSavingPackages(true);
-
     setPackageSaveError("");
 
     try {
@@ -2675,13 +2659,10 @@ function Price() {
 
       const response = await fetch(PACKAGES_UPDATE_API, {
         method: "POST",
-
         headers: {
           "Content-Type": "application/json",
-
           Accept: "application/json",
         },
-
         body: JSON.stringify(payload),
       });
 
@@ -2712,7 +2693,6 @@ function Price() {
           : normalizePackagesResponse(payload);
 
       setPackages(finalPackages);
-
       setTempPackages(deepClone(finalPackages));
 
       setPackageSaveError("");
@@ -2720,7 +2700,6 @@ function Price() {
       alert("✅ ዳታ ብሰላም ተዓቂቡ።");
 
       setIsEditMode(false);
-
       setIsEditGateOpen(false);
     } catch (err) {
       console.error("Error saving packages:", err);
@@ -2728,11 +2707,6 @@ function Price() {
       setPackageSaveError(err?.message || "Package data could not be saved.");
 
       alert(`❌ Save ኣይተዓወተን.\n\n${err?.message || "Server error"}`);
-
-      /*
-          Save fail እንተኾይኑ
-          Edit Mode ኣይንዕጾን።
-        */
     } finally {
       setIsSavingPackages(false);
     }
@@ -2769,13 +2743,9 @@ function Price() {
 
     const independentPackageCopy = {
       tier: pkg.tier || "",
-
       name: pkg.name || "",
-
       price: pkg.price || "",
-
       services: Array.isArray(pkg.services) ? [...pkg.services] : [],
-
       features: Array.isArray(pkg.features) ? [...pkg.features] : [],
     };
 
@@ -2848,43 +2818,29 @@ function Price() {
 
     const bookingPayload = {
       customerName: customerName.trim(),
-
       bookingDate,
-
       packageName: selectedPackage.name || "",
-
       packagePrice: customizedPrice || "",
-
       tier: selectedPackage.tier || "",
-
       packageServices: Array.isArray(selectedPackage.services)
         ? [...selectedPackage.services]
         : [],
-
       packageFeatures: Array.isArray(selectedPackage.features)
         ? [...selectedPackage.features]
         : [],
-
       timestamp: existingNote?.timestamp || new Date().toLocaleString(),
     };
 
     try {
-      // =====================================================
-      // UPDATE EXISTING NOTE
-      // =====================================================
-
       if (currentEditingId !== null) {
         const response = await fetch(
           `${NOTEBOOK_API}/${encodeURIComponent(currentEditingId)}`,
           {
             method: "PUT",
-
             headers: {
               "Content-Type": "application/json",
-
               Accept: "application/json",
             },
-
             body: JSON.stringify(bookingPayload),
           },
         );
@@ -2914,21 +2870,13 @@ function Price() {
         );
 
         alert("✅ Notebook ብሰላም ተስተካኺሉ።");
-      }
-
-      // =====================================================
-      // CREATE NEW NOTE
-      // =====================================================
-      else {
+      } else {
         const response = await fetch(NOTEBOOK_API, {
           method: "POST",
-
           headers: {
             "Content-Type": "application/json",
-
             Accept: "application/json",
           },
-
           body: JSON.stringify(bookingPayload),
         });
 
@@ -2954,9 +2902,7 @@ function Price() {
       }
 
       setIsBookingModalOpen(false);
-
       setSelectedPackage(null);
-
       setEditingNoteId(null);
     } catch (err) {
       console.error("Notebook save error:", err);
@@ -2978,17 +2924,13 @@ function Price() {
 
     const copy = {
       tier: note.tier || pkg?.tier || "",
-
       name: note.packageName || pkg?.name || "",
-
       price: note.packagePrice || pkg?.price || "",
-
       services: Array.isArray(note.packageServices)
         ? [...note.packageServices]
         : Array.isArray(pkg?.services)
           ? [...pkg.services]
           : [],
-
       features: Array.isArray(note.packageFeatures)
         ? [...note.packageFeatures]
         : Array.isArray(pkg?.features)
@@ -2999,11 +2941,8 @@ function Price() {
     setSelectedPackage(copy);
 
     setCustomerName(note.customerName || "");
-
     setBookingDate(note.bookingDate || "");
-
     setCustomizedPrice(note.packagePrice || "");
-
     setEditingNoteId(getNotebookId(note));
 
     setIsBookingModalOpen(true);
@@ -3019,7 +2958,9 @@ function Price() {
       return;
     }
 
-    const confirmed = window.confirm("እዚ Notebook ብርግጸኝነት ክትድምስሶ ትደሊዶ?");
+    const confirmed = window.confirm(
+      "እዚ Notebook ብርግጸኝነት ክትድምስሶ ትደሊዶ?",
+    );
 
     if (!confirmed) {
       return;
@@ -3030,7 +2971,6 @@ function Price() {
         `${NOTEBOOK_API}/${encodeURIComponent(id)}`,
         {
           method: "DELETE",
-
           headers: {
             Accept: "application/json",
           },
@@ -3061,9 +3001,7 @@ function Price() {
 
   const handleCloseBookingModal = () => {
     setIsBookingModalOpen(false);
-
     setSelectedPackage(null);
-
     setEditingNoteId(null);
   };
 
@@ -3114,7 +3052,6 @@ function Price() {
             overflow:hidden;
           "
         >
-
           <div
             style="
               position:absolute;
@@ -3174,7 +3111,6 @@ function Price() {
               background:#0b0b0b;
             "
           >
-
             <div
               style="
                 display:flex;
@@ -3183,7 +3119,6 @@ function Price() {
                 margin-bottom:16px;
               "
             >
-
               <div>
                 <div
                   style="
@@ -3227,7 +3162,6 @@ function Price() {
                   ${escapeHtml(note.bookingDate)}
                 </div>
               </div>
-
             </div>
 
             <div
@@ -3246,9 +3180,7 @@ function Price() {
                 gap:20px;
               "
             >
-
               <div>
-
                 <div
                   style="
                     color:#dfb557;
@@ -3278,7 +3210,6 @@ function Price() {
                 >
                   ${escapeHtml(note.tier)}
                 </div>
-
               </div>
 
               <div
@@ -3290,7 +3221,6 @@ function Price() {
               >
                 ${escapeHtml(note.packagePrice)}
               </div>
-
             </div>
 
             <div
@@ -3308,9 +3238,7 @@ function Price() {
                 gap:28px;
               "
             >
-
               <div>
-
                 <div
                   style="
                     color:#dfb557;
@@ -3332,11 +3260,9 @@ function Price() {
                 >
                   ${servicesHtml}
                 </ul>
-
               </div>
 
               <div>
-
                 <div
                   style="
                     color:#dfb557;
@@ -3358,11 +3284,8 @@ function Price() {
                 >
                   ${featuresHtml}
                 </ul>
-
               </div>
-
             </div>
-
           </div>
 
           <div
@@ -3375,7 +3298,6 @@ function Price() {
               line-height:1.7;
             "
           >
-
             <div
               style="
                 color:#dfb557;
@@ -3388,9 +3310,7 @@ function Price() {
             <div>
               ✨ መጻኢ ፕሮጀክትታትኩም ብሉጽ ብዝኾነ ኣገባብ ነሰርሕ! ✨
             </div>
-
           </div>
-
         </div>
       `;
 
@@ -3400,13 +3320,9 @@ function Price() {
       container = document.createElement("div");
 
       container.style.position = "fixed";
-
       container.style.left = "-100000px";
-
       container.style.top = "0";
-
       container.style.width = "900px";
-
       container.style.zIndex = "-1";
 
       container.innerHTML = receiptHtml;
@@ -3419,11 +3335,8 @@ function Price() {
 
       const canvas = await html2canvas(receiptElement, {
         backgroundColor: "#050505",
-
         scale: 2,
-
         useCORS: true,
-
         logging: false,
       });
 
@@ -3448,9 +3361,7 @@ function Price() {
       ) {
         await navigator.share({
           title: "Booking Receipt - Nahom Film Production",
-
           text: "Booking Receipt - Nahom Film Production",
-
           files: [file],
         });
       } else {
@@ -3459,7 +3370,6 @@ function Price() {
         const link = document.createElement("a");
 
         link.href = imageUrl;
-
         link.download = file.name;
 
         document.body.appendChild(link);
@@ -3495,10 +3405,6 @@ function Price() {
 
       <div className="flex-grow flex items-center justify-center px-4 py-32">
         {!isAuthenticated ? (
-          /* =================================================
-             LOGIN text-[#FF4900] 
-          ================================================= */
-
           <div className="bg-zinc-950 p-8 md:p-12 shadow-2xl border-2 border-[#FF4900] rounded-2xl max-w-md w-full text-center">
             <span className="text-[10px] tracking-[0.4em] uppercase text-[#001595] font-semibold block mb-2">
               Secure Access
@@ -3532,15 +3438,13 @@ function Price() {
               </button>
 
               {error && (
-                <p className="text-red-400 text-xs">ጌጋ ፓስኮድ! ደጊምካ ፈትን።</p>
+                <p className="text-red-400 text-xs">
+                  ጌጋ ፓስኮድ! ደጊምካ ፈትን።
+                </p>
               )}
             </form>
           </div>
         ) : isEditMode ? (
-          /* =================================================
-             ADMIN EDIT MODE
-          ================================================= */
-
           <div className="max-w-7xl mx-auto px-2 sm:px-4 py-6 sm:py-12 w-full">
             <div className="text-center mb-8">
               <span className="text-[10px] tracking-[0.5em] uppercase text-[#001595]">
@@ -3553,10 +3457,6 @@ function Price() {
             </div>
 
             <div className="bg-zinc-950 border border-[#FF4900] p-3 sm:p-6 md:p-8 rounded-2xl space-y-8 shadow-2xl">
-              {/* =================================================
-                  NOTEBOOK
-              ================================================= */}
-
               <div className="bg-zinc-900 rounded-xl border border-[#FF4900] overflow-hidden">
                 <button
                   type="button"
@@ -3700,9 +3600,7 @@ function Price() {
                 )}
               </div>
 
-              {/* =================================================
-                  WEBSITE PACKAGES
-              ================================================= */}
+              {/* WEBSITE PACKAGES */}
 
               <div>
                 <div className="flex justify-between items-center mb-4">
@@ -3715,8 +3613,8 @@ function Price() {
                   </span>
                 </div>
 
-                <div className="flex lg:grid lg:grid-cols-4 gap-4 overflow-x-auto lg:overflow-x-visible pb-4">
-                  {(["standard", "silver", "gold", "premium"]).map((key) => {
+                <div className="flex lg:grid lg:grid-cols-3 gap-4 overflow-x-auto lg:overflow-x-visible pb-4">
+                  {Object.keys(tempPackages).map((key) => {
                     const pkg = tempPackages[key];
 
                     return (
@@ -3837,9 +3735,7 @@ function Price() {
                 </div>
               )}
 
-              {/* =================================================
-                  SAVE / CANCEL
-              ================================================= */}
+              {/* SAVE / CANCEL */}
 
               <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 pt-4 border-t border-zinc-900">
                 <button
@@ -3863,9 +3759,7 @@ function Price() {
             </div>
           </div>
         ) : (
-          /* =================================================
-             CUSTOMER VIEW
-          ================================================= */
+          /* CUSTOMER VIEW */
 
           <div className="max-w-7xl mx-auto text-center px-2 sm:px-4 py-6 sm:py-12 w-full">
             <div className="flex justify-end mb-4">
@@ -3920,27 +3814,31 @@ function Price() {
               ንመጻኢ ፕሮጀክትታትኩም ዝኸውን ዝተፈላለየ ሞያዊ ኣገልግሎታት።
             </p>
 
-            <div className="flex lg:grid lg:grid-cols-4 gap-5 lg:gap-6 text-left overflow-x-auto lg:overflow-x-visible pb-5">
-              {(["standard", "silver", "gold", "premium"]).map((key) => {
+            <div className="flex lg:grid lg:grid-cols-3 gap-5 lg:gap-6 text-left overflow-x-auto lg:overflow-x-visible pb-5">
+              {Object.keys(packages).map((key) => {
                 const pkg = packages[key];
 
                 return (
                   <div
                     key={key}
                     className={`flex-none w-[82vw] sm:w-[65vw] md:w-[45vw] lg:w-auto bg-zinc-950/90 border-2 ${
-                      key === "gold"
+                      key === "gold" || key === "dreamLuxury"
                         ? "border-[#FF4900]"
                         : "border-[#dfb557]/50"
                     } p-6 sm:p-8 rounded-2xl shadow-2xl relative`}
                   >
-                    {key === "gold" && (
+                    {(key === "gold" || key === "dreamLuxury") && (
                       <span className="absolute -top-3 right-6 bg-[#FF4900] text-black text-[9px] uppercase font-bold px-3 py-1 rounded-full">
                         {pkg.tier}
                       </span>
                     )}
 
                     <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-[#001595]">
-                      {key === "gold" ? "Exclusive" : pkg.tier}
+                      {key === "gold"
+                        ? "Exclusive"
+                        : key === "dreamLuxury"
+                          ? "Dream Luxury"
+                          : pkg.tier}
                     </span>
 
                     <h3 className="text-xl sm:text-2xl font-serif mt-1 mb-2 break-words">
@@ -3972,9 +3870,7 @@ function Price() {
         )}
       </div>
 
-      {/* =======================================================
-          NOTEBOOK MODAL
-      ======================================================= */}
+      {/* NOTEBOOK MODAL */}
 
       {isBookingModalOpen && selectedPackage && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-start sm:items-center justify-center p-2 sm:p-4 overflow-y-auto">
@@ -4077,7 +3973,6 @@ function Price() {
                   value={customizedPrice}
                   onChange={(e) => {
                     setCustomizedPrice(e.target.value);
-
                     updateSelectedPackageField("price", e.target.value);
                   }}
                   className="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-xs text-[#001595] font-bold"
@@ -4189,4 +4084,3 @@ function Price() {
 }
 
 export default Price;
-///
