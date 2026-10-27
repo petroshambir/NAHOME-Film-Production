@@ -1,3 +1,5 @@
+
+
 // import React, { useState, useEffect } from "react";
 // import html2canvas from "html2canvas";
 // import Navbar from "../components/Navbar";
@@ -1606,8 +1608,8 @@
 //                   </span>
 //                 </div>
 
-//                 <div className="flex lg:grid lg:grid-cols-4 gap-4 overflow-x-auto lg:overflow-x-visible pb-4">
-//                   {Object.keys(tempPackages).map((key) => {
+//                 <div className="flex lg:grid lg:grid-cols-3 gap-4 overflow-x-auto lg:overflow-x-visible pb-4">
+//                   {Object.keys(tempPackages).filter((key) => key !== "premium").map((key) => {
 //                     const pkg = tempPackages[key];
 
 //                     return (
@@ -1811,8 +1813,8 @@
 //               ንመጻኢ ፕሮጀክትታትኩም ዝኸውን ዝተፈላለየ ሞያዊ ኣገልግሎታት።
 //             </p>
 
-//             <div className="flex lg:grid lg:grid-cols-4 gap-5 lg:gap-6 text-left overflow-x-auto lg:overflow-x-visible pb-5">
-//               {Object.keys(packages).map((key) => {
+//             <div className="flex lg:grid lg:grid-cols-3 gap-5 lg:gap-6 text-left overflow-x-auto lg:overflow-x-visible pb-5">
+//               {Object.keys(packages).filter((key) => key !== "premium").map((key) => {
 //                 const pkg = packages[key];
 
 //                 return (
@@ -2217,85 +2219,92 @@ function Price() {
   // Updated defaultPackages reflecting the correct levels and pricing from your price sheets:
 
   const defaultPackages = {
-    // premium: {
-    //   tier: 'Ultimate VIP',
-    //   name: 'Premium',
-    //   price: '$1,000+',
-    //   services: [
-    //     '• ቪድዮ ቀረጻ (Unlimited)',
-    //     '• ክልተ ኤክስፐርት ካሜራማን',
-    //     '• Cinematic Color Grading & VFX',
-    //   ],
-    //   features: [
-    //     '✓ ዘይተወሰነ ሰዓታት ቀረጻ (Unlimited)',
-    //     '✓ ክልተ ኤክስፐርት ካሜራማን',
-    //     '✓ Cinematic Color Grading & VFX',
-    //     '🎁 ቦናስ: ምሉእ ድሮን ቀረጻ + ሓደ ነጻ ዌብሳይት ባነር',
-    //   ],
-    // },
-
-    gold: {
-      tier: "1st Level",
-      name: "Gold",
-      price: "350,000",
-      services: ["• Mesk Studio, Kalkidan, Wedding, Hamawti"],
+    standard: {
+      tier: "Package 1",
+      name: "BASIC",
+      price: "$1,800",
+      services: [
+        "Pre-Wedding: Photo",
+        "Qal Kidan: Video + Photo",
+        "Wedding Day: 2 Video + 1 Photo",
+      ],
       features: [
-        "✓ Board photo 3piece 50x80cm-30x45cm-30x90cm",
-        "✓ Laminate album 2piece 30x90cm and 30x60cm",
-        "✓ Mini laminate album",
-        "✓ drone",
-        "✓ Signboard 2",
-        "✓ Mesk video",
-        "✓ Mesk video trailer",
-        "✓ Mag 2piece",
-        "✓ Thank you card 300",
-        "✓ Save the date 4photos",
-        "✓ Wedding event photo 600",
-        "✓ Wedding event 4video camera",
-        "✓ Flash 4",
-        "✓ Banner 2mx80cm",
+        "1 Pull-Up Banner",
+        "Board: A2",
+        "Magazine Book: 1 (250 photos)",
+        "50 Thank You Cards",
+        "10 Car Stickers",
+        "3 USB Flash Drives",
       ],
     },
 
     silver: {
-      tier: "2nd Level",
-      name: "Silver",
-      price: "300,000",
-      services: ["• Mesk Studio, Kalkidan, Wedding, Hamawti"],
+      tier: "Package 2",
+      name: "STANDARD",
+      price: "$2,300",
+      services: [
+        "Pre-Wedding: Photo + Video",
+        "Qal Kidan: Video + Photo",
+        "Wedding Day: 2 Video + 1 Photo",
+        "Hamawite: Video + Photo",
+      ],
       features: [
-        "✓ Board photo 2piece 50x80cm-30x45cm",
-        "✓ Laminate album 1piece 30x90cm",
-        "✓ Mini laminate album",
-        "✓ drone",
-        "✓ Signboard 2",
-        "✓ Mesk video",
-        "✓ Mesk video trailer",
-        "✓ Mag 2piece",
-        "✓ Thank you card 200",
-        "✓ Save the date 4photos",
-        "✓ Wedding event photo 500",
-        "✓ Wedding event 3video camera",
-        "✓ Flash 3",
-        "✓ Banner 2mx80cm",
+        "1 Pull-Up Banner",
+        "Board: 2 (A2)",
+        "Magazine Book: 2 (400 photos)",
+        "150 Thank You Cards",
+        "10 Car Stickers",
+        "3 USB Flash Drives",
+        "All Edited Photos",
       ],
     },
 
-    standard: {
-      tier: "3rd Level",
-      name: "Standard",
-      price: "250,000",
-      services: ["• Mesk Studio, Kalkidan, Wedding, Hamawti"],
+    gold: {
+      tier: "Package 3",
+      name: "PREMIUM",
+      price: "$2,500",
+      services: [
+        "Pre-Wedding: Photo + Video",
+        "Qal Kidan: Video + Photo",
+        "Wedding Day: 3 Video + 1 Photo",
+        "Hamawite: Video + Photo",
+      ],
       features: [
-        "✓ Board photo 1piece 50x80cm",
-        "✓ Laminate album 1piece 30x90cm",
-        "✓ Signboard 1",
-        "✓ Mesk video",
-        "✓ Mag 2piece",
-        "✓ Thank you card 150",
-        "✓ Wedding event photo 400",
-        "✓ Wedding event 2video camera",
-        "✓ Flash 2",
-        "✓ Banner 2mx80cm",
+        "Drone",
+        "2 Pull-Up Banners",
+        "Board: 2 (A1 + A2)",
+        "1 Sign Board",
+        "Magazine Book: 2 (500 photos)",
+        "250 Thank You Cards",
+        "15 Car Stickers",
+        "1 Car Banner",
+        "3 USB Flash Drives",
+        "All Edited Photos",
+      ],
+    },
+
+    premium: {
+      tier: "Package 4",
+      name: "DREAM LUXURY",
+      price: "$3,000",
+      services: [
+        "Pre-Wedding: Photo + Video",
+        "Qal Kidan: 2 Video + Photo",
+        "Wedding Day: 4 Video + 1 Photo",
+        "Hamawite: Video + Photo",
+      ],
+      features: [
+        "2 Drones",
+        "2 Pull-Up Banners",
+        "Board: 3 (A1 + A2 + A3)",
+        "1 Sign Board",
+        "Magazine Book: 3 (600 photos)",
+        "300 Thank You Cards",
+        "20 Car Stickers",
+        "2 Car Banners",
+        "2 Cups",
+        "3 USB Flash Drives",
+        "All Edited Photos + Raw Photos",
       ],
     },
   };
@@ -2344,14 +2353,30 @@ function Price() {
       source = data.result;
     }
 
+    const sourcePackages = [
+      source?.standard,
+      source?.silver,
+      source?.gold,
+      source?.premium,
+    ].filter(Boolean);
+
+    const hasDreamPicturesPackages =
+      sourcePackages.some((pkg) => pkg?.name === "BASIC") &&
+      sourcePackages.some((pkg) => pkg?.name === "STANDARD") &&
+      sourcePackages.some((pkg) => pkg?.name === "PREMIUM") &&
+      sourcePackages.some((pkg) => pkg?.name === "DREAM LUXURY");
+
+    // If the API still contains the previous package list, use the new PDF packages.
+    const packageSource = hasDreamPicturesPackages ? source : defaultPackages;
+
     return {
-      premium: normalizePackage(source?.premium, defaultPackages.premium),
+      standard: normalizePackage(packageSource?.standard, defaultPackages.standard),
 
-      gold: normalizePackage(source?.gold, defaultPackages.gold),
+      silver: normalizePackage(packageSource?.silver, defaultPackages.silver),
 
-      silver: normalizePackage(source?.silver, defaultPackages.silver),
+      gold: normalizePackage(packageSource?.gold, defaultPackages.gold),
 
-      standard: normalizePackage(source?.standard, defaultPackages.standard),
+      premium: normalizePackage(packageSource?.premium, defaultPackages.premium),
     };
   };
 
@@ -3690,8 +3715,8 @@ function Price() {
                   </span>
                 </div>
 
-                <div className="flex lg:grid lg:grid-cols-3 gap-4 overflow-x-auto lg:overflow-x-visible pb-4">
-                  {Object.keys(tempPackages).filter((key) => key !== "premium").map((key) => {
+                <div className="flex lg:grid lg:grid-cols-4 gap-4 overflow-x-auto lg:overflow-x-visible pb-4">
+                  {(["standard", "silver", "gold", "premium"]).map((key) => {
                     const pkg = tempPackages[key];
 
                     return (
@@ -3895,8 +3920,8 @@ function Price() {
               ንመጻኢ ፕሮጀክትታትኩም ዝኸውን ዝተፈላለየ ሞያዊ ኣገልግሎታት።
             </p>
 
-            <div className="flex lg:grid lg:grid-cols-3 gap-5 lg:gap-6 text-left overflow-x-auto lg:overflow-x-visible pb-5">
-              {Object.keys(packages).filter((key) => key !== "premium").map((key) => {
+            <div className="flex lg:grid lg:grid-cols-4 gap-5 lg:gap-6 text-left overflow-x-auto lg:overflow-x-visible pb-5">
+              {(["standard", "silver", "gold", "premium"]).map((key) => {
                 const pkg = packages[key];
 
                 return (
@@ -4164,4 +4189,3 @@ function Price() {
 }
 
 export default Price;
-///someting is add
