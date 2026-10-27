@@ -2282,7 +2282,7 @@ function Price() {
 
     dreamLuxury: {
       tier: "New Package",
-      name: "DREAM LUXURY",
+      name: "NAHOME LUXURY",
       price: "$3,000",
       services: [
         "• Pre-Wedding: Photo + Video",
