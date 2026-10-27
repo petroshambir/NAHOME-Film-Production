@@ -4085,6 +4085,7 @@
 
 // export default Price;
 
+
 import React, { useState, useEffect } from "react";
 import html2canvas from "html2canvas";
 import Navbar from "../components/Navbar";
@@ -4132,15 +4133,13 @@ function Price() {
   // DEFAULT PACKAGES
   // =========================================================
 
-  const defaultPackages = {
-    // =======================================================
-    // EXISTING PACKAGES — ETHIO
-    // =======================================================
+  // እዞም ናይ ቀደም ፓኬጃት ከምዘለዉ ተዓቂቦም ኣለዉ።
 
+  const defaultPackages = {
     gold: {
       tier: "1st Level",
       name: "Gold",
-      price: "350,000 ETHIO",
+      price: "350,000",
       services: ["• Mesk Studio, Kalkidan, Wedding, Hamawti"],
       features: [
         "✓ Board photo 3piece 50x80cm-30x45cm-30x90cm",
@@ -4163,7 +4162,7 @@ function Price() {
     silver: {
       tier: "2nd Level",
       name: "Silver",
-      price: "300,000 ETHIO",
+      price: "300,000",
       services: ["• Mesk Studio, Kalkidan, Wedding, Hamawti"],
       features: [
         "✓ Board photo 2piece 50x80cm-30x45cm",
@@ -4186,7 +4185,7 @@ function Price() {
     standard: {
       tier: "3rd Level",
       name: "Standard",
-      price: "250,000 ETHIO",
+      price: "250,000",
       services: ["• Mesk Studio, Kalkidan, Wedding, Hamawti"],
       features: [
         "✓ Board photo 1piece 50x80cm",
@@ -4203,13 +4202,13 @@ function Price() {
     },
 
     // =======================================================
-    // NEW PACKAGE 1: BASIC — UGX 1,800
+    // NEW PACKAGE 1: BASIC — $1,800
     // =======================================================
 
     basic: {
       tier: "New Package",
       name: "BASIC",
-      price: "UGX 1,800",
+      price: "$1,800",
       services: [
         "• Pre-Wedding: Photo",
         "• Qal Kidan: Video + Photo",
@@ -4226,13 +4225,14 @@ function Price() {
     },
 
     // =======================================================
-    // NEW PACKAGE 2: STANDARD — UGX 2,300
+    // NEW PACKAGE 2: STANDARD — $2,300
+    // ካብቲ ናይ ቀደም standard ፓኬጅ ዝተፈልየ key ኣለዎ።
     // =======================================================
 
     standard2300: {
       tier: "New Package",
       name: "STANDARD",
-      price: "UGX 2,300",
+      price: "$2,300",
       services: [
         "• Pre-Wedding: Photo + Video",
         "• Qal Kidan: Video + Photo",
@@ -4251,13 +4251,13 @@ function Price() {
     },
 
     // =======================================================
-    // NEW PACKAGE 3: PREMIUM — UGX 2,500
+    // NEW PACKAGE 3: PREMIUM — $2,500
     // =======================================================
 
     premium: {
       tier: "New Package",
       name: "PREMIUM",
-      price: "UGX 2,500",
+      price: "$2,500",
       services: [
         "• Pre-Wedding: Photo + Video",
         "• Qal Kidan: Video + Photo",
@@ -4279,13 +4279,13 @@ function Price() {
     },
 
     // =======================================================
-    // NEW PACKAGE 4: NAHOM LUXURY — UGX 3,000
+    // NEW PACKAGE 4: DREAM LUXURY — $3,000
     // =======================================================
 
     NAHOMLuxury: {
       tier: "New Package",
       name: "NAHOM LUXURY",
-      price: "UGX 3,000",
+      price: "$3,000",
       services: [
         "• Pre-Wedding: Photo + Video",
         "• Qal Kidan: 2 Video + Photo",
@@ -4328,8 +4328,7 @@ function Price() {
 
       name: typeof pkg?.name === "string" ? pkg.name : fallback?.name || "",
 
-      price:
-        typeof pkg?.price === "string" ? pkg.price : fallback?.price || "",
+      price: typeof pkg?.price === "string" ? pkg.price : fallback?.price || "",
 
       services: Array.isArray(pkg?.services)
         ? pkg.services
@@ -5500,7 +5499,7 @@ function Price() {
                           >
                             <div className="flex flex-col sm:flex-row justify-between gap-2 border-b border-zinc-900 pb-3">
                               <div className="flex items-center gap-3 flex-wrap">
-                                <span className="text-base font-serif font-bold text-[#001595]">
+                                <span className="text-base font-serif font-bold text-[#001595]]">
                                   {note.customerName}
                                 </span>
 
@@ -5612,18 +5611,18 @@ function Price() {
                   </h3>
 
                   <span className="lg:hidden text-[9px] text-zinc-500">
-                    Packages
+                    ← Swipe →
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pb-4">
+                <div className="flex lg:grid lg:grid-cols-3 gap-4 overflow-x-auto lg:overflow-x-visible pb-4">
                   {Object.keys(tempPackages).map((key) => {
                     const pkg = tempPackages[key];
 
                     return (
                       <div
                         key={key}
-                        className="w-full min-w-0 bg-zinc-900 border-2 border-[#FF4900] p-4 sm:p-6 rounded-2xl shadow-xl space-y-4"
+                        className="flex-none w-[86vw] sm:w-[68vw] md:w-[48vw] lg:w-auto bg-zinc-900 border-2 border-[#FF4900] p-4 sm:p-6 rounded-2xl shadow-xl space-y-4"
                       >
                         <div className="space-y-3">
                           <div>
@@ -5640,7 +5639,7 @@ function Price() {
                                   e.target.value,
                                 )
                               }
-                              className="w-full min-w-0 bg-zinc-950 border border-zinc-700 p-2 rounded-lg text-xs"
+                              className="w-full bg-zinc-950 border border-zinc-700 p-2 rounded-lg text-xs"
                             />
                           </div>
 
@@ -5658,7 +5657,7 @@ function Price() {
                                   e.target.value,
                                 )
                               }
-                              className="w-full min-w-0 bg-zinc-950 border border-zinc-700 p-2 rounded-lg text-xs font-serif font-bold text-lg"
+                              className="w-full bg-zinc-950 border border-zinc-700 p-2 rounded-lg text-xs font-serif font-bold text-lg"
                             />
                           </div>
 
@@ -5676,7 +5675,7 @@ function Price() {
                                   e.target.value,
                                 )
                               }
-                              className="w-full min-w-0 bg-zinc-950 border border-zinc-700 p-2 rounded-lg text-xs text-[#001595] font-bold"
+                              className="w-full bg-zinc-950 border border-zinc-700 p-2 rounded-lg text-xs text-[#001595] font-bold"
                             />
                           </div>
 
@@ -5695,7 +5694,7 @@ function Price() {
                                   e.target.value,
                                 )
                               }
-                              className="w-full min-w-0 bg-zinc-950 border border-zinc-700 p-2 rounded-lg text-[11px]"
+                              className="w-full bg-zinc-950 border border-zinc-700 p-2 rounded-lg text-[11px]"
                             />
                           </div>
 
@@ -5714,7 +5713,7 @@ function Price() {
                                   e.target.value,
                                 )
                               }
-                              className="w-full min-w-0 bg-zinc-950 border border-zinc-700 p-2 rounded-lg text-[11px]"
+                              className="w-full bg-zinc-950 border border-zinc-700 p-2 rounded-lg text-[11px]"
                             />
                           </div>
                         </div>
@@ -5817,58 +5816,127 @@ function Price() {
               ንመጻኢ ፕሮጀክትታትኩም ዝኸውን ዝተፈላለየ ሞያዊ ኣገልግሎታት።
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 text-left pb-5">
-              {Object.keys(packages).map((key) => {
-                const pkg = packages[key];
+            {/* ETHIO PACKAGES */}
 
-                return (
-                  <div
-                    key={key}
-                    className={`w-full min-w-0 bg-zinc-950/90 border-2 ${
-                      key === "gold" || key === "NAHOMLuxury"
-                        ? "border-[#FF4900]"
-                        : "border-[#dfb557]/50"
-                    } p-6 sm:p-8 rounded-2xl shadow-2xl relative`}
-                  >
-                    {(key === "gold" || key === "NAHOMLuxury") && (
-                      <span className="absolute -top-3 right-6 bg-[#FF4900] text-black text-[9px] uppercase font-bold px-3 py-1 rounded-full">
-                        {pkg.tier}
+            <section className="mb-16">
+              <h2 className="text-3xl sm:text-4xl font-serif text-[#FF4900] mb-8">
+                ETHIO
+              </h2>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 text-left">
+                {["gold", "silver", "standard"].map((key) => {
+                  const pkg = packages[key];
+
+                  if (!pkg) return null;
+
+                  return (
+                    <div
+                      key={key}
+                      className={`bg-zinc-950/90 border-2 ${
+                        key === "gold"
+                          ? "border-[#FF4900]"
+                          : "border-[#dfb557]/50"
+                      } p-6 sm:p-8 rounded-2xl shadow-2xl relative`}
+                    >
+                      {key === "gold" && (
+                        <span className="absolute -top-3 right-6 bg-[#FF4900] text-black text-[9px] uppercase font-bold px-3 py-1 rounded-full">
+                          {pkg.tier}
+                        </span>
+                      )}
+
+                      <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-[#001595]">
+                        {key === "gold" ? "Exclusive" : pkg.tier}
                       </span>
-                    )}
 
-                    <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-[#001595]">
-                      {key === "gold"
-                        ? "Exclusive"
-                        : key === "NAHOMLuxury"
-                          ? "Dream Luxury"
-                          : pkg.tier}
-                    </span>
+                      <h3 className="text-xl sm:text-2xl font-serif mt-1 mb-2 break-words">
+                        {pkg.name}
+                      </h3>
 
-                    <h3 className="text-xl sm:text-2xl font-serif mt-1 mb-2 break-words">
-                      {pkg.name}
-                    </h3>
+                      <p className="text-2xl sm:text-3xl font-serif font-bold text-[#001595] mb-6 break-words">
+                        {pkg.price}
+                      </p>
 
-                    <p className="text-2xl sm:text-3xl font-serif font-bold text-[#001595] mb-6 break-words">
-                      {pkg.price}
-                    </p>
+                      {pkg.services?.length > 0 && (
+                        <div className="text-xs sm:text-sm text-zinc-300 space-y-2 mb-4 border-b border-zinc-900 pb-4">
+                          {pkg.services.map((service, index) => (
+                            <p key={index}>{service}</p>
+                          ))}
+                        </div>
+                      )}
 
-                    {pkg.services?.length > 0 && (
-                      <div className="text-xs sm:text-sm text-zinc-300 space-y-2 mb-4 border-b border-zinc-900 pb-4">
-                        {pkg.services.map((service, index) => (
-                          <p key={index}>{service}</p>
+                      <ul className="text-xs sm:text-sm text-zinc-300 space-y-3">
+                        {(pkg.features || []).map((feature, index) => (
+                          <li key={index}>{feature}</li>
                         ))}
-                      </div>
-                    )}
+                      </ul>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
 
-                    <ul className="text-xs sm:text-sm text-zinc-300 space-y-3">
-                      {(pkg.features || []).map((feature, index) => (
-                        <li key={index}>{feature}</li>
-                      ))}
-                    </ul>
-                  </div>
-                );
-              })}
-            </div>
+            {/* UGX PACKAGES */}
+
+            <section>
+              <h2 className="text-3xl sm:text-4xl font-serif text-[#FF4900] mb-8">
+                UGX
+              </h2>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 text-left">
+                {["basic", "standard2300", "premium", "NAHOMLuxury"].map(
+                  (key) => {
+                    const pkg = packages[key];
+
+                    if (!pkg) return null;
+
+                    return (
+                      <div
+                        key={key}
+                        className={`bg-zinc-950/90 border-2 ${
+                          key === "NAHOMLuxury"
+                            ? "border-[#FF4900]"
+                            : "border-[#dfb557]/50"
+                        } p-6 sm:p-8 rounded-2xl shadow-2xl relative`}
+                      >
+                        {key === "NAHOMLuxury" && (
+                          <span className="absolute -top-3 right-6 bg-[#FF4900] text-black text-[9px] uppercase font-bold px-3 py-1 rounded-full">
+                            {pkg.tier}
+                          </span>
+                        )}
+
+                        <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-[#001595]">
+                          {key === "NAHOMLuxury"
+                            ? "NAHOM LUXURY"
+                            : pkg.tier}
+                        </span>
+
+                        <h3 className="text-xl sm:text-2xl font-serif mt-1 mb-2 break-words">
+                          {pkg.name}
+                        </h3>
+
+                        <p className="text-2xl sm:text-3xl font-serif font-bold text-[#001595] mb-6 break-words">
+                          {pkg.price}
+                        </p>
+
+                        {pkg.services?.length > 0 && (
+                          <div className="text-xs sm:text-sm text-zinc-300 space-y-2 mb-4 border-b border-zinc-900 pb-4">
+                            {pkg.services.map((service, index) => (
+                              <p key={index}>{service}</p>
+                            ))}
+                          </div>
+                        )}
+
+                        <ul className="text-xs sm:text-sm text-zinc-300 space-y-3">
+                          {(pkg.features || []).map((feature, index) => (
+                            <li key={index}>{feature}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    );
+                  },
+                )}
+              </div>
+            </section>
           </div>
         )}
       </div>
