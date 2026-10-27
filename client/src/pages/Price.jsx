@@ -6624,51 +6624,104 @@ function Price() {
   // LOGIN
   // =========================================================
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
 
-    setLoading(true);
-    setError(false);
+  //   setLoading(true);
+  //   setError(false);
 
-    try {
-      const response = await fetch(AUTH_API, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          passcode: passcode.trim(),
+  //   try {
+  //     const response = await fetch(AUTH_API, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         passcode: passcode.trim(),
+  //       }),
+  //     });
+
+  //     const data = await response.json();
+
+  //     if (response.ok && data?.success) {
+  //       setIsAuthenticated(true);
+
+  //       const expiryDuration = 10 * 60 * 1000;
+
+  //       localStorage.setItem(
+  //         "priceAuthData",
+  //         JSON.stringify({
+  //           value: "true",
+  //           expiry: Date.now() + expiryDuration,
+  //         }),
+  //       );
+
+  //       setPasscode("");
+  //     } else {
+  //       setError(true);
+  //     }
+  //   } catch (err) {
+  //     console.error("Error verifying passcode:", err);
+  //     setError(true);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+const handleLogin = async (e) => {
+  e.preventDefault();
+
+  if (!passcode.trim()) {
+    setError(true);
+    return;
+  }
+
+  setLoading(true);
+  setError(false);
+
+  try {
+    const response = await fetch(AUTH_API, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        passcode: passcode.trim(),
+      }),
+    });
+
+    const data = await response.json().catch(() => null);
+
+    if (response.ok && data?.success === true) {
+      const expiryDuration = 10 * 60 * 1000;
+
+      localStorage.setItem(
+        "priceAuthData",
+        JSON.stringify({
+          value: "true",
+          expiry: Date.now() + expiryDuration,
         }),
+      );
+
+      setIsAuthenticated(true);
+      setPasscode("");
+      setError(false);
+    } else {
+      console.error("Passcode verification failed:", {
+        status: response.status,
+        message: data?.message,
       });
 
-      const data = await response.json();
-
-      if (response.ok && data?.success) {
-        setIsAuthenticated(true);
-
-        const expiryDuration = 10 * 60 * 1000;
-
-        localStorage.setItem(
-          "priceAuthData",
-          JSON.stringify({
-            value: "true",
-            expiry: Date.now() + expiryDuration,
-          }),
-        );
-
-        setPasscode("");
-      } else {
-        setError(true);
-      }
-    } catch (err) {
-      console.error("Error verifying passcode:", err);
       setError(true);
-    } finally {
-      setLoading(false);
     }
-  };
-
+  } catch (err) {
+    console.error("Passcode request failed:", err);
+    setError(true);
+  } finally {
+    setLoading(false);
+  }
+};
   // =========================================================
   // ADMIN EDIT GATE
   // =========================================================
